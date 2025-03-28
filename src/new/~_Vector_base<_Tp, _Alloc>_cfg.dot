@@ -1,0 +1,8 @@
+digraph CFG {
+  node [shape=box];
+  0 [label="Block 0\n"];
+  1 [label="Block 1\nthis->_M_impl._M_end_of_storage - this->_M_impl._M_start\nthis->_M_deallocate(this->_M_impl._M_start, this->_M_impl._M_end_of_storage - this->_M_impl._M_start)\n"];
+  2 [label="Block 2\n"];
+  1 -> 0;
+  2 -> 1;
+}

@@ -1,0 +1,9 @@
+digraph CFG {
+  node [shape=box];
+  0 [label="Block 0\n"];
+  1 [label="Block 1\nstd::move(__comp)\n_Val_comp_iter<_Compare>(std::move(__comp))\nreturn _Val_comp_iter<_Compare>(std::move(__comp));
+\n"];
+  2 [label="Block 2\n"];
+  1 -> 0;
+  2 -> 1;
+}

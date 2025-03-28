@@ -1,0 +1,9 @@
+digraph CFG {
+  node [shape=box];
+  0 [label="Block 0\n"];
+  1 [label="Block 1\n(long long)__n\nreturn (long long)__n;
+\n"];
+  2 [label="Block 2\n"];
+  1 -> 0;
+  2 -> 1;
+}

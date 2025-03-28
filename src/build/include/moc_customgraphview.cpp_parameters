@@ -1,0 +1,6 @@
+-I/usr/lib/llvm-18/include
+-I/usr/lib/llvm-18/include
+-I/home/dubem/cfg_parser/include
+-o
+/home/dubem/cfg_parser/build/include/moc_customgraphview.cpp
+/home/dubem/cfg_parser/include/customgraphview.h

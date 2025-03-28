@@ -1,0 +1,12 @@
+digraph CFG {
+  node [shape=box];
+  0 [label="Block 0\n"];
+  1 [label="Block 1\n__builtin_alloca(sizeof(_CharT) * __n)\n_CharT *__s = static_cast<_CharT *>(__builtin_alloca(sizeof(_CharT) * __n));
+\n\n__builtin_va_list __args;
+\n__builtin_va_start(__args, __fmt)\n__convf(__s, __n, __fmt, __args)\nconst int __len = __convf(__s, __n, __fmt, __args);
+\n__builtin_va_end(__args)\n__s + __len\n_String(__s, __s + __len)\nreturn _String(__s, __s + __len);
+\n"];
+  2 [label="Block 2\n"];
+  1 -> 0;
+  2 -> 1;
+}

@@ -1,0 +1,26 @@
+digraph CFG {
+  node [shape=box];
+  0 [label="Block 0\n"];
+  1 [label="Block 1\n'0' + __val\n__first[0] = '0' + __val\n"];
+  2 [label="Block 2\nconst auto __num = __val * 2;
+\n__num + 1\n__first[1] = __digits[__num + 1]\n__first[0] = __digits[__num]\n"];
+  3 [label="Block 3\n__val >= 10\n"];
+  4 [label="Block 4\n"];
+  5 [label="Block 5\nconst auto __num = (__val % 100) * 2;
+\n__val /= 100\n__num + 1\n__first[__pos] = __digits[__num + 1]\n__first[__pos - 1] = __digits[__num]\n__pos -= 2\n"];
+  6 [label="Block 6\n__val >= 100\n"];
+  7 [label="Block 7\nconstexpr char __digits[201] = "00010203040506070809101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899";
+\nunsigned int __pos = __len - 1;
+\n"];
+  8 [label="Block 8\n"];
+  1 -> 0;
+  2 -> 0;
+  3 -> 2;
+  3 -> 1;
+  4 -> 6;
+  5 -> 4;
+  6 -> 5;
+  6 -> 3;
+  7 -> 6;
+  8 -> 7;
+}

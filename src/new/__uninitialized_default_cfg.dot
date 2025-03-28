@@ -1,0 +1,9 @@
+digraph CFG {
+  node [shape=box];
+  0 [label="Block 0\n"];
+  1 [label="Block 1\nconst _Bool __assignable = is_copy_assignable<_ValueType>::value;
+\nstd::__uninitialized_default_1<__is_trivial(_ValueType) && __assignable>::__uninit_default(__first, __last)\n"];
+  2 [label="Block 2\n"];
+  1 -> 0;
+  2 -> 1;
+}

@@ -1,0 +1,10 @@
+digraph CFG {
+  node [shape=box];
+  0 [label="Block 0\n"];
+  1 [label="Block 1\n__uses_alloc_t<_Tp, _Alloc, _Args...> __ret;
+\nstd::__addressof(__a)\n__ret._M_a = std::__addressof(__a)\n__ret\nreturn __ret;
+\n"];
+  2 [label="Block 2\n"];
+  1 -> 0;
+  2 -> 1;
+}
