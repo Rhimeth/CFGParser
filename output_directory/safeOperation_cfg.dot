@@ -1,0 +1,26 @@
+digraph CFG {
+  node [shape=box];
+  
+  0 [label="Block 0"];
+  1 [label="Block 1\nvalue > 0\n"];
+  2 [label="Block 2"];
+  3 [label="Block 3\ncatch (const std::exception &e) {\n  std::cout << \"Error: \" << e.what() << std::endl;\n  value = 0;\n  break;\n}"];
+  4 [label="Block 4\nvalue--\n"];
+  5 [label="Block 5\n\"Negative value\"\nthrow std::runtime_error(\"Negative value\");"];
+  6 [label="Block 6\nvalue < 0\n"];
+  7 [label="Block 7"];
+  8 [label="Block 8"];
+  
+  // Control flow edges
+  1 -> 7;
+  1 -> 0;
+  2 -> 3;
+  2 -> 0;
+  3 -> 0;
+  4 -> 1;
+  5 -> 2;
+  6 -> 5;
+  6 -> 4;
+  7 -> 6;
+  8 -> 6;
+}

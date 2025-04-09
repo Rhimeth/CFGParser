@@ -1,0 +1,10 @@
+digraph CFG {
+  node [shape=box];
+  0 [label="Block 0\n"];
+  1 [label="Block 1\n_Alloc_traits::_S_select_on_copy(__a)\n_Str __str(_Alloc_traits::_S_select_on_copy(__a));
+\n__lhs_len + __rhs_len\n__str.reserve(__lhs_len + __rhs_len)\n__str.append(__lhs, __lhs_len)\n__str.append(__rhs, __rhs_len)\n__str\nreturn __str;
+\n"];
+  2 [label="Block 2\n"];
+  1 -> 0;
+  2 -> 1;
+}

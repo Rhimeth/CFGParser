@@ -1,0 +1,20 @@
+digraph CFG {
+  node [shape=box];
+  0 [label="Block 0\n"];
+  1 [label="Block 1\nthis->_M_os.setstate(class ios_base::badbit)\n"];
+  2 [label="Block 2\nthis->_M_os.rdbuf()\nthis->_M_os.rdbuf()->pubsync()\nthis->_M_os.rdbuf()->pubsync() == -1\n"];
+  3 [label="Block 3\nthis->_M_os.rdbuf()\n"];
+  4 [label="Block 4\nuncaught_exception()\n!uncaught_exception()\n"];
+  5 [label="Block 5\nthis->_M_os.flags()\nthis->_M_os.flags() & class ios_base::unitbuf\n_Bool(this->_M_os.flags() & class ios_base::unitbuf)\n"];
+  6 [label="Block 6\n"];
+  1 -> 0;
+  2 -> 1;
+  2 -> 0;
+  3 -> 2;
+  3 -> 0;
+  4 -> 3;
+  4 -> 0;
+  5 -> 4;
+  5 -> 0;
+  6 -> 5;
+}

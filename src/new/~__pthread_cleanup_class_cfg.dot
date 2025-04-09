@@ -1,0 +1,11 @@
+digraph CFG {
+  node [shape=box];
+  0 [label="Block 0\n"];
+  1 [label="Block 1\nthis->__cancel_routine(this->__cancel_arg)\n"];
+  2 [label="Block 2\nthis->__do_it\n"];
+  3 [label="Block 3\n"];
+  1 -> 0;
+  2 -> 1;
+  2 -> 0;
+  3 -> 2;
+}

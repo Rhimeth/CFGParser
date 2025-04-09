@@ -1,0 +1,15 @@
+/home/dubem/cfg_parser/build/CMakeFiles/intrinsics_gen.dir
+/home/dubem/cfg_parser/build/CMakeFiles/omp_gen.dir
+/home/dubem/cfg_parser/build/CMakeFiles/acc_gen.dir
+/home/dubem/cfg_parser/build/CMakeFiles/RISCVTargetParserTableGen.dir
+/home/dubem/cfg_parser/build/CMakeFiles/clang-tablegen-targets.dir
+/home/dubem/cfg_parser/build/CMakeFiles/CFGParser.dir
+/home/dubem/cfg_parser/build/CMakeFiles/generate_visualizations.dir
+/home/dubem/cfg_parser/build/CMakeFiles/edit_cache.dir
+/home/dubem/cfg_parser/build/CMakeFiles/rebuild_cache.dir
+/home/dubem/cfg_parser/build/CMakeFiles/list_install_components.dir
+/home/dubem/cfg_parser/build/CMakeFiles/install.dir
+/home/dubem/cfg_parser/build/CMakeFiles/install/local.dir
+/home/dubem/cfg_parser/build/CMakeFiles/install/strip.dir
+/home/dubem/cfg_parser/build/CMakeFiles/CFGParser_autogen_timestamp_deps.dir
+/home/dubem/cfg_parser/build/CMakeFiles/CFGParser_autogen.dir

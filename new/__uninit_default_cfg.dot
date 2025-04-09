@@ -1,0 +1,18 @@
+digraph CFG {
+  node [shape=box];
+  0 [label="Block 0\n"];
+  1 [label="Block 1\nstd::fill(__first, __last, *__val)\n"];
+  2 [label="Block 2\nstd::__addressof(*__first)\ntypename iterator_traits<_ForwardIterator>::value_type *__val = std::__addressof(*__first);
+\nstd::_Construct(__val)\n++__first != __last\n"];
+  3 [label="Block 3\nreturn;
+\n"];
+  4 [label="Block 4\n__first == __last\n"];
+  5 [label="Block 5\n"];
+  1 -> 0;
+  2 -> 1;
+  2 -> 0;
+  3 -> 0;
+  4 -> 3;
+  4 -> 2;
+  5 -> 4;
+}
