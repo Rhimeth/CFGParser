@@ -69,6 +69,7 @@ include CMakeFiles/CFGParser.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/CFGParser.dir/flags.make
 
+<<<<<<< HEAD
 include/moc_customgraphview.cpp: /home/dubem/cfg_parser/include/customgraphview.h
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/dubem/cfg_parser/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating include/moc_customgraphview.cpp"
 	cd /home/dubem/cfg_parser/build/include && /usr/lib/qt5/bin/moc @/home/dubem/cfg_parser/build/include/moc_customgraphview.cpp_parameters
@@ -81,6 +82,20 @@ ui_mainwindow.h: /home/dubem/cfg_parser/src/gui/mainwindow.ui
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/dubem/cfg_parser/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating ui_mainwindow.h"
 	/usr/lib/qt5/bin/uic -o /home/dubem/cfg_parser/build/ui_mainwindow.h /home/dubem/cfg_parser/src/gui/mainwindow.ui
 
+=======
+include/moc_cfg_gui.cpp: /home/dubem/cfg_parser/include/cfg_gui.h
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/dubem/cfg_parser/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating include/moc_cfg_gui.cpp"
+	cd /home/dubem/cfg_parser/build/include && /usr/lib/qt5/bin/moc @/home/dubem/cfg_parser/build/include/moc_cfg_gui.cpp_parameters
+
+include/moc_customgraphview.cpp: /home/dubem/cfg_parser/include/customgraphview.h
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/dubem/cfg_parser/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating include/moc_customgraphview.cpp"
+	cd /home/dubem/cfg_parser/build/include && /usr/lib/qt5/bin/moc @/home/dubem/cfg_parser/build/include/moc_customgraphview.cpp_parameters
+
+include/moc_mainwindow.cpp: /home/dubem/cfg_parser/include/mainwindow.h
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/dubem/cfg_parser/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating include/moc_mainwindow.cpp"
+	cd /home/dubem/cfg_parser/build/include && /usr/lib/qt5/bin/moc @/home/dubem/cfg_parser/build/include/moc_mainwindow.cpp_parameters
+
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
 CFGParser_autogen/timestamp: /usr/lib/qt5/bin/moc
 CFGParser_autogen/timestamp: /usr/lib/qt5/bin/uic
 CFGParser_autogen/timestamp: CMakeFiles/CFGParser.dir/compiler_depend.ts
@@ -116,10 +131,31 @@ CMakeFiles/CFGParser.dir/src/gui/mainwindow.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/CFGParser.dir/src/gui/mainwindow.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/dubem/cfg_parser/src/gui/mainwindow.cpp -o CMakeFiles/CFGParser.dir/src/gui/mainwindow.cpp.s
 
+<<<<<<< HEAD
 CMakeFiles/CFGParser.dir/src/gui/customgraphview.cpp.o: CMakeFiles/CFGParser.dir/flags.make
 CMakeFiles/CFGParser.dir/src/gui/customgraphview.cpp.o: /home/dubem/cfg_parser/src/gui/customgraphview.cpp
 CMakeFiles/CFGParser.dir/src/gui/customgraphview.cpp.o: CMakeFiles/CFGParser.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dubem/cfg_parser/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/CFGParser.dir/src/gui/customgraphview.cpp.o"
+=======
+CMakeFiles/CFGParser.dir/src/gui/cfg_gui.cpp.o: CMakeFiles/CFGParser.dir/flags.make
+CMakeFiles/CFGParser.dir/src/gui/cfg_gui.cpp.o: /home/dubem/cfg_parser/src/gui/cfg_gui.cpp
+CMakeFiles/CFGParser.dir/src/gui/cfg_gui.cpp.o: CMakeFiles/CFGParser.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dubem/cfg_parser/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/CFGParser.dir/src/gui/cfg_gui.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CFGParser.dir/src/gui/cfg_gui.cpp.o -MF CMakeFiles/CFGParser.dir/src/gui/cfg_gui.cpp.o.d -o CMakeFiles/CFGParser.dir/src/gui/cfg_gui.cpp.o -c /home/dubem/cfg_parser/src/gui/cfg_gui.cpp
+
+CMakeFiles/CFGParser.dir/src/gui/cfg_gui.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/CFGParser.dir/src/gui/cfg_gui.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/dubem/cfg_parser/src/gui/cfg_gui.cpp > CMakeFiles/CFGParser.dir/src/gui/cfg_gui.cpp.i
+
+CMakeFiles/CFGParser.dir/src/gui/cfg_gui.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/CFGParser.dir/src/gui/cfg_gui.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/dubem/cfg_parser/src/gui/cfg_gui.cpp -o CMakeFiles/CFGParser.dir/src/gui/cfg_gui.cpp.s
+
+CMakeFiles/CFGParser.dir/src/gui/customgraphview.cpp.o: CMakeFiles/CFGParser.dir/flags.make
+CMakeFiles/CFGParser.dir/src/gui/customgraphview.cpp.o: /home/dubem/cfg_parser/src/gui/customgraphview.cpp
+CMakeFiles/CFGParser.dir/src/gui/customgraphview.cpp.o: CMakeFiles/CFGParser.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dubem/cfg_parser/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/CFGParser.dir/src/gui/customgraphview.cpp.o"
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CFGParser.dir/src/gui/customgraphview.cpp.o -MF CMakeFiles/CFGParser.dir/src/gui/customgraphview.cpp.o.d -o CMakeFiles/CFGParser.dir/src/gui/customgraphview.cpp.o -c /home/dubem/cfg_parser/src/gui/customgraphview.cpp
 
 CMakeFiles/CFGParser.dir/src/gui/customgraphview.cpp.i: cmake_force
@@ -133,7 +169,11 @@ CMakeFiles/CFGParser.dir/src/gui/customgraphview.cpp.s: cmake_force
 CMakeFiles/CFGParser.dir/src/cfg_generation_action.cpp.o: CMakeFiles/CFGParser.dir/flags.make
 CMakeFiles/CFGParser.dir/src/cfg_generation_action.cpp.o: /home/dubem/cfg_parser/src/cfg_generation_action.cpp
 CMakeFiles/CFGParser.dir/src/cfg_generation_action.cpp.o: CMakeFiles/CFGParser.dir/compiler_depend.ts
+<<<<<<< HEAD
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dubem/cfg_parser/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/CFGParser.dir/src/cfg_generation_action.cpp.o"
+=======
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dubem/cfg_parser/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/CFGParser.dir/src/cfg_generation_action.cpp.o"
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CFGParser.dir/src/cfg_generation_action.cpp.o -MF CMakeFiles/CFGParser.dir/src/cfg_generation_action.cpp.o.d -o CMakeFiles/CFGParser.dir/src/cfg_generation_action.cpp.o -c /home/dubem/cfg_parser/src/cfg_generation_action.cpp
 
 CMakeFiles/CFGParser.dir/src/cfg_generation_action.cpp.i: cmake_force
@@ -147,7 +187,11 @@ CMakeFiles/CFGParser.dir/src/cfg_generation_action.cpp.s: cmake_force
 CMakeFiles/CFGParser.dir/src/cfg_graph.cpp.o: CMakeFiles/CFGParser.dir/flags.make
 CMakeFiles/CFGParser.dir/src/cfg_graph.cpp.o: /home/dubem/cfg_parser/src/cfg_graph.cpp
 CMakeFiles/CFGParser.dir/src/cfg_graph.cpp.o: CMakeFiles/CFGParser.dir/compiler_depend.ts
+<<<<<<< HEAD
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dubem/cfg_parser/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/CFGParser.dir/src/cfg_graph.cpp.o"
+=======
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dubem/cfg_parser/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/CFGParser.dir/src/cfg_graph.cpp.o"
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CFGParser.dir/src/cfg_graph.cpp.o -MF CMakeFiles/CFGParser.dir/src/cfg_graph.cpp.o.d -o CMakeFiles/CFGParser.dir/src/cfg_graph.cpp.o -c /home/dubem/cfg_parser/src/cfg_graph.cpp
 
 CMakeFiles/CFGParser.dir/src/cfg_graph.cpp.i: cmake_force
@@ -161,7 +205,11 @@ CMakeFiles/CFGParser.dir/src/cfg_graph.cpp.s: cmake_force
 CMakeFiles/CFGParser.dir/src/cfg_analyzer.cpp.o: CMakeFiles/CFGParser.dir/flags.make
 CMakeFiles/CFGParser.dir/src/cfg_analyzer.cpp.o: /home/dubem/cfg_parser/src/cfg_analyzer.cpp
 CMakeFiles/CFGParser.dir/src/cfg_analyzer.cpp.o: CMakeFiles/CFGParser.dir/compiler_depend.ts
+<<<<<<< HEAD
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dubem/cfg_parser/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/CFGParser.dir/src/cfg_analyzer.cpp.o"
+=======
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dubem/cfg_parser/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/CFGParser.dir/src/cfg_analyzer.cpp.o"
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CFGParser.dir/src/cfg_analyzer.cpp.o -MF CMakeFiles/CFGParser.dir/src/cfg_analyzer.cpp.o.d -o CMakeFiles/CFGParser.dir/src/cfg_analyzer.cpp.o -c /home/dubem/cfg_parser/src/cfg_analyzer.cpp
 
 CMakeFiles/CFGParser.dir/src/cfg_analyzer.cpp.i: cmake_force
@@ -175,7 +223,11 @@ CMakeFiles/CFGParser.dir/src/cfg_analyzer.cpp.s: cmake_force
 CMakeFiles/CFGParser.dir/src/graph_generator.cpp.o: CMakeFiles/CFGParser.dir/flags.make
 CMakeFiles/CFGParser.dir/src/graph_generator.cpp.o: /home/dubem/cfg_parser/src/graph_generator.cpp
 CMakeFiles/CFGParser.dir/src/graph_generator.cpp.o: CMakeFiles/CFGParser.dir/compiler_depend.ts
+<<<<<<< HEAD
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dubem/cfg_parser/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/CFGParser.dir/src/graph_generator.cpp.o"
+=======
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dubem/cfg_parser/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/CFGParser.dir/src/graph_generator.cpp.o"
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CFGParser.dir/src/graph_generator.cpp.o -MF CMakeFiles/CFGParser.dir/src/graph_generator.cpp.o.d -o CMakeFiles/CFGParser.dir/src/graph_generator.cpp.o -c /home/dubem/cfg_parser/src/graph_generator.cpp
 
 CMakeFiles/CFGParser.dir/src/graph_generator.cpp.i: cmake_force
@@ -189,7 +241,11 @@ CMakeFiles/CFGParser.dir/src/graph_generator.cpp.s: cmake_force
 CMakeFiles/CFGParser.dir/src/parser.cpp.o: CMakeFiles/CFGParser.dir/flags.make
 CMakeFiles/CFGParser.dir/src/parser.cpp.o: /home/dubem/cfg_parser/src/parser.cpp
 CMakeFiles/CFGParser.dir/src/parser.cpp.o: CMakeFiles/CFGParser.dir/compiler_depend.ts
+<<<<<<< HEAD
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dubem/cfg_parser/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/CFGParser.dir/src/parser.cpp.o"
+=======
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dubem/cfg_parser/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/CFGParser.dir/src/parser.cpp.o"
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CFGParser.dir/src/parser.cpp.o -MF CMakeFiles/CFGParser.dir/src/parser.cpp.o.d -o CMakeFiles/CFGParser.dir/src/parser.cpp.o -c /home/dubem/cfg_parser/src/parser.cpp
 
 CMakeFiles/CFGParser.dir/src/parser.cpp.i: cmake_force
@@ -203,7 +259,11 @@ CMakeFiles/CFGParser.dir/src/parser.cpp.s: cmake_force
 CMakeFiles/CFGParser.dir/src/visualizer.cpp.o: CMakeFiles/CFGParser.dir/flags.make
 CMakeFiles/CFGParser.dir/src/visualizer.cpp.o: /home/dubem/cfg_parser/src/visualizer.cpp
 CMakeFiles/CFGParser.dir/src/visualizer.cpp.o: CMakeFiles/CFGParser.dir/compiler_depend.ts
+<<<<<<< HEAD
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dubem/cfg_parser/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/CFGParser.dir/src/visualizer.cpp.o"
+=======
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dubem/cfg_parser/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/CFGParser.dir/src/visualizer.cpp.o"
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CFGParser.dir/src/visualizer.cpp.o -MF CMakeFiles/CFGParser.dir/src/visualizer.cpp.o.d -o CMakeFiles/CFGParser.dir/src/visualizer.cpp.o -c /home/dubem/cfg_parser/src/visualizer.cpp
 
 CMakeFiles/CFGParser.dir/src/visualizer.cpp.i: cmake_force
@@ -214,6 +274,7 @@ CMakeFiles/CFGParser.dir/src/visualizer.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/CFGParser.dir/src/visualizer.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/dubem/cfg_parser/src/visualizer.cpp -o CMakeFiles/CFGParser.dir/src/visualizer.cpp.s
 
+<<<<<<< HEAD
 CMakeFiles/CFGParser.dir/src/ast_extractor.cpp.o: CMakeFiles/CFGParser.dir/flags.make
 CMakeFiles/CFGParser.dir/src/ast_extractor.cpp.o: /home/dubem/cfg_parser/src/ast_extractor.cpp
 CMakeFiles/CFGParser.dir/src/ast_extractor.cpp.o: CMakeFiles/CFGParser.dir/compiler_depend.ts
@@ -241,11 +302,44 @@ CMakeFiles/CFGParser.dir/src/main.cpp.i: cmake_force
 CMakeFiles/CFGParser.dir/src/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/CFGParser.dir/src/main.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/dubem/cfg_parser/src/main.cpp -o CMakeFiles/CFGParser.dir/src/main.cpp.s
+=======
+CMakeFiles/CFGParser.dir/src/input.cpp.o: CMakeFiles/CFGParser.dir/flags.make
+CMakeFiles/CFGParser.dir/src/input.cpp.o: /home/dubem/cfg_parser/src/input.cpp
+CMakeFiles/CFGParser.dir/src/input.cpp.o: CMakeFiles/CFGParser.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dubem/cfg_parser/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/CFGParser.dir/src/input.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CFGParser.dir/src/input.cpp.o -MF CMakeFiles/CFGParser.dir/src/input.cpp.o.d -o CMakeFiles/CFGParser.dir/src/input.cpp.o -c /home/dubem/cfg_parser/src/input.cpp
+
+CMakeFiles/CFGParser.dir/src/input.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/CFGParser.dir/src/input.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/dubem/cfg_parser/src/input.cpp > CMakeFiles/CFGParser.dir/src/input.cpp.i
+
+CMakeFiles/CFGParser.dir/src/input.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/CFGParser.dir/src/input.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/dubem/cfg_parser/src/input.cpp -o CMakeFiles/CFGParser.dir/src/input.cpp.s
+
+CMakeFiles/CFGParser.dir/include/moc_cfg_gui.cpp.o: CMakeFiles/CFGParser.dir/flags.make
+CMakeFiles/CFGParser.dir/include/moc_cfg_gui.cpp.o: include/moc_cfg_gui.cpp
+CMakeFiles/CFGParser.dir/include/moc_cfg_gui.cpp.o: CMakeFiles/CFGParser.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dubem/cfg_parser/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/CFGParser.dir/include/moc_cfg_gui.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CFGParser.dir/include/moc_cfg_gui.cpp.o -MF CMakeFiles/CFGParser.dir/include/moc_cfg_gui.cpp.o.d -o CMakeFiles/CFGParser.dir/include/moc_cfg_gui.cpp.o -c /home/dubem/cfg_parser/build/include/moc_cfg_gui.cpp
+
+CMakeFiles/CFGParser.dir/include/moc_cfg_gui.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/CFGParser.dir/include/moc_cfg_gui.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/dubem/cfg_parser/build/include/moc_cfg_gui.cpp > CMakeFiles/CFGParser.dir/include/moc_cfg_gui.cpp.i
+
+CMakeFiles/CFGParser.dir/include/moc_cfg_gui.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/CFGParser.dir/include/moc_cfg_gui.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/dubem/cfg_parser/build/include/moc_cfg_gui.cpp -o CMakeFiles/CFGParser.dir/include/moc_cfg_gui.cpp.s
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
 
 CMakeFiles/CFGParser.dir/include/moc_customgraphview.cpp.o: CMakeFiles/CFGParser.dir/flags.make
 CMakeFiles/CFGParser.dir/include/moc_customgraphview.cpp.o: include/moc_customgraphview.cpp
 CMakeFiles/CFGParser.dir/include/moc_customgraphview.cpp.o: CMakeFiles/CFGParser.dir/compiler_depend.ts
+<<<<<<< HEAD
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dubem/cfg_parser/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/CFGParser.dir/include/moc_customgraphview.cpp.o"
+=======
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dubem/cfg_parser/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/CFGParser.dir/include/moc_customgraphview.cpp.o"
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CFGParser.dir/include/moc_customgraphview.cpp.o -MF CMakeFiles/CFGParser.dir/include/moc_customgraphview.cpp.o.d -o CMakeFiles/CFGParser.dir/include/moc_customgraphview.cpp.o -c /home/dubem/cfg_parser/build/include/moc_customgraphview.cpp
 
 CMakeFiles/CFGParser.dir/include/moc_customgraphview.cpp.i: cmake_force
@@ -259,7 +353,11 @@ CMakeFiles/CFGParser.dir/include/moc_customgraphview.cpp.s: cmake_force
 CMakeFiles/CFGParser.dir/include/moc_mainwindow.cpp.o: CMakeFiles/CFGParser.dir/flags.make
 CMakeFiles/CFGParser.dir/include/moc_mainwindow.cpp.o: include/moc_mainwindow.cpp
 CMakeFiles/CFGParser.dir/include/moc_mainwindow.cpp.o: CMakeFiles/CFGParser.dir/compiler_depend.ts
+<<<<<<< HEAD
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dubem/cfg_parser/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/CFGParser.dir/include/moc_mainwindow.cpp.o"
+=======
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dubem/cfg_parser/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/CFGParser.dir/include/moc_mainwindow.cpp.o"
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CFGParser.dir/include/moc_mainwindow.cpp.o -MF CMakeFiles/CFGParser.dir/include/moc_mainwindow.cpp.o.d -o CMakeFiles/CFGParser.dir/include/moc_mainwindow.cpp.o -c /home/dubem/cfg_parser/build/include/moc_mainwindow.cpp
 
 CMakeFiles/CFGParser.dir/include/moc_mainwindow.cpp.i: cmake_force
@@ -274,6 +372,10 @@ CMakeFiles/CFGParser.dir/include/moc_mainwindow.cpp.s: cmake_force
 CFGParser_OBJECTS = \
 "CMakeFiles/CFGParser.dir/CFGParser_autogen/mocs_compilation.cpp.o" \
 "CMakeFiles/CFGParser.dir/src/gui/mainwindow.cpp.o" \
+<<<<<<< HEAD
+=======
+"CMakeFiles/CFGParser.dir/src/gui/cfg_gui.cpp.o" \
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
 "CMakeFiles/CFGParser.dir/src/gui/customgraphview.cpp.o" \
 "CMakeFiles/CFGParser.dir/src/cfg_generation_action.cpp.o" \
 "CMakeFiles/CFGParser.dir/src/cfg_graph.cpp.o" \
@@ -281,8 +383,13 @@ CFGParser_OBJECTS = \
 "CMakeFiles/CFGParser.dir/src/graph_generator.cpp.o" \
 "CMakeFiles/CFGParser.dir/src/parser.cpp.o" \
 "CMakeFiles/CFGParser.dir/src/visualizer.cpp.o" \
+<<<<<<< HEAD
 "CMakeFiles/CFGParser.dir/src/ast_extractor.cpp.o" \
 "CMakeFiles/CFGParser.dir/src/main.cpp.o" \
+=======
+"CMakeFiles/CFGParser.dir/src/input.cpp.o" \
+"CMakeFiles/CFGParser.dir/include/moc_cfg_gui.cpp.o" \
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
 "CMakeFiles/CFGParser.dir/include/moc_customgraphview.cpp.o" \
 "CMakeFiles/CFGParser.dir/include/moc_mainwindow.cpp.o"
 
@@ -291,6 +398,10 @@ CFGParser_EXTERNAL_OBJECTS =
 
 CFGParser: CMakeFiles/CFGParser.dir/CFGParser_autogen/mocs_compilation.cpp.o
 CFGParser: CMakeFiles/CFGParser.dir/src/gui/mainwindow.cpp.o
+<<<<<<< HEAD
+=======
+CFGParser: CMakeFiles/CFGParser.dir/src/gui/cfg_gui.cpp.o
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
 CFGParser: CMakeFiles/CFGParser.dir/src/gui/customgraphview.cpp.o
 CFGParser: CMakeFiles/CFGParser.dir/src/cfg_generation_action.cpp.o
 CFGParser: CMakeFiles/CFGParser.dir/src/cfg_graph.cpp.o
@@ -298,17 +409,25 @@ CFGParser: CMakeFiles/CFGParser.dir/src/cfg_analyzer.cpp.o
 CFGParser: CMakeFiles/CFGParser.dir/src/graph_generator.cpp.o
 CFGParser: CMakeFiles/CFGParser.dir/src/parser.cpp.o
 CFGParser: CMakeFiles/CFGParser.dir/src/visualizer.cpp.o
+<<<<<<< HEAD
 CFGParser: CMakeFiles/CFGParser.dir/src/ast_extractor.cpp.o
 CFGParser: CMakeFiles/CFGParser.dir/src/main.cpp.o
+=======
+CFGParser: CMakeFiles/CFGParser.dir/src/input.cpp.o
+CFGParser: CMakeFiles/CFGParser.dir/include/moc_cfg_gui.cpp.o
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
 CFGParser: CMakeFiles/CFGParser.dir/include/moc_customgraphview.cpp.o
 CFGParser: CMakeFiles/CFGParser.dir/include/moc_mainwindow.cpp.o
 CFGParser: CMakeFiles/CFGParser.dir/build.make
 CFGParser: /usr/lib/x86_64-linux-gnu/libQt5PrintSupport.so.5.15.13
+<<<<<<< HEAD
 CFGParser: /usr/lib/x86_64-linux-gnu/libQt5Svg.so.5.15.13
 CFGParser: /usr/lib/x86_64-linux-gnu/libQt5Concurrent.so.5.15.13
 CFGParser: /usr/lib/x86_64-linux-gnu/libQt5OpenGL.so.5.15.13
 CFGParser: /usr/lib/llvm-18/lib/libLLVMSupport.a
 CFGParser: /usr/lib/llvm-18/lib/libLLVMCore.a
+=======
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
 CFGParser: /usr/lib/llvm-18/lib/libclangTooling.a
 CFGParser: /usr/lib/llvm-18/lib/libclangFrontend.a
 CFGParser: /usr/lib/llvm-18/lib/libclangDriver.a
@@ -323,6 +442,7 @@ CFGParser: /usr/lib/llvm-18/lib/libclangBasic.a
 CFGParser: /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.15.13
 CFGParser: /usr/lib/x86_64-linux-gnu/libQt5Gui.so.5.15.13
 CFGParser: /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.15.13
+<<<<<<< HEAD
 CFGParser: /usr/lib/llvm-18/lib/libLLVMBinaryFormat.a
 CFGParser: /usr/lib/llvm-18/lib/libLLVMRemarks.a
 CFGParser: /usr/lib/llvm-18/lib/libLLVMBitstreamReader.a
@@ -332,6 +452,8 @@ CFGParser: /usr/lib/x86_64-linux-gnu/libz.so
 CFGParser: /usr/lib/x86_64-linux-gnu/libzstd.so
 CFGParser: /usr/lib/x86_64-linux-gnu/libtinfo.so
 CFGParser: /usr/lib/llvm-18/lib/libLLVMDemangle.a
+=======
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
 CFGParser: /usr/lib/llvm-18/lib/libclangAPINotes.a
 CFGParser: /usr/lib/llvm-18/lib/libclangSupport.a
 CFGParser: /usr/lib/llvm-18/lib/libclangASTMatchers.a
@@ -344,7 +466,11 @@ CFGParser: /usr/lib/llvm-18/lib/libclangLex.a
 CFGParser: /usr/lib/llvm-18/lib/libclangBasic.a
 CFGParser: /usr/lib/llvm-18/lib/libLLVM.so.1
 CFGParser: CMakeFiles/CFGParser.dir/link.txt
+<<<<<<< HEAD
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/dubem/cfg_parser/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Linking CXX executable CFGParser"
+=======
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/dubem/cfg_parser/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Linking CXX executable CFGParser"
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/CFGParser.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -356,9 +482,15 @@ CMakeFiles/CFGParser.dir/clean:
 .PHONY : CMakeFiles/CFGParser.dir/clean
 
 CMakeFiles/CFGParser.dir/depend: CFGParser_autogen/timestamp
+<<<<<<< HEAD
 CMakeFiles/CFGParser.dir/depend: include/moc_customgraphview.cpp
 CMakeFiles/CFGParser.dir/depend: include/moc_mainwindow.cpp
 CMakeFiles/CFGParser.dir/depend: ui_mainwindow.h
+=======
+CMakeFiles/CFGParser.dir/depend: include/moc_cfg_gui.cpp
+CMakeFiles/CFGParser.dir/depend: include/moc_customgraphview.cpp
+CMakeFiles/CFGParser.dir/depend: include/moc_mainwindow.cpp
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
 	cd /home/dubem/cfg_parser/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/dubem/cfg_parser /home/dubem/cfg_parser /home/dubem/cfg_parser/build /home/dubem/cfg_parser/build /home/dubem/cfg_parser/build/CMakeFiles/CFGParser.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : CMakeFiles/CFGParser.dir/depend
 

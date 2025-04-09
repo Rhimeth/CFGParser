@@ -3,23 +3,30 @@
 
 #include <QGraphicsView>
 #include <QGraphicsScene>
+<<<<<<< HEAD
 #include <QGraphicsEllipseItem>
+=======
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
 #include <QGraphicsTextItem>
 #include <QMap>
 #include <QJsonObject>
 #include <string>
 
+<<<<<<< HEAD
 // Define the LayoutAlgorithm enum
 enum class LayoutAlgorithm {
     Tree,
     ForceDirected
 };
 
+=======
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
 class CustomGraphView : public QGraphicsView {
     Q_OBJECT
 
 public:
     explicit CustomGraphView(QWidget *parent = nullptr);
+<<<<<<< HEAD
     ~CustomGraphView() override;
     
     bool hasHighlightedItems() const;
@@ -95,6 +102,18 @@ private:
     void calculateLevels();  // Removed duplicate declaration
     void createNodeFromDot(int id, const QString& label, const QMap<QString, QString>& attributes);
     void createEdgeFromDot(int source, int target, const QMap<QString, QString>& attributes);
+=======
+
+    void addNode(const std::string& id, const std::string& label);
+    void addNode(const QString& id, const QString& label, bool isNewFile = false);
+    void addEdge(const QString& from, const QString& to);
+    void highlightFunction(const QString& functionName);
+    void addFunctionCallHierarchy(const QJsonObject& functionCalls);
+    void clear();
+
+private:
+    QGraphicsScene* m_scene;
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
     QGraphicsTextItem* createNodeItem(const QString& label, bool isNewFile = false);
     void layoutNodes();
 };

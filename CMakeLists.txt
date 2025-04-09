@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.10)
 project(CFGParser)
 
+<<<<<<< HEAD
 # Disallow in-source builds
 if(CMAKE_SOURCE_DIR STREQUAL CMAKE_BINARY_DIR)
     message(FATAL_ERROR "In-source builds not allowed. Please create a separate build directory.")
@@ -45,6 +46,36 @@ endif()
 # Source files (explicit listing to avoid picking up DOT files)
 set(SOURCES
     src/gui/mainwindow.cpp
+=======
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTORCC ON)
+set(CMAKE_AUTOUIC ON)
+
+# Find LLVM and Clang packages
+find_package(LLVM REQUIRED CONFIG)
+find_package(Clang REQUIRED CONFIG)
+
+# Add LLVM and Clang include directories
+include_directories(${LLVM_INCLUDE_DIRS})
+include_directories(${CLANG_INCLUDE_DIRS})
+
+# Find Qt5 packages
+find_package(Qt5 COMPONENTS 
+    Core 
+    Gui 
+    Widgets 
+    PrintSupport 
+    REQUIRED)
+
+# Add include directory explicitly
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
+
+# Source files
+set(SOURCES
+    src/gui/mainwindow.cpp
+    src/gui/cfg_gui.cpp
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
     src/gui/customgraphview.cpp
     src/cfg_generation_action.cpp
     src/cfg_graph.cpp
@@ -52,18 +83,30 @@ set(SOURCES
     src/graph_generator.cpp
     src/parser.cpp
     src/visualizer.cpp
+<<<<<<< HEAD
     src/ast_extractor.cpp
     src/main.cpp
+=======
+    src/input.cpp
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
 )
 
 # Header files
 set(HEADERS
+<<<<<<< HEAD
     include/analysis_results.h
     include/ast_extractor.h
     include/customgraphview.h
     include/cfg_analyzer.h
     include/graph_generator.h
     include/wsl_fallback.h
+=======
+    include/ui_mainwindow.h
+    include/customgraphview.h
+    include/cfg_gui.h
+    include/cfg_analyzer.h
+    include/graph_generator.h
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
     include/parser.h
     include/visualizer.h
     include/mainwindow.h
@@ -74,19 +117,29 @@ set(UI_FILES
     src/gui/mainwindow.ui
 )
 
+<<<<<<< HEAD
 # Files that need moc processing
 set(MOC_HEADERS
+=======
+set(HEADERS_WITH_MOC
+    include/cfg_gui.h
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
     include/customgraphview.h
     include/mainwindow.h
 )
 
+<<<<<<< HEAD
 # Generate moc files and UI headers
 qt5_wrap_cpp(MOC_FILES ${MOC_HEADERS})
 qt5_wrap_ui(UI_HEADERS ${UI_FILES})
+=======
+qt5_wrap_cpp(MOC_FILES ${HEADERS_WITH_MOC})
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
 
 # Create executable
 add_executable(CFGParser 
     ${SOURCES} 
+<<<<<<< HEAD
     ${HEADERS}
     ${MOC_FILES}
     ${UI_HEADERS}
@@ -108,14 +161,36 @@ target_compile_definitions(CFGParser PRIVATE
 
 # Link libraries
 target_link_libraries(CFGParser PRIVATE
+=======
+    ${HEADERS} 
+    ${UI_FILES}
+    ${MOC_FILES}
+)
+
+# Add LLVM and Clang definitions
+add_definitions(${LLVM_DEFINITIONS})
+add_definitions(${CLANG_DEFINITIONS})
+
+# Link libraries
+target_link_libraries(CFGParser 
+    # Qt Libraries
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
     Qt5::Core 
     Qt5::Gui 
     Qt5::Widgets 
     Qt5::PrintSupport
+<<<<<<< HEAD
     Qt5::Svg
     Qt5::Concurrent
     Qt5::OpenGL
     ${LLVM_LIBS}
+=======
+    
+    # LLVM Libraries
+    LLVM
+    
+    # Clang Libraries
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
     clangTooling
     clangFrontend
     clangDriver
@@ -129,6 +204,7 @@ target_link_libraries(CFGParser PRIVATE
     clangBasic
 )
 
+<<<<<<< HEAD
 # Add custom command for DOT file processing if Graphviz is available
 if(DOT_EXECUTABLE)
     file(GLOB DOT_FILES "${CMAKE_CURRENT_SOURCE_DIR}/src/output/*.dot")
@@ -159,3 +235,7 @@ install(TARGETS CFGParser
     LIBRARY DESTINATION lib
     ARCHIVE DESTINATION lib
 )
+=======
+# Ensure the correct LLVM library path is used
+link_directories(${LLVM_LIBRARY_DIRS})
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b

@@ -22,8 +22,13 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_MainWindow_t {
+<<<<<<< HEAD
     QByteArrayData data[47];
     char stringdata0[749];
+=======
+    QByteArrayData data[7];
+    char stringdata0[77];
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -33,6 +38,7 @@ struct qt_meta_stringdata_MainWindow_t {
 static const qt_meta_stringdata_MainWindow_t qt_meta_stringdata_MainWindow = {
     {
 QT_MOC_LITERAL(0, 0, 10), // "MainWindow"
+<<<<<<< HEAD
 QT_MOC_LITERAL(1, 11, 16), // "analysisComplete"
 QT_MOC_LITERAL(2, 28, 0), // ""
 QT_MOC_LITERAL(3, 29, 27), // "CFGAnalyzer::AnalysisResult"
@@ -103,6 +109,18 @@ QT_MOC_LITERAL(46, 741, 7) // "message"
     "dumpSceneInfo\0verifyScene\0addItemToScene\0"
     "QGraphicsItem*\0switchLayoutAlgorithm\0"
     "index\0onErrorOccurred\0message"
+=======
+QT_MOC_LITERAL(1, 11, 11), // "generateCFG"
+QT_MOC_LITERAL(2, 23, 0), // ""
+QT_MOC_LITERAL(3, 24, 14), // "renderDotGraph"
+QT_MOC_LITERAL(4, 39, 8), // "dotGraph"
+QT_MOC_LITERAL(5, 48, 16), // "parsePlainFormat"
+QT_MOC_LITERAL(6, 65, 11) // "plainOutput"
+
+    },
+    "MainWindow\0generateCFG\0\0renderDotGraph\0"
+    "dotGraph\0parsePlainFormat\0plainOutput"
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
 };
 #undef QT_MOC_LITERAL
 
@@ -112,11 +130,16 @@ static const uint qt_meta_data_MainWindow[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
+<<<<<<< HEAD
       28,   14, // methods
+=======
+       3,   14, // methods
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
+<<<<<<< HEAD
        1,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
@@ -182,6 +205,19 @@ static const uint qt_meta_data_MainWindow[] = {
     QMetaType::Void, 0x80000000 | 42,   17,
     QMetaType::Void, QMetaType::Int,   44,
     QMetaType::Void, QMetaType::QString,   46,
+=======
+       0,       // signalCount
+
+ // slots: name, argc, parameters, tag, flags
+       1,    0,   29,    2, 0x08 /* Private */,
+       3,    1,   30,    2, 0x08 /* Private */,
+       5,    1,   33,    2, 0x08 /* Private */,
+
+ // slots: parameters
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::QString,    4,
+    QMetaType::Void, QMetaType::QString,    6,
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
 
        0        // eod
 };
@@ -192,6 +228,7 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         auto *_t = static_cast<MainWindow *>(_o);
         (void)_t;
         switch (_id) {
+<<<<<<< HEAD
         case 0: _t->analysisComplete((*reinterpret_cast< const CFGAnalyzer::AnalysisResult(*)>(_a[1]))); break;
         case 1: _t->handleVisualizationResult((*reinterpret_cast< std::shared_ptr<GraphGenerator::CFGGraph>(*)>(_a[1]))); break;
         case 2: _t->handleVisualizationError((*reinterpret_cast< const QString(*)>(_a[1]))); break;
@@ -231,6 +268,13 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
                 return;
             }
         }
+=======
+        case 0: _t->generateCFG(); break;
+        case 1: _t->renderDotGraph((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 2: _t->parsePlainFormat((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        default: ;
+        }
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
     }
 }
 
@@ -263,6 +307,7 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
+<<<<<<< HEAD
         if (_id < 28)
             qt_static_metacall(this, _c, _id, _a);
         _id -= 28;
@@ -280,5 +325,17 @@ void MainWindow::analysisComplete(const CFGAnalyzer::AnalysisResult & _t1)
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
     QMetaObject::activate(this, &staticMetaObject, 0, _a);
 }
+=======
+        if (_id < 3)
+            qt_static_metacall(this, _c, _id, _a);
+        _id -= 3;
+    } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
+        if (_id < 3)
+            *reinterpret_cast<int*>(_a[0]) = -1;
+        _id -= 3;
+    }
+    return _id;
+}
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
 QT_WARNING_POP
 QT_END_MOC_NAMESPACE

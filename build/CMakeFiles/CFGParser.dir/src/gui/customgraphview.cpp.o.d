@@ -291,13 +291,20 @@ CMakeFiles/CFGParser.dir/src/gui/customgraphview.cpp.o: \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qgraphicsscene.h \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QGraphicsScene \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qgraphicsscene.h \
+<<<<<<< HEAD
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QGraphicsEllipseItem \
+=======
+ /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QGraphicsTextItem \
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qgraphicsitem.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qvariant.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qmap.h \
  /usr/include/c++/13/variant \
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qpainterpath.h \
+<<<<<<< HEAD
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QGraphicsTextItem \
+=======
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QMap \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qmap.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QJsonObject \
@@ -314,6 +321,7 @@ CMakeFiles/CFGParser.dir/src/gui/customgraphview.cpp.o: \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qregularexpression.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qurl.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/quuid.h \
+<<<<<<< HEAD
  /home/dubem/cfg_parser/include/mainwindow.h \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QMainWindow \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qmainwindow.h \
@@ -692,6 +700,12 @@ CMakeFiles/CFGParser.dir/src/gui/customgraphview.cpp.o: \
  /usr/include/nlohmann/detail/conversions/from_json.hpp \
  /usr/include/c++/13/forward_list /usr/include/c++/13/bits/forward_list.h \
  /usr/include/c++/13/bits/forward_list.tcc /usr/include/c++/13/valarray \
+=======
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QDebug \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qdebug.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QJsonArray \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qjsonarray.h \
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
  /usr/include/c++/13/cmath /usr/include/math.h \
  /usr/include/x86_64-linux-gnu/bits/math-vector.h \
  /usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h \
@@ -713,6 +727,7 @@ CMakeFiles/CFGParser.dir/src/gui/customgraphview.cpp.o: \
  /usr/include/c++/13/tr1/modified_bessel_func.tcc \
  /usr/include/c++/13/tr1/poly_hermite.tcc \
  /usr/include/c++/13/tr1/poly_laguerre.tcc \
+<<<<<<< HEAD
  /usr/include/c++/13/tr1/riemann_zeta.tcc \
  /usr/include/c++/13/bits/valarray_array.h \
  /usr/include/c++/13/bits/valarray_array.tcc \
@@ -859,3 +874,6 @@ CMakeFiles/CFGParser.dir/src/gui/customgraphview.cpp.o: \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QTimer \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qtimer.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qbasictimer.h
+=======
+ /usr/include/c++/13/tr1/riemann_zeta.tcc
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b

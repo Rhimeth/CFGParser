@@ -1,3 +1,9 @@
+<<<<<<< HEAD
+=======
+-I/usr/lib/llvm-18/include
+-I/usr/lib/llvm-18/include
+-I/home/dubem/cfg_parser/include
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
 -o
 /home/dubem/cfg_parser/build/include/moc_mainwindow.cpp
 /home/dubem/cfg_parser/include/mainwindow.h

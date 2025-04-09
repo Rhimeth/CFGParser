@@ -1,6 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+<<<<<<< HEAD
 #include <QMainWindow>
 #include <QSet>
 #include <QListWidgetItem>
@@ -13,11 +14,17 @@
 #include "parser.h"
 #include "ui_mainwindow.h"
 #include "ast_extractor.h"
+=======
+#include "customgraphview.h"
+#include <QMainWindow>
+#include <QStringList>
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
 
 namespace Ui {
 class MainWindow;
 }
 
+<<<<<<< HEAD
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -115,6 +122,23 @@ private:
     void setupGraphLayout();
     void highlightFunction(const QString& functionName);
     void setupGraphView();
+=======
+class MainWindow : public QMainWindow {
+    Q_OBJECT
+
+public:
+    explicit MainWindow(QWidget *parent = nullptr);
+    ~MainWindow();
+
+private slots:
+    void generateCFG();
+    void renderDotGraph(const QString& dotGraph);
+    void parsePlainFormat(const QString& plainOutput);
+
+private:
+    Ui::MainWindow *ui;
+    QStringList m_sourceFiles;
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
 };
 
 #endif // MAINWINDOW_H

@@ -41,7 +41,10 @@
 #define __cpp_variable_templates 201304L
 #define __FLT32X_MAX_EXP__ 1024
 #define __GCC_HAVE_SYNC_COMPARE_AND_SWAP_1 1
+<<<<<<< HEAD
 #define QT_OPENGL_LIB 1
+=======
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
 #define __FLT32_HAS_DENORM__ 1
 #define __UINT_FAST8_MAX__ 0xff
 #define __cpp_rvalue_reference 200610L
@@ -84,7 +87,10 @@
 #define __SCHAR_MAX__ 0x7f
 #define __FLT128_MANT_DIG__ 113
 #define __WCHAR_MIN__ (-__WCHAR_MAX__ - 1)
+<<<<<<< HEAD
 #define QT_SVG_LIB 1
+=======
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
 #define __INT64_C(c) c ## L
 #define __SSP_STRONG__ 3
 #define __GCC_ATOMIC_POINTER_LOCK_FREE 2
@@ -241,7 +247,10 @@
 #define __DEC128_MIN_EXP__ (-6142)
 #define __DEC128_MAX__ 9.999999999999999999999999999999999E6144DL
 #define __INT_FAST32_TYPE__ long int
+<<<<<<< HEAD
 #define QT_CONCURRENT_LIB 1
+=======
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
 #define __UINT_LEAST16_TYPE__ short unsigned int
 #define __DEC128_MAX_EXP__ 6145
 #define unix 1
@@ -467,7 +476,11 @@
 #define QT_PRINTSUPPORT_LIB 1
 #define __SIZE_MAX__ 0xffffffffffffffffUL
 #define __UINT_FAST8_TYPE__ unsigned char
+<<<<<<< HEAD
 #define _GNU_SOURCE -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -D__STDC_LIMIT_MACROS 1
+=======
+#define _GNU_SOURCE 1
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
 #define __cpp_init_captures 201304L
 #define __ATOMIC_ACQ_REL 4
 #define __ATOMIC_RELEASE 3

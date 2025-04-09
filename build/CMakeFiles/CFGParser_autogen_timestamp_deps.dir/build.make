@@ -66,6 +66,7 @@ include CMakeFiles/CFGParser_autogen_timestamp_deps.dir/compiler_depend.make
 # Include the progress variables for this target.
 include CMakeFiles/CFGParser_autogen_timestamp_deps.dir/progress.make
 
+<<<<<<< HEAD
 CMakeFiles/CFGParser_autogen_timestamp_deps: /usr/lib/llvm-18/lib/libclangBasic.a
 CMakeFiles/CFGParser_autogen_timestamp_deps: /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.15.13
 CMakeFiles/CFGParser_autogen_timestamp_deps: /usr/lib/llvm-18/lib/libclangSema.a
@@ -88,6 +89,26 @@ CMakeFiles/CFGParser_autogen_timestamp_deps: /usr/lib/x86_64-linux-gnu/libQt5Pri
 CMakeFiles/CFGParser_autogen_timestamp_deps: /usr/lib/x86_64-linux-gnu/libQt5Concurrent.so.5.15.13
 CMakeFiles/CFGParser_autogen_timestamp_deps: /usr/lib/x86_64-linux-gnu/libQt5Svg.so.5.15.13
 CMakeFiles/CFGParser_autogen_timestamp_deps: /usr/lib/x86_64-linux-gnu/libQt5OpenGL.so.5.15.13
+=======
+CMakeFiles/CFGParser_autogen_timestamp_deps: /usr/lib/llvm-18/lib/libclangEdit.a
+CMakeFiles/CFGParser_autogen_timestamp_deps: /usr/lib/llvm-18/lib/libclangBasic.a
+CMakeFiles/CFGParser_autogen_timestamp_deps: /usr/lib/llvm-18/lib/libclangSema.a
+CMakeFiles/CFGParser_autogen_timestamp_deps: /usr/lib/llvm-18/lib/libclangTooling.a
+CMakeFiles/CFGParser_autogen_timestamp_deps: /usr/lib/llvm-18/lib/libclangParse.a
+CMakeFiles/CFGParser_autogen_timestamp_deps: /usr/lib/llvm-18/lib/libclangLex.a
+CMakeFiles/CFGParser_autogen_timestamp_deps: /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.15.13
+CMakeFiles/CFGParser_autogen_timestamp_deps: /usr/lib/llvm-18/lib/libclangFrontend.a
+CMakeFiles/CFGParser_autogen_timestamp_deps: /usr/lib/qt5/bin/moc
+CMakeFiles/CFGParser_autogen_timestamp_deps: /usr/lib/llvm-18/lib/libclangDriver.a
+CMakeFiles/CFGParser_autogen_timestamp_deps: /usr/lib/llvm-18/lib/libclangAnalysis.a
+CMakeFiles/CFGParser_autogen_timestamp_deps: /usr/lib/llvm-18/lib/libclangSerialization.a
+CMakeFiles/CFGParser_autogen_timestamp_deps: /usr/lib/llvm-18/lib/libclangAST.a
+CMakeFiles/CFGParser_autogen_timestamp_deps: /usr/lib/llvm-18/lib/libLLVM.so.1
+CMakeFiles/CFGParser_autogen_timestamp_deps: /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.15.13
+CMakeFiles/CFGParser_autogen_timestamp_deps: /usr/lib/qt5/bin/uic
+CMakeFiles/CFGParser_autogen_timestamp_deps: /usr/lib/x86_64-linux-gnu/libQt5Gui.so.5.15.13
+CMakeFiles/CFGParser_autogen_timestamp_deps: /usr/lib/x86_64-linux-gnu/libQt5PrintSupport.so.5.15.13
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
 
 CFGParser_autogen_timestamp_deps: CMakeFiles/CFGParser_autogen_timestamp_deps
 CFGParser_autogen_timestamp_deps: CMakeFiles/CFGParser_autogen_timestamp_deps.dir/build.make

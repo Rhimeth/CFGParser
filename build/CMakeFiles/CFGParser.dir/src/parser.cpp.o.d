@@ -1,6 +1,7 @@
 CMakeFiles/CFGParser.dir/src/parser.cpp.o: \
  /home/dubem/cfg_parser/src/parser.cpp /usr/include/stdc-predef.h \
  /home/dubem/cfg_parser/include/parser.h \
+<<<<<<< HEAD
  /usr/lib/llvm-18/include/clang/Frontend/ASTUnit.h \
  /usr/lib/llvm-18/include/clang-c/Index.h \
  /usr/lib/llvm-18/include/clang-c/BuildSystem.h \
@@ -36,6 +37,9 @@ CMakeFiles/CFGParser.dir/src/parser.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h \
  /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
  /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
+=======
+ /usr/lib/llvm-18/include/clang/AST/AST.h \
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
  /usr/lib/llvm-18/include/clang/AST/ASTContext.h \
  /usr/lib/llvm-18/include/clang/AST/ASTFwd.h \
  /usr/lib/llvm-18/include/clang/AST/DeclNodes.inc \
@@ -51,6 +55,16 @@ CMakeFiles/CFGParser.dir/src/parser.cpp.o: \
  /usr/include/c++/13/cassert \
  /usr/include/x86_64-linux-gnu/c++/13/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/os_defines.h \
+<<<<<<< HEAD
+=======
+ /usr/include/features.h /usr/include/features-time64.h \
+ /usr/include/x86_64-linux-gnu/bits/wordsize.h \
+ /usr/include/x86_64-linux-gnu/bits/timesize.h \
+ /usr/include/x86_64-linux-gnu/sys/cdefs.h \
+ /usr/include/x86_64-linux-gnu/bits/long-double.h \
+ /usr/include/x86_64-linux-gnu/gnu/stubs.h \
+ /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
  /usr/include/x86_64-linux-gnu/c++/13/bits/cpu_defines.h \
  /usr/include/c++/13/pstl/pstl_config.h /usr/include/assert.h \
  /usr/include/c++/13/type_traits /usr/include/c++/13/utility \
@@ -63,6 +77,10 @@ CMakeFiles/CFGParser.dir/src/parser.cpp.o: \
  /usr/include/c++/13/bits/exception_ptr.h \
  /usr/include/c++/13/bits/exception_defines.h \
  /usr/include/c++/13/bits/cxxabi_init_exception.h \
+<<<<<<< HEAD
+=======
+ /usr/lib/gcc/x86_64-linux-gnu/13/include/stddef.h \
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
  /usr/include/c++/13/typeinfo /usr/include/c++/13/bits/hash_bytes.h \
  /usr/include/c++/13/new /usr/include/c++/13/bits/nested_exception.h \
  /usr/include/c++/13/bits/enable_special_members.h \
@@ -79,11 +97,22 @@ CMakeFiles/CFGParser.dir/src/parser.cpp.o: \
  /usr/include/c++/13/cstdint \
  /usr/lib/gcc/x86_64-linux-gnu/13/include/stdint.h /usr/include/stdint.h \
  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
+<<<<<<< HEAD
+=======
+ /usr/include/x86_64-linux-gnu/bits/types.h \
+ /usr/include/x86_64-linux-gnu/bits/typesizes.h \
+ /usr/include/x86_64-linux-gnu/bits/time64.h \
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
  /usr/include/x86_64-linux-gnu/bits/wchar.h \
  /usr/include/x86_64-linux-gnu/bits/stdint-intn.h \
  /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
  /usr/include/x86_64-linux-gnu/bits/stdint-least.h \
  /usr/include/c++/13/limits /usr/include/endian.h \
+<<<<<<< HEAD
+=======
+ /usr/include/x86_64-linux-gnu/bits/endian.h \
+ /usr/include/x86_64-linux-gnu/bits/endianness.h \
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
  /usr/include/x86_64-linux-gnu/bits/byteswap.h \
  /usr/include/x86_64-linux-gnu/bits/uintn-identity.h \
  /usr/include/c++/13/climits \
@@ -96,7 +125,14 @@ CMakeFiles/CFGParser.dir/src/parser.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/posix2_lim.h \
  /usr/include/x86_64-linux-gnu/bits/xopen_lim.h \
  /usr/include/x86_64-linux-gnu/bits/uio_lim.h /usr/include/c++/13/cstring \
+<<<<<<< HEAD
  /usr/include/string.h /usr/include/strings.h \
+=======
+ /usr/include/string.h \
+ /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
+ /usr/include/strings.h \
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
  /usr/lib/llvm-18/include/clang/AST/NestedNameSpecifier.h \
  /usr/lib/llvm-18/include/clang/Basic/Diagnostic.h \
  /usr/lib/llvm-18/include/clang/Basic/DiagnosticIDs.h \
@@ -146,9 +182,25 @@ CMakeFiles/CFGParser.dir/src/parser.cpp.o: \
  /usr/include/x86_64-linux-gnu/c++/13/bits/gthr.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/gthr-default.h \
  /usr/include/pthread.h /usr/include/sched.h \
+<<<<<<< HEAD
  /usr/include/x86_64-linux-gnu/bits/sched.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_sched_param.h \
  /usr/include/x86_64-linux-gnu/bits/cpu-set.h \
+=======
+ /usr/include/x86_64-linux-gnu/bits/types/time_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h \
+ /usr/include/x86_64-linux-gnu/bits/sched.h \
+ /usr/include/x86_64-linux-gnu/bits/types/struct_sched_param.h \
+ /usr/include/x86_64-linux-gnu/bits/cpu-set.h /usr/include/time.h \
+ /usr/include/x86_64-linux-gnu/bits/time.h \
+ /usr/include/x86_64-linux-gnu/bits/timex.h \
+ /usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h \
+ /usr/include/x86_64-linux-gnu/bits/types/clock_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h \
+ /usr/include/x86_64-linux-gnu/bits/types/clockid_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/timer_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h \
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
  /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h \
  /usr/include/x86_64-linux-gnu/bits/thread-shared-types.h \
  /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h \
@@ -340,6 +392,7 @@ CMakeFiles/CFGParser.dir/src/parser.cpp.o: \
  /usr/lib/llvm-18/include/llvm/ADT/MapVector.h \
  /usr/lib/llvm-18/include/llvm/ADT/TinyPtrVector.h \
  /usr/lib/llvm-18/include/llvm/Support/TypeSize.h \
+<<<<<<< HEAD
  /usr/lib/llvm-18/include/clang/Basic/FileSystemOptions.h \
  /usr/lib/llvm-18/include/clang/Basic/SourceManager.h \
  /usr/lib/llvm-18/include/clang/Basic/FileManager.h \
@@ -389,6 +442,8 @@ CMakeFiles/CFGParser.dir/src/parser.cpp.o: \
  /usr/lib/llvm-18/include/clang/Lex/Token.h \
  /usr/lib/llvm-18/include/clang/Sema/CodeCompleteOptions.h \
  /usr/lib/llvm-18/include/clang/Sema/DeclSpec.h \
+=======
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
  /usr/lib/llvm-18/include/clang/AST/DeclCXX.h \
  /usr/lib/llvm-18/include/clang/AST/ASTUnresolvedSet.h \
  /usr/lib/llvm-18/include/clang/AST/ASTVector.h \
@@ -413,11 +468,182 @@ CMakeFiles/CFGParser.dir/src/parser.cpp.o: \
  /usr/lib/llvm-18/include/clang/AST/ASTConcept.h \
  /usr/lib/llvm-18/include/clang/AST/TypeLocNodes.def \
  /usr/lib/llvm-18/include/clang/AST/CXXRecordDeclDefinitionBits.def \
+<<<<<<< HEAD
  /usr/lib/llvm-18/include/clang/AST/DeclObjCCommon.h \
+=======
+ /usr/lib/llvm-18/include/clang/AST/DeclObjC.h \
+ /usr/lib/llvm-18/include/clang/AST/DeclObjCCommon.h \
+ /usr/lib/llvm-18/include/clang/AST/DeclTemplate.h \
+ /usr/lib/llvm-18/include/clang/AST/ExprObjC.h \
+ /usr/lib/llvm-18/include/clang/AST/StmtVisitor.h \
+ /usr/lib/llvm-18/include/clang/AST/ExprConcepts.h \
+ /usr/lib/llvm-18/include/clang/AST/ExprCXX.h \
+ /usr/lib/llvm-18/include/clang/AST/StmtCXX.h \
+ /usr/lib/llvm-18/include/clang/Basic/ExpressionTraits.h \
+ /usr/lib/llvm-18/include/clang/AST/ExprOpenMP.h \
+ /usr/lib/llvm-18/include/clang/AST/StmtObjC.h \
+ /usr/lib/llvm-18/include/clang/AST/StmtOpenMP.h \
+ /usr/lib/llvm-18/include/clang/AST/OpenMPClause.h \
+ /usr/lib/llvm-18/include/clang/Basic/OpenMPKinds.h \
+ /usr/lib/llvm-18/include/llvm/Frontend/OpenMP/OMPConstants.h \
+ /usr/lib/llvm-18/include/llvm/Frontend/OpenMP/OMP.h.inc \
+ /usr/lib/llvm-18/include/llvm/Frontend/OpenMP/OMPKinds.def \
+ /usr/lib/llvm-18/include/llvm/Frontend/OpenMP/OMPDeviceConstants.h \
+ /usr/lib/llvm-18/include/clang/Basic/OpenMPKinds.def \
+ /usr/lib/llvm-18/include/llvm/Frontend/OpenMP/OMPAssume.h \
+ /usr/lib/llvm-18/include/llvm/Frontend/OpenMP/OMPContext.h \
+ /usr/lib/llvm-18/include/llvm/ADT/BitVector.h \
+ /usr/lib/llvm-18/include/clang/Parse/ParseAST.h \
+ /usr/lib/llvm-18/include/clang/AST/ASTConsumer.h \
+ /usr/lib/llvm-18/include/clang/ASTMatchers/ASTMatchers.h \
+ /usr/lib/llvm-18/include/clang/AST/ASTTypeTraits.h \
+ /usr/lib/llvm-18/include/clang/AST/Attr.h \
+ /usr/lib/llvm-18/include/clang/Basic/AttributeCommonInfo.h \
+ /usr/lib/llvm-18/include/clang/Sema/AttrParsedAttrList.inc \
+ /usr/lib/llvm-18/include/llvm/Frontend/HLSL/HLSLResource.h \
+ /usr/lib/llvm-18/include/llvm/IR/Metadata.h \
+ /usr/lib/llvm-18/include/llvm/ADT/ilist_node.h \
+ /usr/lib/llvm-18/include/llvm/ADT/ilist_node_base.h \
+ /usr/lib/llvm-18/include/llvm/ADT/ilist_node_options.h \
+ /usr/lib/llvm-18/include/llvm/IR/Constant.h \
+ /usr/lib/llvm-18/include/llvm/IR/User.h \
+ /usr/lib/llvm-18/include/llvm/IR/Use.h \
+ /usr/lib/llvm-18/include/llvm-c/Types.h \
+ /usr/lib/llvm-18/include/llvm-c/ExternC.h \
+ /usr/lib/llvm-18/include/llvm/Support/CBindingWrapping.h \
+ /usr/lib/llvm-18/include/llvm/IR/Value.h \
+ /usr/lib/llvm-18/include/llvm/IR/Value.def \
+ /usr/lib/llvm-18/include/llvm/IR/LLVMContext.h \
+ /usr/lib/llvm-18/include/llvm/IR/DiagnosticHandler.h \
+ /usr/lib/llvm-18/include/llvm/IR/FixedMetadataKinds.def \
+ /usr/lib/llvm-18/include/llvm/IR/Metadata.def \
+ /usr/lib/llvm-18/include/llvm/Support/CodeGen.h \
+ /usr/lib/llvm-18/include/clang/AST/Attrs.inc \
+ /usr/lib/llvm-18/include/clang/AST/CXXInheritance.h \
+ /usr/lib/llvm-18/include/clang/AST/TypeOrdering.h \
+ /usr/lib/llvm-18/include/llvm/ADT/SmallSet.h \
+ /usr/lib/llvm-18/include/llvm/ADT/SmallPtrSet.h /usr/include/c++/13/set \
+ /usr/include/c++/13/bits/stl_set.h \
+ /usr/include/c++/13/bits/stl_multiset.h \
+ /usr/lib/llvm-18/include/clang/AST/DeclFriend.h \
+ /usr/lib/llvm-18/include/clang/AST/ParentMapContext.h \
+ /usr/lib/llvm-18/include/clang/ASTMatchers/ASTMatchersInternal.h \
+ /usr/lib/llvm-18/include/llvm/Support/ManagedStatic.h \
+ /usr/lib/llvm-18/include/llvm/Support/Regex.h \
+ /usr/lib/llvm-18/include/clang/ASTMatchers/ASTMatchersMacros.h \
+ /usr/lib/llvm-18/include/clang/Basic/FileManager.h \
+ /usr/lib/llvm-18/include/clang/Basic/FileSystemOptions.h \
+ /usr/lib/llvm-18/include/llvm/Support/FileSystem.h \
+ /usr/lib/llvm-18/include/llvm/Support/Chrono.h \
+ /usr/lib/llvm-18/include/llvm/Support/FormatProviders.h \
+ /usr/lib/llvm-18/include/llvm/Support/FormatVariadicDetails.h \
+ /usr/lib/llvm-18/include/llvm/Support/NativeFormatting.h \
+ /usr/include/c++/13/chrono /usr/include/c++/13/bits/chrono.h \
+ /usr/include/c++/13/ratio /usr/include/c++/13/ctime \
+ /usr/include/c++/13/bits/parse_numbers.h \
+ /usr/lib/llvm-18/include/llvm/Support/Error.h \
+ /usr/lib/llvm-18/include/llvm-c/Error.h \
+ /usr/lib/llvm-18/include/llvm/Support/Debug.h \
+ /usr/lib/llvm-18/include/llvm/Support/Format.h \
+ /usr/lib/llvm-18/include/llvm/Support/MD5.h /usr/include/c++/13/stack \
+ /usr/include/c++/13/deque /usr/include/c++/13/bits/stl_deque.h \
+ /usr/include/c++/13/bits/deque.tcc /usr/include/c++/13/bits/stl_stack.h \
+ /usr/lib/llvm-18/include/llvm/Support/VirtualFileSystem.h \
+ /usr/lib/llvm-18/include/llvm/Support/Errc.h \
+ /usr/lib/llvm-18/include/llvm/Support/Path.h \
+ /usr/lib/llvm-18/include/llvm/Support/SourceMgr.h \
+ /usr/lib/llvm-18/include/llvm/Support/MemoryBuffer.h \
+ /usr/lib/llvm-18/include/llvm/Support/MemoryBufferRef.h \
+ /usr/lib/llvm-18/include/llvm/Support/SMLoc.h \
+ /usr/lib/llvm-18/include/clang/Basic/SourceManager.h \
+ /usr/lib/llvm-18/include/llvm/ADT/PagedVector.h \
+ /usr/lib/llvm-18/include/llvm/ADT/StringExtras.h \
+ /usr/lib/llvm-18/include/clang/ASTMatchers/ASTMatchFinder.h \
+ /usr/lib/llvm-18/include/llvm/Support/Timer.h \
+ /usr/lib/llvm-18/include/clang/Frontend/CompilerInstance.h \
+ /usr/lib/llvm-18/include/clang/Basic/TargetInfo.h \
+ /usr/lib/llvm-18/include/clang/Basic/CodeGenOptions.h \
+ /usr/lib/llvm-18/include/clang/Basic/XRayInstr.h \
+ /usr/lib/llvm-18/include/llvm/Frontend/Debug/Options.h \
+ /usr/lib/llvm-18/include/llvm/Frontend/Driver/CodeGenOptions.h \
+ /usr/lib/llvm-18/include/llvm/Target/TargetOptions.h \
+ /usr/lib/llvm-18/include/llvm/MC/MCTargetOptions.h \
+ /usr/lib/llvm-18/include/llvm/Support/Compression.h \
+ /usr/lib/llvm-18/include/clang/Basic/CodeGenOptions.def \
+ /usr/lib/llvm-18/include/clang/Basic/DebugOptions.def \
+ /usr/lib/llvm-18/include/clang/Basic/TargetOptions.h \
+ /usr/lib/llvm-18/include/clang/Basic/OpenCLOptions.h \
+ /usr/lib/llvm-18/include/llvm/ADT/StringSet.h \
+ /usr/lib/llvm-18/include/llvm/Frontend/OpenMP/OMPGridValues.h \
+ /usr/lib/llvm-18/include/llvm/IR/DerivedTypes.h \
+ /usr/lib/llvm-18/include/llvm/IR/Type.h \
+ /usr/lib/llvm-18/include/clang/Basic/OpenCLExtensions.def \
+ /usr/lib/llvm-18/include/clang/Frontend/CompilerInvocation.h \
+ /usr/lib/llvm-18/include/clang/APINotes/APINotesOptions.h \
+ /usr/lib/llvm-18/include/clang/Frontend/DependencyOutputOptions.h \
+ /usr/lib/llvm-18/include/clang/Basic/HeaderInclude.h \
+ /usr/lib/llvm-18/include/clang/Frontend/FrontendOptions.h \
+ /usr/lib/llvm-18/include/clang/Frontend/CommandLineSourceLoc.h \
+ /usr/lib/llvm-18/include/llvm/Support/CommandLine.h \
+ /usr/lib/llvm-18/include/llvm/Support/StringSaver.h \
+ /usr/lib/llvm-18/include/clang/Sema/CodeCompleteOptions.h \
+ /usr/lib/llvm-18/include/clang/Serialization/ModuleFileExtension.h \
+ /usr/lib/llvm-18/include/llvm/Support/ExtensibleRTTI.h \
+ /usr/lib/llvm-18/include/clang/Frontend/MigratorOptions.h \
+ /usr/lib/llvm-18/include/clang/Frontend/PreprocessorOutputOptions.h \
+ /usr/lib/llvm-18/include/clang/StaticAnalyzer/Core/AnalyzerOptions.h \
+ /usr/lib/llvm-18/include/clang/Analysis/PathDiagnostic.h \
+ /usr/lib/llvm-18/include/clang/Analysis/AnalysisDeclContext.h \
+ /usr/lib/llvm-18/include/clang/Analysis/BodyFarm.h \
+ /usr/lib/llvm-18/include/clang/Analysis/CFG.h \
+ /usr/lib/llvm-18/include/clang/Analysis/ConstructionContext.h \
+ /usr/lib/llvm-18/include/clang/Analysis/Support/BumpVector.h \
+ /usr/lib/llvm-18/include/llvm/ADT/GraphTraits.h \
+ /usr/include/c++/13/bitset \
+ /usr/lib/llvm-18/include/clang/Analysis/CodeInjector.h \
+ /usr/lib/llvm-18/include/clang/StaticAnalyzer/Core/Analyses.def \
+ /usr/lib/llvm-18/include/clang/StaticAnalyzer/Core/AnalyzerOptions.def \
+ /usr/lib/llvm-18/include/clang/StaticAnalyzer/Checkers/Checkers.inc \
+ /usr/lib/llvm-18/include/clang/Frontend/PCHContainerOperations.h \
+ /usr/lib/llvm-18/include/clang/Serialization/PCHContainerOperations.h \
+ /usr/lib/llvm-18/include/clang/Basic/Module.h \
+ /usr/lib/llvm-18/include/llvm/ADT/SetVector.h \
+ /usr/include/c++/13/variant \
+ /usr/lib/llvm-18/include/clang/Frontend/Utils.h \
+ /usr/lib/llvm-18/include/clang/Driver/OptionUtils.h \
+ /usr/lib/llvm-18/include/llvm/Option/OptSpecifier.h \
+ /usr/lib/llvm-18/include/llvm/Support/FileCollector.h \
+ /usr/include/c++/13/mutex /usr/include/c++/13/bits/std_mutex.h \
+ /usr/include/c++/13/bits/unique_lock.h \
+ /usr/lib/llvm-18/include/clang/Lex/HeaderSearchOptions.h \
+ /usr/lib/llvm-18/include/llvm/ADT/CachedHashString.h \
+ /usr/lib/llvm-18/include/clang/Lex/ModuleLoader.h \
+ /usr/lib/llvm-18/include/llvm/Support/BuryPointer.h \
+ /usr/lib/llvm-18/include/clang/Frontend/FrontendActions.h \
+ /usr/lib/llvm-18/include/clang/Frontend/FrontendAction.h \
+ /usr/lib/llvm-18/include/clang/Frontend/ASTUnit.h \
+ /usr/lib/llvm-18/include/clang-c/Index.h \
+ /usr/lib/llvm-18/include/clang-c/BuildSystem.h \
+ /usr/lib/llvm-18/include/clang-c/CXErrorCode.h \
+ /usr/lib/llvm-18/include/clang-c/ExternC.h \
+ /usr/lib/llvm-18/include/clang-c/Platform.h \
+ /usr/lib/llvm-18/include/clang-c/CXString.h \
+ /usr/lib/llvm-18/include/clang-c/CXDiagnostic.h \
+ /usr/lib/llvm-18/include/clang-c/CXSourceLocation.h \
+ /usr/lib/llvm-18/include/clang-c/CXFile.h \
+ /usr/lib/llvm-18/include/clang/Lex/PreprocessingRecord.h \
+ /usr/lib/llvm-18/include/clang/Lex/PPCallbacks.h \
+ /usr/lib/llvm-18/include/clang/Lex/Pragma.h \
+ /usr/lib/llvm-18/include/clang/Sema/CodeCompleteConsumer.h \
+ /usr/lib/llvm-18/include/clang/Lex/MacroInfo.h \
+ /usr/lib/llvm-18/include/clang/Lex/Token.h \
+ /usr/lib/llvm-18/include/clang/Sema/DeclSpec.h \
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
  /usr/lib/llvm-18/include/clang/Sema/Ownership.h \
  /usr/lib/llvm-18/include/clang/Sema/ParsedAttr.h \
  /usr/lib/llvm-18/include/clang/Basic/AttrSubjectMatchRules.h \
  /usr/lib/llvm-18/include/clang/Basic/AttrSubMatchRulesList.inc \
+<<<<<<< HEAD
  /usr/lib/llvm-18/include/clang/Basic/AttributeCommonInfo.h \
  /usr/lib/llvm-18/include/clang/Sema/AttrParsedAttrList.inc \
  /usr/lib/llvm-18/include/clang/Basic/ParsedAttrInfo.h \
@@ -428,6 +654,13 @@ CMakeFiles/CFGParser.dir/src/parser.cpp.o: \
  /usr/lib/llvm-18/include/clang/Serialization/ASTBitCodes.h \
  /usr/lib/llvm-18/include/llvm/Bitstream/BitCodes.h \
  /usr/lib/llvm-18/include/llvm/ADT/StringExtras.h \
+=======
+ /usr/lib/llvm-18/include/clang/Basic/ParsedAttrInfo.h \
+ /usr/lib/llvm-18/include/llvm/Support/Registry.h \
+ /usr/lib/llvm-18/include/llvm/Support/DynamicLibrary.h \
+ /usr/lib/llvm-18/include/clang/Serialization/ASTBitCodes.h \
+ /usr/lib/llvm-18/include/llvm/Bitstream/BitCodes.h \
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
  /usr/lib/llvm-18/include/llvm/Bitstream/BitCodeEnums.h \
  /usr/lib/llvm-18/include/clang/Serialization/TypeBitCodes.def \
  /usr/lib/llvm-18/include/clang/Frontend/PrecompiledPreamble.h \
@@ -439,11 +672,15 @@ CMakeFiles/CFGParser.dir/src/parser.cpp.o: \
  /usr/lib/llvm-18/include/clang/Lex/HeaderSearch.h \
  /usr/lib/llvm-18/include/clang/Lex/DirectoryLookup.h \
  /usr/lib/llvm-18/include/clang/Lex/ModuleMap.h \
+<<<<<<< HEAD
  /usr/lib/llvm-18/include/llvm/ADT/StringSet.h \
+=======
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
  /usr/lib/llvm-18/include/clang/Lex/HeaderMap.h \
  /usr/lib/llvm-18/include/clang/Lex/HeaderMapTypes.h \
  /usr/lib/llvm-18/include/clang/Lex/TokenLexer.h \
  /usr/lib/llvm-18/include/llvm/ADT/FunctionExtras.h \
+<<<<<<< HEAD
  /usr/lib/llvm-18/include/clang/AST/ASTConsumer.h \
  /usr/lib/llvm-18/include/clang/AST/RecursiveASTVisitor.h \
  /usr/lib/llvm-18/include/clang/AST/Attr.h \
@@ -542,6 +779,68 @@ CMakeFiles/CFGParser.dir/src/parser.cpp.o: \
  /usr/lib/llvm-18/include/llvm/Support/BuryPointer.h \
  /usr/lib/llvm-18/include/clang/Frontend/FrontendActions.h \
  /usr/include/c++/13/regex /usr/include/c++/13/locale \
+=======
+ /usr/lib/llvm-18/include/clang/Tooling/Tooling.h \
+ /usr/lib/llvm-18/include/clang/Tooling/ArgumentsAdjusters.h \
+ /usr/lib/llvm-18/include/llvm/Option/Option.h \
+ /usr/lib/llvm-18/include/llvm/Option/OptTable.h \
+ /usr/include/nlohmann/json.hpp /usr/include/nlohmann/adl_serializer.hpp \
+ /usr/include/nlohmann/detail/abi_macros.hpp \
+ /usr/include/nlohmann/detail/conversions/from_json.hpp \
+ /usr/include/c++/13/forward_list /usr/include/c++/13/bits/forward_list.h \
+ /usr/include/c++/13/bits/forward_list.tcc /usr/include/c++/13/valarray \
+ /usr/include/c++/13/cmath /usr/include/math.h \
+ /usr/include/x86_64-linux-gnu/bits/math-vector.h \
+ /usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h \
+ /usr/include/x86_64-linux-gnu/bits/flt-eval-method.h \
+ /usr/include/x86_64-linux-gnu/bits/fp-logb.h \
+ /usr/include/x86_64-linux-gnu/bits/fp-fast.h \
+ /usr/include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h \
+ /usr/include/x86_64-linux-gnu/bits/mathcalls.h \
+ /usr/include/x86_64-linux-gnu/bits/mathcalls-narrow.h \
+ /usr/include/x86_64-linux-gnu/bits/iscanonical.h \
+ /usr/include/c++/13/bits/specfun.h /usr/include/c++/13/tr1/gamma.tcc \
+ /usr/include/c++/13/tr1/special_function_util.h \
+ /usr/include/c++/13/tr1/bessel_function.tcc \
+ /usr/include/c++/13/tr1/beta_function.tcc \
+ /usr/include/c++/13/tr1/ell_integral.tcc \
+ /usr/include/c++/13/tr1/exp_integral.tcc \
+ /usr/include/c++/13/tr1/hypergeometric.tcc \
+ /usr/include/c++/13/tr1/legendre_function.tcc \
+ /usr/include/c++/13/tr1/modified_bessel_func.tcc \
+ /usr/include/c++/13/tr1/poly_hermite.tcc \
+ /usr/include/c++/13/tr1/poly_laguerre.tcc \
+ /usr/include/c++/13/tr1/riemann_zeta.tcc \
+ /usr/include/c++/13/bits/valarray_array.h \
+ /usr/include/c++/13/bits/valarray_array.tcc \
+ /usr/include/c++/13/bits/valarray_before.h \
+ /usr/include/c++/13/bits/slice_array.h \
+ /usr/include/c++/13/bits/valarray_after.h \
+ /usr/include/c++/13/bits/gslice.h \
+ /usr/include/c++/13/bits/gslice_array.h \
+ /usr/include/c++/13/bits/mask_array.h \
+ /usr/include/c++/13/bits/indirect_array.h \
+ /usr/include/nlohmann/detail/exceptions.hpp \
+ /usr/include/nlohmann/detail/value_t.hpp \
+ /usr/include/nlohmann/detail/macro_scope.hpp \
+ /usr/include/nlohmann/detail/meta/detected.hpp \
+ /usr/include/nlohmann/detail/meta/void_t.hpp \
+ /usr/include/nlohmann/thirdparty/hedley/hedley.hpp \
+ /usr/include/c++/13/version \
+ /usr/include/nlohmann/detail/string_escape.hpp \
+ /usr/include/nlohmann/detail/input/position_t.hpp \
+ /usr/include/nlohmann/detail/meta/cpp_future.hpp \
+ /usr/include/nlohmann/detail/meta/type_traits.hpp \
+ /usr/include/nlohmann/detail/iterators/iterator_traits.hpp \
+ /usr/include/nlohmann/detail/meta/call_std/begin.hpp \
+ /usr/include/nlohmann/detail/meta/call_std/end.hpp \
+ /usr/include/nlohmann/json_fwd.hpp \
+ /usr/include/nlohmann/detail/string_concat.hpp \
+ /usr/include/nlohmann/detail/meta/identity_tag.hpp \
+ /usr/include/nlohmann/detail/meta/std_fs.hpp \
+ /usr/include/c++/13/filesystem /usr/include/c++/13/bits/fs_fwd.h \
+ /usr/include/c++/13/bits/fs_path.h /usr/include/c++/13/locale \
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
  /usr/include/c++/13/bits/locale_facets.h /usr/include/c++/13/cwctype \
  /usr/include/wctype.h /usr/include/x86_64-linux-gnu/bits/wctype-wchar.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/ctype_base.h \
@@ -552,12 +851,18 @@ CMakeFiles/CFGParser.dir/src/parser.cpp.o: \
  /usr/include/x86_64-linux-gnu/c++/13/bits/messages_members.h \
  /usr/include/libintl.h /usr/include/c++/13/bits/codecvt.h \
  /usr/include/c++/13/bits/locale_facets_nonio.tcc \
+<<<<<<< HEAD
  /usr/include/c++/13/bits/locale_conv.h /usr/include/c++/13/sstream \
+=======
+ /usr/include/c++/13/bits/locale_conv.h /usr/include/c++/13/iomanip \
+ /usr/include/c++/13/bits/quoted_string.h /usr/include/c++/13/sstream \
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
  /usr/include/c++/13/istream /usr/include/c++/13/ios \
  /usr/include/c++/13/bits/basic_ios.h \
  /usr/include/c++/13/bits/basic_ios.tcc /usr/include/c++/13/ostream \
  /usr/include/c++/13/bits/ostream.tcc \
  /usr/include/c++/13/bits/istream.tcc \
+<<<<<<< HEAD
  /usr/include/c++/13/bits/sstream.tcc \
  /usr/include/c++/13/bits/regex_constants.h \
  /usr/include/c++/13/bits/regex_error.h \
@@ -639,3 +944,37 @@ CMakeFiles/CFGParser.dir/src/parser.cpp.o: \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qcontiguouscache.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qsharedpointer.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qsharedpointer_impl.h
+=======
+ /usr/include/c++/13/bits/sstream.tcc /usr/include/c++/13/codecvt \
+ /usr/include/c++/13/bits/fs_dir.h /usr/include/c++/13/bits/fs_ops.h \
+ /usr/include/nlohmann/detail/conversions/to_json.hpp \
+ /usr/include/nlohmann/detail/iterators/iteration_proxy.hpp \
+ /usr/include/nlohmann/byte_container_with_subtype.hpp \
+ /usr/include/nlohmann/detail/hash.hpp \
+ /usr/include/nlohmann/detail/input/binary_reader.hpp \
+ /usr/include/nlohmann/detail/input/input_adapters.hpp \
+ /usr/include/c++/13/numeric /usr/include/c++/13/bits/stl_numeric.h \
+ /usr/include/c++/13/pstl/glue_numeric_defs.h \
+ /usr/include/nlohmann/detail/input/json_sax.hpp \
+ /usr/include/nlohmann/detail/input/lexer.hpp \
+ /usr/include/nlohmann/detail/meta/is_sax.hpp \
+ /usr/include/nlohmann/detail/input/parser.hpp \
+ /usr/include/nlohmann/detail/iterators/internal_iterator.hpp \
+ /usr/include/nlohmann/detail/iterators/primitive_iterator.hpp \
+ /usr/include/nlohmann/detail/iterators/iter_impl.hpp \
+ /usr/include/nlohmann/detail/iterators/json_reverse_iterator.hpp \
+ /usr/include/nlohmann/detail/json_custom_base_class.hpp \
+ /usr/include/nlohmann/detail/json_pointer.hpp \
+ /usr/include/nlohmann/detail/json_ref.hpp \
+ /usr/include/nlohmann/detail/output/binary_writer.hpp \
+ /usr/include/nlohmann/detail/output/output_adapters.hpp \
+ /usr/include/nlohmann/detail/output/serializer.hpp \
+ /usr/include/nlohmann/detail/conversions/to_chars.hpp \
+ /usr/include/nlohmann/ordered_map.hpp /usr/include/c++/13/any \
+ /usr/include/nlohmann/detail/macro_unscope.hpp \
+ /usr/include/nlohmann/thirdparty/hedley/hedley_undef.hpp \
+ /usr/include/c++/13/fstream \
+ /usr/include/x86_64-linux-gnu/c++/13/bits/basic_file.h \
+ /usr/include/x86_64-linux-gnu/c++/13/bits/c++io.h \
+ /usr/include/c++/13/bits/fstream.tcc /usr/include/c++/13/iostream
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b

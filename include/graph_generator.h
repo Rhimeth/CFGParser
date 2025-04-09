@@ -1,7 +1,10 @@
 #ifndef GRAPH_GENERATOR_H
 #define GRAPH_GENERATOR_H
 
+<<<<<<< HEAD
 #include "parser.h" 
+=======
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
 #include <set>
 #include <utility>
 #include <memory>
@@ -23,7 +26,10 @@ namespace GraphGenerator {
     std::unique_ptr<CFGGraph> generateCFG(const std::vector<std::string>& sourceFiles);
     std::unique_ptr<CFGGraph> generateCFG(const clang::FunctionDecl* FD);
     std::unique_ptr<CFGGraph> generateCustomCFG(const clang::FunctionDecl* FD);
+<<<<<<< HEAD
     std::unique_ptr<CFGGraph> generateCFG(const Parser::FunctionInfo& functionInfo, clang::ASTContext* context);
+=======
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
     std::string getStmtString(const clang::Stmt* S);
 
     // Typedef for Graph if needed
@@ -32,16 +38,27 @@ namespace GraphGenerator {
     struct CFGNode {
         int id;
         std::string label;
+<<<<<<< HEAD
         std::string functionName;
+=======
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
         std::set<int> successors;
         std::vector<std::string> statements;
         
         // Default constructor
+<<<<<<< HEAD
         CFGNode() : id(-1), label(""), functionName("") {}
             
         // Existing constructor
         CFGNode(int nodeId, const std::string& lbl = "", const std::string& fnName = "")
             : id(nodeId), label(lbl), functionName(fnName) {}
+=======
+        CFGNode() : id(-1), label("") {}
+            
+        // Existing constructor
+        CFGNode(int nodeId, const std::string& lbl = "")
+            : id(nodeId), label(lbl) {}
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
     };
         
     struct CFGEdge {
@@ -67,6 +84,7 @@ namespace GraphGenerator {
         bool isNodeTryBlock(int nodeID) const;
         bool isNodeThrowingException(int nodeID) const;
 
+<<<<<<< HEAD
         void addNode(int id, const std::string& label);
         size_t getNodeCount() const;
         size_t getEdgeCount() const;
@@ -82,6 +100,8 @@ namespace GraphGenerator {
             return names;
         }
 
+=======
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
         // Existing methods remain the same
         void addNode(int nodeID) {
             if (nodes.find(nodeID) == nodes.end()) {

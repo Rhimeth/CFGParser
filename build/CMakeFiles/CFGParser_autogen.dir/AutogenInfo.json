@@ -160,15 +160,25 @@
 		"/usr/share/cmake-3.28/Modules/Internal/FeatureTesting.cmake",
 		"/usr/share/cmake-3.28/Modules/CMakeCXXCompiler.cmake.in",
 		"/home/dubem/cfg_parser/build/CMakeFiles/3.28.3/CMakeCXXCompiler.cmake",
+<<<<<<< HEAD
 		"/usr/lib/llvm-18/lib/cmake/llvm/LLVMConfigVersion.cmake",
 		"/usr/lib/llvm-18/lib/cmake/llvm/LLVMConfig.cmake",
 		"/usr/lib/llvm-18/lib/cmake/llvm/FindFFI.cmake",
+=======
+		"/usr/lib/llvm-18/cmake/LLVMConfigVersion.cmake",
+		"/usr/lib/llvm-18/cmake/LLVMConfig.cmake",
+		"/usr/lib/llvm-18/cmake/FindFFI.cmake",
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
 		"/usr/share/cmake-3.28/Modules/CMakePushCheckState.cmake",
 		"/usr/share/cmake-3.28/Modules/CheckCSourceCompiles.cmake",
 		"/usr/share/cmake-3.28/Modules/Internal/CheckSourceCompiles.cmake",
 		"/usr/share/cmake-3.28/Modules/FindPackageHandleStandardArgs.cmake",
 		"/usr/share/cmake-3.28/Modules/FindPackageMessage.cmake",
+<<<<<<< HEAD
 		"/usr/lib/llvm-18/lib/cmake/llvm/FindLibEdit.cmake",
+=======
+		"/usr/lib/llvm-18/cmake/FindLibEdit.cmake",
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
 		"/usr/share/cmake-3.28/Modules/FindPkgConfig.cmake",
 		"/usr/share/cmake-3.28/Modules/FindPackageHandleStandardArgs.cmake",
 		"/usr/share/cmake-3.28/Modules/FindPackageMessage.cmake",
@@ -176,7 +186,11 @@
 		"/usr/share/cmake-3.28/Modules/CMakePushCheckState.cmake",
 		"/usr/share/cmake-3.28/Modules/FindPackageHandleStandardArgs.cmake",
 		"/usr/share/cmake-3.28/Modules/FindPackageMessage.cmake",
+<<<<<<< HEAD
 		"/usr/lib/llvm-18/lib/cmake/llvm/FindTerminfo.cmake",
+=======
+		"/usr/lib/llvm-18/cmake/FindTerminfo.cmake",
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
 		"/usr/share/cmake-3.28/Modules/CMakePushCheckState.cmake",
 		"/usr/share/cmake-3.28/Modules/CheckCSourceCompiles.cmake",
 		"/usr/share/cmake-3.28/Modules/FindPackageHandleStandardArgs.cmake",
@@ -185,7 +199,11 @@
 		"/usr/share/cmake-3.28/Modules/SelectLibraryConfigurations.cmake",
 		"/usr/share/cmake-3.28/Modules/FindPackageHandleStandardArgs.cmake",
 		"/usr/share/cmake-3.28/Modules/FindPackageMessage.cmake",
+<<<<<<< HEAD
 		"/usr/lib/llvm-18/lib/cmake/llvm/Findzstd.cmake",
+=======
+		"/usr/lib/llvm-18/cmake/Findzstd.cmake",
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
 		"/usr/share/cmake-3.28/Modules/FindPackageHandleStandardArgs.cmake",
 		"/usr/share/cmake-3.28/Modules/FindPackageMessage.cmake",
 		"/usr/share/cmake-3.28/Modules/FindLibXml2.cmake",
@@ -204,16 +222,28 @@
 		"/usr/lib/llvm-18/lib/cmake/llvm/LLVMExports.cmake",
 		"/usr/lib/llvm-18/lib/cmake/llvm/LLVMExports-relwithdebinfo.cmake",
 		"/usr/lib/llvm-18/lib/cmake/llvm/LLVM-Config.cmake",
+<<<<<<< HEAD
 		"/usr/lib/llvm-18/lib/cmake/clang/ClangConfigVersion.cmake",
 		"/usr/lib/llvm-18/lib/cmake/clang/ClangConfig.cmake",
 		"/usr/lib/llvm-18/lib/cmake/llvm/LLVMConfigVersion.cmake",
 		"/usr/lib/llvm-18/lib/cmake/llvm/LLVMConfig.cmake",
 		"/usr/lib/llvm-18/lib/cmake/llvm/FindFFI.cmake",
+=======
+		"/usr/lib/cmake/clang-18/ClangConfigVersion.cmake",
+		"/usr/lib/cmake/clang-18/ClangConfig.cmake",
+		"/usr/lib/llvm-18/cmake/LLVMConfigVersion.cmake",
+		"/usr/lib/llvm-18/cmake/LLVMConfig.cmake",
+		"/usr/lib/llvm-18/cmake/FindFFI.cmake",
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
 		"/usr/share/cmake-3.28/Modules/CMakePushCheckState.cmake",
 		"/usr/share/cmake-3.28/Modules/CheckCSourceCompiles.cmake",
 		"/usr/share/cmake-3.28/Modules/FindPackageHandleStandardArgs.cmake",
 		"/usr/share/cmake-3.28/Modules/FindPackageMessage.cmake",
+<<<<<<< HEAD
 		"/usr/lib/llvm-18/lib/cmake/llvm/FindLibEdit.cmake",
+=======
+		"/usr/lib/llvm-18/cmake/FindLibEdit.cmake",
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
 		"/usr/share/cmake-3.28/Modules/FindPkgConfig.cmake",
 		"/usr/share/cmake-3.28/Modules/FindPackageHandleStandardArgs.cmake",
 		"/usr/share/cmake-3.28/Modules/FindPackageMessage.cmake",
@@ -221,7 +251,11 @@
 		"/usr/share/cmake-3.28/Modules/CMakePushCheckState.cmake",
 		"/usr/share/cmake-3.28/Modules/FindPackageHandleStandardArgs.cmake",
 		"/usr/share/cmake-3.28/Modules/FindPackageMessage.cmake",
+<<<<<<< HEAD
 		"/usr/lib/llvm-18/lib/cmake/llvm/FindTerminfo.cmake",
+=======
+		"/usr/lib/llvm-18/cmake/FindTerminfo.cmake",
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
 		"/usr/share/cmake-3.28/Modules/CMakePushCheckState.cmake",
 		"/usr/share/cmake-3.28/Modules/CheckCSourceCompiles.cmake",
 		"/usr/share/cmake-3.28/Modules/FindPackageHandleStandardArgs.cmake",
@@ -229,7 +263,11 @@
 		"/usr/share/cmake-3.28/Modules/FindZLIB.cmake",
 		"/usr/share/cmake-3.28/Modules/FindPackageHandleStandardArgs.cmake",
 		"/usr/share/cmake-3.28/Modules/FindPackageMessage.cmake",
+<<<<<<< HEAD
 		"/usr/lib/llvm-18/lib/cmake/llvm/Findzstd.cmake",
+=======
+		"/usr/lib/llvm-18/cmake/Findzstd.cmake",
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
 		"/usr/share/cmake-3.28/Modules/FindPackageHandleStandardArgs.cmake",
 		"/usr/share/cmake-3.28/Modules/FindPackageMessage.cmake",
 		"/usr/share/cmake-3.28/Modules/FindLibXml2.cmake",
@@ -277,8 +315,11 @@
 		"/usr/lib/x86_64-linux-gnu/cmake/Qt5Gui/Qt5Gui_QMinimalEglIntegrationPlugin.cmake",
 		"/usr/lib/x86_64-linux-gnu/cmake/Qt5Gui/Qt5Gui_QMinimalIntegrationPlugin.cmake",
 		"/usr/lib/x86_64-linux-gnu/cmake/Qt5Gui/Qt5Gui_QOffscreenIntegrationPlugin.cmake",
+<<<<<<< HEAD
 		"/usr/lib/x86_64-linux-gnu/cmake/Qt5Gui/Qt5Gui_QSvgIconPlugin.cmake",
 		"/usr/lib/x86_64-linux-gnu/cmake/Qt5Gui/Qt5Gui_QSvgPlugin.cmake",
+=======
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
 		"/usr/lib/x86_64-linux-gnu/cmake/Qt5Gui/Qt5Gui_QTuioTouchPlugin.cmake",
 		"/usr/lib/x86_64-linux-gnu/cmake/Qt5Gui/Qt5Gui_QVncIntegrationPlugin.cmake",
 		"/usr/lib/x86_64-linux-gnu/cmake/Qt5Gui/Qt5Gui_QXcbEglIntegrationPlugin.cmake",
@@ -292,6 +333,7 @@
 		"/usr/share/cmake-3.28/Modules/CMakeParseArguments.cmake",
 		"/usr/lib/x86_64-linux-gnu/cmake/Qt5PrintSupport/Qt5PrintSupportConfigVersion.cmake",
 		"/usr/lib/x86_64-linux-gnu/cmake/Qt5PrintSupport/Qt5PrintSupportConfig.cmake",
+<<<<<<< HEAD
 		"/usr/lib/x86_64-linux-gnu/cmake/Qt5PrintSupport/Qt5PrintSupport_QCupsPrinterSupportPlugin.cmake",
 		"/usr/lib/x86_64-linux-gnu/cmake/Qt5Concurrent/Qt5ConcurrentConfigVersion.cmake",
 		"/usr/lib/x86_64-linux-gnu/cmake/Qt5Concurrent/Qt5ConcurrentConfig.cmake",
@@ -299,6 +341,9 @@
 		"/usr/lib/x86_64-linux-gnu/cmake/Qt5Svg/Qt5SvgConfig.cmake",
 		"/usr/lib/x86_64-linux-gnu/cmake/Qt5OpenGL/Qt5OpenGLConfigVersion.cmake",
 		"/usr/lib/x86_64-linux-gnu/cmake/Qt5OpenGL/Qt5OpenGLConfig.cmake"
+=======
+		"/usr/lib/x86_64-linux-gnu/cmake/Qt5PrintSupport/Qt5PrintSupport_QCupsPrinterSupportPlugin.cmake"
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
 	],
 	"CMAKE_SOURCE_DIR" : "/home/dubem/cfg_parser",
 	"DEP_FILE" : "/home/dubem/cfg_parser/build/CFGParser_autogen/deps",
@@ -306,6 +351,7 @@
 	"HEADERS" : 
 	[
 		[
+<<<<<<< HEAD
 			"/home/dubem/cfg_parser/include/analysis_results.h",
 			"MU",
 			"6YEA5652QU/moc_analysis_results.cpp",
@@ -318,11 +364,17 @@
 			null
 		],
 		[
+=======
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
 			"/home/dubem/cfg_parser/include/cfg_analyzer.h",
 			"MU",
 			"6YEA5652QU/moc_cfg_analyzer.cpp",
 			null
 		],
+<<<<<<< HEAD
+=======
+		[ "/home/dubem/cfg_parser/include/cfg_gui.h", "mU", "", null ],
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
 		[ "/home/dubem/cfg_parser/include/customgraphview.h", "mU", "", null ],
 		[
 			"/home/dubem/cfg_parser/include/graph_generator.h",
@@ -338,6 +390,7 @@
 			null
 		],
 		[
+<<<<<<< HEAD
 			"/home/dubem/cfg_parser/include/visualizer.h",
 			"MU",
 			"6YEA5652QU/moc_visualizer.cpp",
@@ -347,6 +400,17 @@
 			"/home/dubem/cfg_parser/include/wsl_fallback.h",
 			"MU",
 			"6YEA5652QU/moc_wsl_fallback.cpp",
+=======
+			"/home/dubem/cfg_parser/include/ui_mainwindow.h",
+			"MU",
+			"6YEA5652QU/moc_ui_mainwindow.cpp",
+			null
+		],
+		[
+			"/home/dubem/cfg_parser/include/visualizer.h",
+			"MU",
+			"6YEA5652QU/moc_visualizer.cpp",
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
 			null
 		]
 	],
@@ -355,6 +419,7 @@
 	"MOC_COMPILATION_FILE" : "/home/dubem/cfg_parser/build/CFGParser_autogen/mocs_compilation.cpp",
 	"MOC_DEFINITIONS" : 
 	[
+<<<<<<< HEAD
 		"QT_CONCURRENT_LIB",
 		"QT_CORE_LIB",
 		"QT_GUI_LIB",
@@ -364,6 +429,13 @@
 		"QT_SVG_LIB",
 		"QT_WIDGETS_LIB",
 		"_GNU_SOURCE -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -D__STDC_LIMIT_MACROS"
+=======
+		"QT_CORE_LIB",
+		"QT_GUI_LIB",
+		"QT_NO_DEBUG",
+		"QT_PRINTSUPPORT_LIB",
+		"QT_WIDGETS_LIB"
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
 	],
 	"MOC_DEPEND_FILTERS" : 
 	[
@@ -374,26 +446,39 @@
 	],
 	"MOC_INCLUDES" : 
 	[
+<<<<<<< HEAD
 		"/home/dubem/cfg_parser/include",
 		"/home/dubem/cfg_parser/build",
 		"/usr/lib/llvm-18/include",
 		"/usr/lib/llvm-18/include/clang",
+=======
+		"/usr/lib/llvm-18/include",
+		"/home/dubem/cfg_parser/include",
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
 		"/usr/include/x86_64-linux-gnu/qt5",
 		"/usr/include/x86_64-linux-gnu/qt5/QtCore",
 		"/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++",
 		"/usr/include/x86_64-linux-gnu/qt5/QtGui",
 		"/usr/include/x86_64-linux-gnu/qt5/QtWidgets",
 		"/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport",
+<<<<<<< HEAD
 		"/usr/include/x86_64-linux-gnu/qt5/QtSvg",
 		"/usr/include/x86_64-linux-gnu/qt5/QtConcurrent",
 		"/usr/include/x86_64-linux-gnu/qt5/QtOpenGL",
 		"/usr/include",
+=======
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
 		"/usr/include/c++/13",
 		"/usr/include/x86_64-linux-gnu/c++/13",
 		"/usr/include/c++/13/backward",
 		"/usr/lib/gcc/x86_64-linux-gnu/13/include",
 		"/usr/local/include",
+<<<<<<< HEAD
 		"/usr/include/x86_64-linux-gnu"
+=======
+		"/usr/include/x86_64-linux-gnu",
+		"/usr/include"
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
 	],
 	"MOC_MACRO_NAMES" : [ "Q_OBJECT", "Q_GADGET", "Q_NAMESPACE", "Q_NAMESPACE_EXPORT" ],
 	"MOC_OPTIONS" : [],
@@ -411,9 +496,16 @@
 	"MOC_RELAXED_MODE" : false,
 	"MOC_SKIP" : 
 	[
+<<<<<<< HEAD
 		"/home/dubem/cfg_parser/build/include/moc_customgraphview.cpp",
 		"/home/dubem/cfg_parser/build/include/moc_mainwindow.cpp",
 		"/home/dubem/cfg_parser/build/ui_mainwindow.h",
+=======
+		"/home/dubem/cfg_parser/build/include/moc_cfg_gui.cpp",
+		"/home/dubem/cfg_parser/build/include/moc_customgraphview.cpp",
+		"/home/dubem/cfg_parser/build/include/moc_mainwindow.cpp",
+		"/home/dubem/cfg_parser/include/cfg_gui.h",
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
 		"/home/dubem/cfg_parser/include/customgraphview.h",
 		"/home/dubem/cfg_parser/include/mainwindow.h"
 	],
@@ -427,18 +519,29 @@
 	"SETTINGS_FILE" : "/home/dubem/cfg_parser/build/CMakeFiles/CFGParser_autogen.dir/AutogenUsed.txt",
 	"SOURCES" : 
 	[
+<<<<<<< HEAD
 		[ "/home/dubem/cfg_parser/src/ast_extractor.cpp", "MU", null ],
+=======
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
 		[ "/home/dubem/cfg_parser/src/cfg_analyzer.cpp", "MU", null ],
 		[ "/home/dubem/cfg_parser/src/cfg_generation_action.cpp", "MU", null ],
 		[ "/home/dubem/cfg_parser/src/cfg_graph.cpp", "MU", null ],
 		[ "/home/dubem/cfg_parser/src/graph_generator.cpp", "MU", null ],
+<<<<<<< HEAD
 		[ "/home/dubem/cfg_parser/src/gui/customgraphview.cpp", "MU", null ],
 		[ "/home/dubem/cfg_parser/src/gui/mainwindow.cpp", "MU", null ],
 		[ "/home/dubem/cfg_parser/src/main.cpp", "MU", null ],
+=======
+		[ "/home/dubem/cfg_parser/src/gui/cfg_gui.cpp", "MU", null ],
+		[ "/home/dubem/cfg_parser/src/gui/customgraphview.cpp", "MU", null ],
+		[ "/home/dubem/cfg_parser/src/gui/mainwindow.cpp", "MU", null ],
+		[ "/home/dubem/cfg_parser/src/input.cpp", "MU", null ],
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
 		[ "/home/dubem/cfg_parser/src/parser.cpp", "MU", null ],
 		[ "/home/dubem/cfg_parser/src/visualizer.cpp", "MU", null ]
 	],
 	"UIC_OPTIONS" : [],
+<<<<<<< HEAD
 	"UIC_SEARCH_PATHS" : [ "/home/dubem/cfg_parser/src/gui" ],
 	"UIC_SKIP" : 
 	[
@@ -446,6 +549,14 @@
 		"/home/dubem/cfg_parser/build/include/moc_mainwindow.cpp",
 		"/home/dubem/cfg_parser/build/ui_mainwindow.h",
 		"/home/dubem/cfg_parser/src/gui/mainwindow.ui"
+=======
+	"UIC_SEARCH_PATHS" : [],
+	"UIC_SKIP" : 
+	[
+		"/home/dubem/cfg_parser/build/include/moc_cfg_gui.cpp",
+		"/home/dubem/cfg_parser/build/include/moc_customgraphview.cpp",
+		"/home/dubem/cfg_parser/build/include/moc_mainwindow.cpp"
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
 	],
 	"UIC_UI_FILES" : [],
 	"VERBOSITY" : 0

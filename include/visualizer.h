@@ -5,6 +5,7 @@
 #include "graph_generator.h"
 
 namespace Visualizer {
+<<<<<<< HEAD
 
 std::string generateDotRepresentation(
     const GraphGenerator::CFGGraph* graph,
@@ -38,5 +39,13 @@ bool exportGraph(
 );
 
 } // namespace Visualizer
+=======
+    // Function to generate DOT representation of the graph
+    std::string generateDotRepresentation(const GraphGenerator::CFGGraph* graph);
+
+    // Function to export graph to a DOT file
+    bool exportToDot(const GraphGenerator::CFGGraph* graph, const std::string& filename);
+}
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
 
 #endif // VISUALIZER_H

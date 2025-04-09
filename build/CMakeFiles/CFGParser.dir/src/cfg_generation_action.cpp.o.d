@@ -510,7 +510,10 @@ CMakeFiles/CFGParser.dir/src/cfg_generation_action.cpp.o: \
  /usr/lib/llvm-18/include/llvm/Option/OptSpecifier.h \
  /usr/lib/llvm-18/include/llvm/Option/OptTable.h \
  /home/dubem/cfg_parser/include/graph_generator.h \
+<<<<<<< HEAD
  /home/dubem/cfg_parser/include/parser.h \
+=======
+>>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
  /usr/lib/llvm-18/include/clang/Analysis/CFG.h \
  /usr/lib/llvm-18/include/clang/Analysis/ConstructionContext.h \
  /usr/lib/llvm-18/include/clang/Analysis/Support/BumpVector.h \
