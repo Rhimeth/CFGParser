@@ -1,8 +1,0 @@
-digraph CFG {
-  node [shape=box];
-  0 [label="Block 0\n"];
-  1 [label="Block 1\nthis->_M_ptr()\n_Alloc_traits::destroy(this->_M_this->_M_impl, this->_M_ptr())\n"];
-  2 [label="Block 2\n"];
-  1 -> 0;
-  2 -> 1;
-}

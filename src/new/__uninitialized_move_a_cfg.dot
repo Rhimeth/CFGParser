@@ -1,9 +1,0 @@
-digraph CFG {
-  node [shape=box];
-  0 [label="Block 0\n"];
-  1 [label="Block 1\nstd::make_move_iterator(__first)\nstd::make_move_iterator(__last)\nstd::__uninitialized_copy_a(std::make_move_iterator(__first), std::make_move_iterator(__last), __result, __alloc)\nreturn std::__uninitialized_copy_a(std::make_move_iterator(__first), std::make_move_iterator(__last), __result, __alloc);
-\n"];
-  2 [label="Block 2\n"];
-  1 -> 0;
-  2 -> 1;
-}

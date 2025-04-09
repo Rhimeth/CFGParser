@@ -1,8 +1,0 @@
-digraph CFG {
-  node [shape=box];
-  0 [label="Block 0\n"];
-  1 [label="Block 1\nstd::__use_alloc<_Tp, _Alloc, _Args...>(__a)\nstd::forward<_Args>(__args)\nstd::__uses_allocator_construct_impl(std::__use_alloc<_Tp, _Alloc, _Args...>(__a), __ptr, std::forward<_Args>(__args)...)\n"];
-  2 [label="Block 2\n"];
-  1 -> 0;
-  2 -> 1;
-}
