@@ -1,0 +1,17 @@
+digraph "factorial_CFG" {
+  node [shape=rectangle, fontname="Courier"];
+  edge [fontname="Courier"];
+
+  B0 [label="EXIT"];
+  B1 [label="factorial(n - 1)\nn * factorial(n - 1)\nreturn n * factorial(n - 1);
+"];
+  B2 [label="1\nreturn 1;
+"];
+  B3 [label="n <= 1"];
+  B4 [label="ENTRY"];
+  B1 -> B0;
+  B2 -> B0;
+  B3 -> B2 [label="true"];
+  B3 -> B1 [label="false"];
+  B4 -> B3;
+}

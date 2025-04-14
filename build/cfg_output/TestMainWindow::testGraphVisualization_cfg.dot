@@ -1,0 +1,14 @@
+digraph "TestMainWindow::testGraphVisualization_CFG" {
+  node [shape=rectangle, fontname="Courier"];
+  edge [fontname="Courier"];
+
+  B0 [label="EXIT"];
+  B1 [label="auto testGraph;
+\n<recovery-expr>(testGraph)->addNode(1, "Start")\n<recovery-expr>(testGraph)->addNode(2, "Process")\n<recovery-expr>(testGraph)->addNode(3, "End")\n<recovery-expr>(testGraph)->addEdge(1, 2)\n<recovery-expr>(testGraph)->addEdge(2, 3)\nint spy;
+\nint *webView;
+\n<recovery-expr>()->page()\n<recovery-expr>()->page()->title()\n<recovery-expr>()->page()->title().isEmpty()\nQTRY_VERIFY(!<recovery-expr>()->page()->title().isEmpty())\nint *report;
+\n<recovery-expr>()->toPlainText()\n<recovery-expr>()->toPlainText().isEmpty()\nQVERIFY(!<recovery-expr>()->toPlainText().isEmpty())"];
+  B2 [label="ENTRY"];
+  B1 -> B0;
+  B2 -> B1;
+}

@@ -1,0 +1,10 @@
+digraph "Rectangle::print_CFG" {
+  node [shape=rectangle, fontname="Courier"];
+  edge [fontname="Courier"];
+
+  B0 [label="EXIT"];
+  B1 [label="std::cout << "Rectangle with dimensions: "\nstd::cout << "Rectangle with dimensions: " << this->width\nstd::cout << "Rectangle with dimensions: " << this->width << "x"\nstd::cout << "Rectangle with dimensions: " << this->width << "x" << this->height\nstd::cout << "Rectangle with dimensions: " << this->width << "x" << this->height << std::endl\nstd::cout << "Area: "\nthis->area()\nstd::cout << "Area: " << this->area()\nstd::cout << "Area: " << this->area() << std::endl\nstd::cout << "Perimeter: "\nthis->perimeter()\nstd::cout << "Perimeter: " << this->perimeter()\nstd::cout << "Perimeter: " << this->perimeter() << std::endl"];
+  B2 [label="ENTRY"];
+  B1 -> B0;
+  B2 -> B1;
+}

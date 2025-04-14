@@ -1,0 +1,30 @@
+digraph "CFGVisualizer::loadCFGFile_CFG" {
+  node [shape=rectangle, fontname="Courier"];
+  edge [fontname="Courier"];
+
+  B0 [label="EXIT"];
+  B1 [label="return;
+"];
+  B2 [label="int fileContent;
+\nint jsonDoc;
+\n<recovery-expr>(jsonDoc).isNull()"];
+  B3 [label="return;
+"];
+  B4 [label="int file;
+\n<recovery-expr>()"];
+  B5 [label="return;
+"];
+  B6 [label="int filename;
+\n<recovery-expr>(filename).isEmpty()"];
+  B7 [label="ENTRY"];
+  B1 -> B0;
+  B2 -> B1 [label="true"];
+  B2 -> B0 [label="false"];
+  B3 -> B0;
+  B4 -> B3 [label="true"];
+  B4 -> B2 [label="false"];
+  B5 -> B0;
+  B6 -> B5 [label="true"];
+  B6 -> B4 [label="false"];
+  B7 -> B6;
+}

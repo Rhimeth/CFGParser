@@ -1,0 +1,24 @@
+digraph "CompositeShape::print_CFG" {
+  node [shape=rectangle, fontname="Courier"];
+  edge [fontname="Courier"];
+
+  B0 [label="EXIT"];
+  B1 [label="std::cout << "Total Area: "\nthis->area()\nstd::cout << "Total Area: " << this->area()\nstd::cout << "Total Area: " << this->area() << std::endl\nstd::cout << "Total Perimeter: "\nthis->perimeter()\nstd::cout << "Total Perimeter: " << this->perimeter()\nstd::cout << "Total Perimeter: " << this->perimeter() << std::endl"];
+  B2 [label="__begin1 != __end1"];
+  B3 [label="++ __begin1"];
+  B4 [label="* __begin1\nconst auto &shape;
+\nstd::cout << "Shape "\nstd::cout << "Shape " << i++\nstd::cout << "Shape " << i++ << ": "\nshape\nshape->print()"];
+  B5 [label="std::cout << "Composite Shape: "\nstd::cout << "Composite Shape: " << this->name\nstd::cout << "Composite Shape: " << this->name << std::endl\nstd::cout << "Contains "\nthis->shapes.size()\nstd::cout << "Contains " << this->shapes.size()\nstd::cout << "Contains " << this->shapes.size() << " shapes:"\nstd::cout << "Contains " << this->shapes.size() << " shapes:" << std::endl\nint i = 1;
+\nauto &&__range1 = this->shapes;
+\n__range1.end()\nauto __end1 = __range1.end();
+\n__range1.begin()\nauto __begin1 = __range1.begin();
+"];
+  B6 [label="ENTRY"];
+  B1 -> B0;
+  B2 -> B4 [label="true"];
+  B2 -> B1 [label="false"];
+  B3 -> B2;
+  B4 -> B3;
+  B5 -> B2;
+  B6 -> B5;
+}

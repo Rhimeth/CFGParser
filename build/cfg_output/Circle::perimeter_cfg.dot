@@ -1,0 +1,11 @@
+digraph "Circle::perimeter_CFG" {
+  node [shape=rectangle, fontname="Courier"];
+  edge [fontname="Courier"];
+
+  B0 [label="EXIT"];
+  B1 [label="2 * 3.1415899999999999 * this->radius\nreturn 2 * 3.1415899999999999 * this->radius;
+"];
+  B2 [label="ENTRY"];
+  B1 -> B0;
+  B2 -> B1;
+}

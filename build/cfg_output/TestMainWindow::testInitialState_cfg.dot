@@ -1,0 +1,11 @@
+digraph "TestMainWindow::testInitialState_CFG" {
+  node [shape=rectangle, fontname="Courier"];
+  edge [fontname="Courier"];
+
+  B0 [label="EXIT"];
+  B1 [label="int *splitter2;
+\nQVERIFY(<recovery-expr>() != nullptr)\n<recovery-expr>()->sizes()\nQCOMPARE(<recovery-expr>()->sizes(), <recovery-expr>(QList<int>, {400, 100}))"];
+  B2 [label="ENTRY"];
+  B1 -> B0;
+  B2 -> B1;
+}

@@ -1,0 +1,25 @@
+digraph "CFGVisualizer::visualizeCFG_CFG" {
+  node [shape=rectangle, fontname="Courier"];
+  edge [fontname="Courier"];
+
+  B0 [label="EXIT"];
+  B1 [label="int jsonDoc;
+\nint jsonObj;
+\nint cfgArray;
+\nconst int NODE_WIDTH = 150;
+\nconst int NODE_HEIGHT = 100;
+\nconst int VERTICAL_SPACING = 150;
+\nconst int HORIZONTAL_SPACING = 200;
+\nint nodeMap;
+"];
+  B2 [label="return;
+"];
+  B3 [label="int *selectedItem;
+\n!<recovery-expr>()"];
+  B4 [label="ENTRY"];
+  B1 -> B0;
+  B2 -> B0;
+  B3 -> B2 [label="true"];
+  B3 -> B1 [label="false"];
+  B4 -> B3;
+}

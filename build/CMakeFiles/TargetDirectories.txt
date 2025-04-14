@@ -4,17 +4,17 @@
 /home/dubem/cfg_parser/build/CMakeFiles/RISCVTargetParserTableGen.dir
 /home/dubem/cfg_parser/build/CMakeFiles/clang-tablegen-targets.dir
 /home/dubem/cfg_parser/build/CMakeFiles/CFGParser.dir
-<<<<<<< HEAD
-/home/dubem/cfg_parser/build/CMakeFiles/generate_visualizations.dir
+/home/dubem/cfg_parser/build/CMakeFiles/process_dot_files.dir
+/home/dubem/cfg_parser/build/CMakeFiles/process_Rectangle_cfg.dir
+/home/dubem/cfg_parser/build/CMakeFiles/process_area_cfg.dir
+/home/dubem/cfg_parser/build/CMakeFiles/process_combined_cfg.dir
+/home/dubem/cfg_parser/build/CMakeFiles/process__Shape_cfg.dir
+/home/dubem/cfg_parser/build/CMakeFiles/uninstall.dir
 /home/dubem/cfg_parser/build/CMakeFiles/edit_cache.dir
 /home/dubem/cfg_parser/build/CMakeFiles/rebuild_cache.dir
 /home/dubem/cfg_parser/build/CMakeFiles/list_install_components.dir
 /home/dubem/cfg_parser/build/CMakeFiles/install.dir
 /home/dubem/cfg_parser/build/CMakeFiles/install/local.dir
 /home/dubem/cfg_parser/build/CMakeFiles/install/strip.dir
-=======
-/home/dubem/cfg_parser/build/CMakeFiles/edit_cache.dir
-/home/dubem/cfg_parser/build/CMakeFiles/rebuild_cache.dir
->>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
 /home/dubem/cfg_parser/build/CMakeFiles/CFGParser_autogen_timestamp_deps.dir
 /home/dubem/cfg_parser/build/CMakeFiles/CFGParser_autogen.dir

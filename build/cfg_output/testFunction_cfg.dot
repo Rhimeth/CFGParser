@@ -1,0 +1,42 @@
+digraph "testFunction_CFG" {
+  node [shape=rectangle, fontname="Courier"];
+  edge [fontname="Courier"];
+
+  B0 [label="EXIT"];
+  B1 [label="factorial(5)\nint fact = factorial(5);
+\nstd::cout << "Factorial(5): "\nstd::cout << "Factorial(5): " << fact\nstd::cout << "Factorial(5): " << fact << std::endl"];
+  B2 [label="i++"];
+  B3 [label="std::cout << "Loop iteration: "\nstd::cout << "Loop iteration: " << i\nstd::cout << "Loop iteration: " << i << std::endl"];
+  B4 [label="i < 3"];
+  B5 [label="int i = 0;
+"];
+  B6 [label="BLOCK 6"];
+  B7 [label="catch (const std::exception &e) {
+    std::cerr << "Caught exception: " << e.what() << std::endl;
+}
+\nstd::cerr << "Caught exception: "\ne.what()\nstd::cerr << "Caught exception: " << e.what()\nstd::cerr << "Caught exception: " << e.what() << std::endl"];
+  B8 [label=""Test exception"\nthrow std::runtime_error("Test exception")"];
+  B9 [label="\nCalculator calc;
+\nint x = 5;
+\nint y = 3;
+\nstd::cout << "Sum: "\ncalc.add(x, y)\nstd::cout << "Sum: " << calc.add(x, y)\nstd::cout << "Sum: " << calc.add(x, y) << std::endl\nstd::cout << "Product: "\ncalc.multiply(x, y)\nstd::cout << "Product: " << calc.multiply(x, y)\nstd::cout << "Product: " << calc.multiply(x, y) << std::endl\n{1, 2, 3, 4, 5}\nstd::vector<int> values = {1, 2, 3, 4, 5};
+\n[](int a, int b) {
+    return a + b;
+}\nprocessNumbers(values, [](int a, int b) {
+    return a + b;
+})\nx > y"];
+  B10 [label="ENTRY"];
+  B1 -> B0;
+  B2 -> B4;
+  B3 -> B2;
+  B4 -> B3 [label="true"];
+  B4 -> B1 [label="false"];
+  B5 -> B4;
+  B6 -> B7 [label="true"];
+  B6 -> B0 [label="false"];
+  B7 -> B5;
+  B8 -> B6;
+  B9 -> B8 [label="true"];
+  B9 -> B5 [label="false"];
+  B10 -> B9;
+}

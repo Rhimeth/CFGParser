@@ -1,0 +1,11 @@
+digraph "Triangle::perimeter_CFG" {
+  node [shape=rectangle, fontname="Courier"];
+  edge [fontname="Courier"];
+
+  B0 [label="EXIT"];
+  B1 [label="this->a + this->b + this->c\nreturn this->a + this->b + this->c;
+"];
+  B2 [label="ENTRY"];
+  B1 -> B0;
+  B2 -> B1;
+}

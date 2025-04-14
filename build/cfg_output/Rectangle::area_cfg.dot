@@ -1,0 +1,11 @@
+digraph "Rectangle::area_CFG" {
+  node [shape=rectangle, fontname="Courier"];
+  edge [fontname="Courier"];
+
+  B0 [label="EXIT"];
+  B1 [label="this->width * this->height\nreturn this->width * this->height;
+"];
+  B2 [label="ENTRY"];
+  B1 -> B0;
+  B2 -> B1;
+}

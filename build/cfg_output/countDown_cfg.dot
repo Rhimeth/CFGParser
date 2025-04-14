@@ -1,0 +1,20 @@
+digraph "countDown_CFG" {
+  node [shape=rectangle, fontname="Courier"];
+  edge [fontname="Courier"];
+
+  B0 [label="EXIT"];
+  B1 [label="std::cout << "Go!"\nstd::cout << "Go!" << std::endl"];
+  B2 [label="i--"];
+  B3 [label="std::cout << i\nstd::cout << i << "..."\nstd::cout << i << "..." << std::endl"];
+  B4 [label="i > 0"];
+  B5 [label="int i = start;
+"];
+  B6 [label="ENTRY"];
+  B1 -> B0;
+  B2 -> B4;
+  B3 -> B2;
+  B4 -> B3 [label="true"];
+  B4 -> B1 [label="false"];
+  B5 -> B4;
+  B6 -> B5;
+}

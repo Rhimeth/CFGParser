@@ -1,0 +1,16 @@
+digraph "CompositeShape::removeShape_CFG" {
+  node [shape=rectangle, fontname="Courier"];
+  edge [fontname="Courier"];
+
+  B0 [label="EXIT"];
+  B1 [label="this->shapes.begin()\nthis->shapes.begin() + index\nthis->shapes.begin() + index\nthis->shapes.erase(this->shapes.begin() + index)"];
+  B2 [label="this->shapes.size()\nindex < this->shapes.size()"];
+  B3 [label="index >= 0"];
+  B4 [label="ENTRY"];
+  B1 -> B0;
+  B2 -> B1 [label="true"];
+  B2 -> B0 [label="false"];
+  B3 -> B2 [label="true"];
+  B3 -> B0 [label="false"];
+  B4 -> B3;
+}

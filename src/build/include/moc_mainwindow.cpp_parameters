@@ -1,6 +1,0 @@
--I/usr/lib/llvm-18/include
--I/usr/lib/llvm-18/include
--I/home/dubem/cfg_parser/include
--o
-/home/dubem/cfg_parser/build/include/moc_mainwindow.cpp
-/home/dubem/cfg_parser/include/mainwindow.h

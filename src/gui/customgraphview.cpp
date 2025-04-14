@@ -26,14 +26,13 @@ CustomGraphView::CustomGraphView(QWidget* parent)
       m_initialized(false),
       m_initTimer(nullptr)
 {
-    // Disable problematic features
     setOptimizationFlags(QGraphicsView::DontSavePainterState | 
                        QGraphicsView::DontAdjustForAntialiasing);
     setViewportUpdateMode(QGraphicsView::FullViewportUpdate);
     setAttribute(Qt::WA_OpaquePaintEvent);
     setAttribute(Qt::WA_NoSystemBackground);
     
-    // Create a new scene if one wasn't provided
+    // Create a new scene
     if (!m_scene) {
         m_scene = new QGraphicsScene(this);
         QGraphicsView::setScene(m_scene);
@@ -47,11 +46,10 @@ void CustomGraphView::paintEvent(QPaintEvent* event)
     try {
         QPainter painter(viewport());
         
-        // Minimal rendering calls
         painter.fillRect(viewport()->rect(), Qt::white);
         render(&painter);
         
-        attempt = 0; // Reset on success
+        attempt = 0;
     } 
     catch (...) {
         if (++attempt >= maxAttempts) {
@@ -60,7 +58,6 @@ void CustomGraphView::paintEvent(QPaintEvent* event)
             return;
         }
         
-        // Try switching viewports
         qDebug() << "Rendering failed, attempt" << attempt;
         setViewport(new QWidget());
         update();
@@ -188,7 +185,7 @@ void CustomGraphView::addEdge(const QString& from, const QString& to) {
         edge->setData(1, from);    // Store source node ID
         edge->setData(2, to);      // Store target node ID
         
-        m_edges.append(qMakePair(from, to));  // Store the relationship
+        m_edges.append(qMakePair(from, to));
     }
 }
 
@@ -197,7 +194,7 @@ void CustomGraphView::calculateLevels() {
     
     if (m_nodes.isEmpty()) return;
     
-    // Find root nodes (nodes with no incoming edges)
+    // Find root nodes
     QSet<QString> rootNodes;
     QSet<QString> allNodes(m_nodes.keys().begin(), m_nodes.keys().end());
     QSet<QString> nodesWithIncomingEdges;
@@ -242,10 +239,9 @@ void CustomGraphView::calculateLevels() {
         }
     }
     
-    // Handle any unvisited nodes (disconnected components)
     foreach (const QString& nodeId, allNodes) {
         if (!m_nodeLevels.contains(nodeId)) {
-            m_nodeLevels[nodeId] = 0;  // Assign to level 0
+            m_nodeLevels[nodeId] = 0;
         }
     }
 }
@@ -296,20 +292,18 @@ void CustomGraphView::applyForceDirectedLayout(int iterations,
     for (int iter = 0; iter < iterations; ++iter) {
         forces.clear();
         
-        // Repulsive forces between all nodes
         foreach (const QString& id1, m_nodes.keys()) {
             foreach (const QString& id2, m_nodes.keys()) {
                 if (id1 == id2) continue;
                 
                 QPointF delta = positions[id1] - positions[id2];
-                qreal distance = std::max(1.0, std::sqrt(delta.x()*delta.x() + delta.y()*delta.y())); // Fixed this line
+                qreal distance = std::max(1.0, std::sqrt(delta.x()*delta.x() + delta.y()*delta.y()));
                 qreal force = repulsion / (distance * distance);
                 
                 forces[id1] += (delta / distance) * force;
             }
         }
         
-        // Attractive forces for edges
         foreach (const auto& edge, m_edges) {
             QString fromId = edge.first;
             QString toId = edge.second;
@@ -317,7 +311,6 @@ void CustomGraphView::applyForceDirectedLayout(int iterations,
             if (!positions.contains(fromId) || !positions.contains(toId)) continue;
             
             QPointF delta = positions[fromId] - positions[toId];
-            qreal distance = std::sqrt(delta.x()*delta.x() + delta.y()*delta.y());
             
             forces[fromId] -= delta * attraction;
             forces[toId] += delta * attraction;
@@ -415,17 +408,12 @@ bool CustomGraphView::parseDotFormat(const QString& dotContent) {
     // Clear the existing graph before parsing
     clear();
     
-    // Use QRegularExpression instead of QRegExp (more powerful and less deprecated)
-    // Node pattern: match both numbered nodes and named nodes
     QRegularExpression nodeRegex("\\s*(\\d+|\"[^\"]+\")\\s*\\[\\s*([^\\]]+)\\]\\s*;?");
     
-    // Edge pattern: handle various edge formats
     QRegularExpression edgeRegex("\\s*(\\d+|\"[^\"]+\")\\s*->\\s*(\\d+|\"[^\"]+\")\\s*(?:\\[\\s*([^\\]]+)\\])?\\s*;?");
     
-    // Attribute pattern: handles both quoted and unquoted values
     QRegularExpression attrRegex("(\\w+)\\s*=\\s*(?:\"([^\"]*)\"|([^\\s,;\"]+))");
     
-    // Global attribute pattern: e.g., "node [shape=box];"
     QRegularExpression globalAttrRegex("\\s*(graph|node|edge)\\s*\\[\\s*([^\\]]+)\\]\\s*;?");
     
     QMap<QString, QMap<QString, QString>> defaultAttributes;
@@ -442,7 +430,6 @@ bool CustomGraphView::parseDotFormat(const QString& dotContent) {
     bool parsedSuccessfully = false;
     QStringList lines = dotContent.split('\n', Qt::SkipEmptyParts);
     
-    // Debug: print first few lines of DOT content
     qDebug() << "DOT content sample:" << dotContent.left(200);
     
     for (const QString& line : lines) {
@@ -477,7 +464,6 @@ bool CustomGraphView::parseDotFormat(const QString& dotContent) {
             continue;
         }
         
-        // Try to match node pattern
         QRegularExpressionMatch nodeMatch = nodeRegex.match(trimmed);
         if (nodeMatch.hasMatch()) {
             QString idStr = nodeMatch.captured(1);
@@ -496,7 +482,7 @@ bool CustomGraphView::parseDotFormat(const QString& dotContent) {
                 QRegularExpressionMatch match = attrMatches.next();
                 QString key = match.captured(1);
                 QString value = match.captured(2);
-                if (value.isEmpty()) value = match.captured(3); // Non-quoted value
+                if (value.isEmpty()) value = match.captured(3);
                 attributes[key] = value;
             }
             
@@ -567,7 +553,7 @@ bool CustomGraphView::parseDotFormat(const QString& dotContent) {
 QMap<QString, QString> CustomGraphView::parseAttributes(const QString& attrStr) {
     QMap<QString, QString> attributes;
     
-    QRegExp attrRegex(R"(\s*(\w+)\s*=\s*\"([^\"]*)\")"); // Matches key="value"
+    QRegExp attrRegex(R"(\s*(\w+)\s*=\s*\"([^\"]*)\")");
     int pos = 0;
 
     while ((pos = attrRegex.indexIn(attrStr, pos)) != -1) {
@@ -582,7 +568,9 @@ QMap<QString, QString> CustomGraphView::parseAttributes(const QString& attrStr) 
 
 void CustomGraphView::createNodeFromDot(int id, const QString& label, const QMap<QString, QString>& attributes) {
     QGraphicsEllipseItem* node = new QGraphicsEllipseItem(-20, -20, 40, 40);
+    
     node->setData(MainWindow::NodeItemType, 1);
+    node->setData(MainWindow::NodeIdKey, id);
     
     // Apply attributes
     if (attributes.contains("fillcolor")) {
@@ -597,7 +585,6 @@ void CustomGraphView::createNodeFromDot(int id, const QString& label, const QMap
 }
 
 void CustomGraphView::createEdgeFromDot(int source, int target, const QMap<QString, QString>& attributes) {
-    // Find source and target nodes in scene
     QGraphicsItem* sourceItem = findNodeById(source);
     QGraphicsItem* targetItem = findNodeById(target);
     
@@ -605,7 +592,10 @@ void CustomGraphView::createEdgeFromDot(int source, int target, const QMap<QStri
         QLineF line(sourceItem->sceneBoundingRect().center(),
                    targetItem->sceneBoundingRect().center());
         QGraphicsLineItem* edge = new QGraphicsLineItem(line);
+        
         edge->setData(MainWindow::EdgeItemType, 1);
+        edge->setData(MainWindow::EdgeFromKey, source);
+        edge->setData(MainWindow::EdgeToKey, target);
         
         // Apply attributes
         if (attributes.contains("color")) {
@@ -808,7 +798,7 @@ void CustomGraphView::parseJson(const QByteArray &jsonData) {
         text->setPos(col * 150 + 10, row * 100 + 5);
         
         nodeItems[id] = ellipse;
-        m_nodes[id] = ellipse; // Store in main nodes map
+        m_nodes[id] = ellipse;
     }
     
     // Create edges
@@ -851,7 +841,7 @@ void CustomGraphView::mouseReleaseEvent(QMouseEvent *event) {
 
 void CustomGraphView::clear()
 {
-    // Safely clear all items
+    // Clear all items
     if (m_scene) {
         m_scene->clear();
     }
@@ -868,14 +858,13 @@ void CustomGraphView::clear()
 
 CustomGraphView::~CustomGraphView()
 {
-    // Clear containers first (items are owned by scene)
+    // Clear containers first
     m_nodes.clear();
     m_edges.clear();
     m_nodeLevels.clear();
     
-    // Delete the scene if we own it
+    // Delete the scene
     if (m_scene) {
-        // Ensure no rendering operations are in progress
         m_scene->clear();
         
         if (m_scene->parent() == this) {

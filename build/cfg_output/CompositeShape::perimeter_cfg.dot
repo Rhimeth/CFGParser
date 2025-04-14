@@ -1,0 +1,25 @@
+digraph "CompositeShape::perimeter_CFG" {
+  node [shape=rectangle, fontname="Courier"];
+  edge [fontname="Courier"];
+
+  B0 [label="EXIT"];
+  B1 [label="totalPerimeter\nreturn totalPerimeter;
+"];
+  B2 [label="__begin1 != __end1"];
+  B3 [label="++ __begin1"];
+  B4 [label="* __begin1\nconst auto &shape;
+\nshape\nshape->perimeter()\ntotalPerimeter += shape->perimeter()"];
+  B5 [label="double totalPerimeter = 0;
+\nauto &&__range1 = this->shapes;
+\n__range1.end()\nauto __end1 = __range1.end();
+\n__range1.begin()\nauto __begin1 = __range1.begin();
+"];
+  B6 [label="ENTRY"];
+  B1 -> B0;
+  B2 -> B4 [label="true"];
+  B2 -> B1 [label="false"];
+  B3 -> B2;
+  B4 -> B3;
+  B5 -> B2;
+  B6 -> B5;
+}

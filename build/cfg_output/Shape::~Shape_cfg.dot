@@ -1,0 +1,8 @@
+digraph "Shape::~Shape_CFG" {
+  node [shape=rectangle, fontname="Courier"];
+  edge [fontname="Courier"];
+
+  B0 [label="EXIT"];
+  B1 [label="ENTRY"];
+  B1 -> B0;
+}

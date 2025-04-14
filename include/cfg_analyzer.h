@@ -1,8 +1,10 @@
-<<<<<<< HEAD
 // cfg_analyzer.h
 #ifndef CFG_ANALYZER_H
 #define CFG_ANALYZER_H
 
+#include <clang/Analysis/CFG.h>
+#include <clang/AST/Stmt.h>
+#include <clang/AST/PrettyPrinter.h>
 #include <clang/AST/ASTContext.h>
 #include <clang/AST/RecursiveASTVisitor.h>
 #include <clang/Frontend/CompilerInstance.h>
@@ -28,18 +30,22 @@ namespace CFGAnalyzer {
     class CFGAction;    // Forward declaration
 
     class CFGVisitor : public clang::RecursiveASTVisitor<CFGVisitor> {
-    public:
-        explicit CFGVisitor(clang::ASTContext* Context,
-                         const std::string& outputDir,
-                         AnalysisResult& results);
-        
-        bool VisitFunctionDecl(clang::FunctionDecl* FD);
-        bool VisitCallExpr(clang::CallExpr* CE);
-        void PrintFunctionDependencies() const;
-        std::unordered_map<std::string, std::set<std::string>> GetFunctionDependencies() const;
-        void FinalizeCombinedFile();
-        
-        AnalysisResult& getResults() { return m_results; }
+        public:
+            explicit CFGVisitor(clang::ASTContext* Context,
+                             const std::string& outputDir,
+                             AnalysisResult& results);
+            
+            bool VisitFunctionDecl(clang::FunctionDecl* FD);
+            bool VisitCallExpr(clang::CallExpr* CE);
+            void PrintFunctionDependencies() const;
+            std::unordered_map<std::string, std::set<std::string>> GetFunctionDependencies() const;
+            void FinalizeCombinedFile();
+            
+            // Add these missing function declarations
+            std::string stmtToString(const clang::Stmt* S);
+            std::string generateDotFromCFG(clang::FunctionDecl* FD);
+            
+            AnalysisResult& getResults() { return m_results; }
         
     private:
         clang::ASTContext* Context;
@@ -89,67 +95,11 @@ namespace CFGAnalyzer {
         std::string generateDotOutput(const AnalysisResult& result) const;
         std::string generateReport(const AnalysisResult& result) const;
         static std::string getCurrentDateTime();
+        std::string generateDotFromCFG(clang::FunctionDecl* FD);
+        std::string stmtToString(const clang::Stmt* S);
         
         mutable QMutex m_analysisMutex;
         AnalysisResult m_results;
     };    
 } // namespace CFGAnalyzer
 #endif // CFG_ANALYZER_H
-=======
-#ifndef CFG_ANALYZER_H
-#define CFG_ANALYZER_H
-
-#include <iostream>
-#include <string>
-#include <memory>
-#include <unordered_map>
-#include <set>
-#include <clang/AST/ASTContext.h>
-#include <clang/AST/RecursiveASTVisitor.h>
-#include <clang/Frontend/FrontendAction.h>
-#include <clang/Frontend/CompilerInstance.h>
-
-namespace CFGAnalyzer {
-
-class CFGVisitor : public clang::RecursiveASTVisitor<CFGVisitor> {
-public:
-    explicit CFGVisitor(clang::ASTContext* Context, const std::string& outputDir = "cfg_output");
-    bool VisitFunctionDecl(clang::FunctionDecl* FD);
-    bool VisitCallExpr(clang::CallExpr* CE);
-    void FinalizeCombinedFile();
-    
-    // Function dependency analysis
-    void PrintFunctionDependencies() const;
-    std::unordered_map<std::string, std::set<std::string>> GetFunctionDependencies() const;
-
-private:
-    clang::ASTContext* Context;
-    std::string CurrentFunction;  // Track which function we're currently in
-    std::unordered_map<std::string, std::set<std::string>> FunctionDependencies;  // caller -> set of callees
-    std::string OutputDir;  // Store output directory path
-};
-
-class CFGConsumer : public clang::ASTConsumer {
-public:
-    explicit CFGConsumer(clang::ASTContext* Context, const std::string& outputDir = "cfg_output");
-    void HandleTranslationUnit(clang::ASTContext& Context) override;
-
-private:
-    std::unique_ptr<CFGVisitor> Visitor;
-};
-
-class CFGAction : public clang::ASTFrontendAction {
-public:
-    explicit CFGAction(const std::string& outputDir = "cfg_output");
-    std::unique_ptr<clang::ASTConsumer> CreateASTConsumer(
-        clang::CompilerInstance& CI, llvm::StringRef File) override;
-        
-private:
-    std::string OutputDir;
-};
-
-bool analyze(const std::string& filename);
-}
-
-#endif
->>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b

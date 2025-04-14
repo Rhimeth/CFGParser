@@ -3,17 +3,14 @@
 #include <QJsonDocument>
 #include <QFile>
 
-// Include necessary Clang headers
-#include <clang/AST/DeclCXX.h>  // For CXXMethodDecl
+#include <clang/AST/DeclCXX.h>
 #include <clang/AST/Decl.h>
 #include <clang/AST/Type.h>
 
 ASTExtractor::ASTExtractor() {
-    // Initialize any required members
 }
 
 ASTExtractor::~ASTExtractor() {
-    // Clean up if needed
 }
 
 void ASTExtractor::extractAST(clang::ASTContext& context, const std::string& outputPath) {
@@ -22,7 +19,6 @@ void ASTExtractor::extractAST(clang::ASTContext& context, const std::string& out
     QJsonArray methodsArray;
     QJsonArray variablesArray;
 
-    // Extract translation unit declarations
     for (const auto* decl : context.getTranslationUnitDecl()->decls()) {
         if (!decl->isImplicit()) {
             QJsonObject declJson;
@@ -44,7 +40,6 @@ void ASTExtractor::extractAST(clang::ASTContext& context, const std::string& out
     astJson["methods"] = methodsArray;
     astJson["variables"] = variablesArray;
 
-    // Write JSON to file
     QFile outFile(QString::fromStdString(outputPath));
     if (outFile.open(QIODevice::WriteOnly)) {
         QJsonDocument doc(astJson);
@@ -62,7 +57,6 @@ void ASTExtractor::extractDecl(const clang::Decl* decl, QJsonObject& declJson) {
             declJson["returnType"] = QString::fromStdString(funcDecl->getReturnType().getAsString());
             declJson["isFunction"] = true;
             
-            // Extract parameters
             QJsonArray paramsArray;
             for (unsigned i = 0; i < funcDecl->getNumParams(); ++i) {
                 const auto* param = funcDecl->getParamDecl(i);
@@ -73,7 +67,6 @@ void ASTExtractor::extractDecl(const clang::Decl* decl, QJsonObject& declJson) {
             }
             declJson["parameters"] = paramsArray;
 
-            // Check if it's a method using isa instead of dyn_cast
             if (llvm::isa<clang::CXXMethodDecl>(funcDecl)) {
                 declJson["isMethod"] = true;
                 declJson["isFunction"] = false;

@@ -12,6 +12,9 @@
 #include <QDebug>
 #include <QGraphicsScene>
 #include <QGraphicsView>
+#include <QWebEngineView>
+#include <QWebEngineSettings>
+#include <QWebChannel>
 #include <QPainter>
 #include <QPrinter>
 #include <QThreadPool>
@@ -20,6 +23,7 @@
 #include <QSvgGenerator>
 #include <QBrush>
 #include <QPen>
+#include <QProcess>
 #include <QTimer>
 #include <QFuture>
 #include <exception>
@@ -33,69 +37,687 @@
 #include <QCheckBox>
 #include <QOpenGLWidget>
 #include <QSurfaceFormat>
-
-const int MainWindow::NodeItemType = QGraphicsItem::UserType + 1;
-const int MainWindow::EdgeItemType = QGraphicsItem::UserType + 2;
-const QString MainWindow::NodeTypeKey = "NodeType";
-const QString MainWindow::EdgeTypeKey = "EdgeType";
+#include <QOpenGLContext>
+#include <QOpenGLFunctions>
+#include <QMenu>
+#include <QGraphicsItem>
+#include <QGraphicsLineItem>
+#include <QGraphicsEllipseItem>
+#include <QGraphicsTextItem>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
+    m_webChannel(new QWebChannel(this)),
+    m_currentLayoutAlgorithm(Hierarchical),
     m_scene(nullptr),
     m_analysisThread(nullptr),
     m_graphView(nullptr),
-    m_currentLayoutAlgorithm(Hierarchical)
+    m_highlightNode(nullptr),
+    m_highlightEdge(nullptr)
 {
-    if (QStandardPaths::findExecutable("dot").isEmpty()) {
-        qWarning() << "GraphViz 'dot' executable not found in PATH.";
-    } else {
-        qDebug() << "'dot' found:" << QStandardPaths::findExecutable("dot");
-    }
-
     ui->setupUi(this);
 
-    m_currentTheme = {
-        Qt::white,      // nodeColor
-        Qt::black,      // edgeColor
-        Qt::black,      // textColor
-        Qt::white       // backgroundColor
-    };
-    
-    // Remove placeholder if exists
-    if (ui->graphicsView) {
-        ui->verticalLayout->removeWidget(ui->graphicsView);
-        delete ui->graphicsView;
-        ui->graphicsView = nullptr;
-    }
-    
-    // Direct initialization
-    setupGraphView();
-    
-    Q_ASSERT(QThread::currentThread() == QCoreApplication::instance()->thread());
+    ui->splitter_2->setSizes({400, 100});
 
-    // Verify initialization
-    if (!m_graphView || !m_graphView->scene()) {
-        qCritical() << "Graph view initialization failed!";
-        QMessageBox::critical(this, "Fatal Error", "Failed to initialize graph view");
-        QCoreApplication::exit(1);
+    ui->webView->setMinimumSize(200, 200);
+    ui->reportTextEdit->setMinimumSize(200, 100);
+    
+    m_webView = ui->webView;
+    m_webView->settings()->setAttribute(QWebEngineSettings::LocalStorageEnabled, true);
+    m_webView->settings()->setAttribute(QWebEngineSettings::JavascriptEnabled, true);
+    
+    // Set up web channel
+    m_webChannel->registerObject("bridge", this);
+    m_webView->page()->setWebChannel(m_webChannel);
+    
+    // Hide the graphLabel as it might interfere
+    ui->graphLabel->hide();
+    
+    m_currentGraph = nullptr;
+    m_currentDotContent = QString();
+    m_loadedFiles = QStringList();
+
+    if (!verifyGraphvizInstallation()) {
+        QMessageBox::warning(this, "Warning", 
+            "Graph visualization features will be limited");
+    }
+
+    setupVisualizationComponents();
+    
+    // Set default theme
+    m_currentTheme = {
+        QColor("#ffffff"),  // nodeColor
+        QColor("#000000"),  // edgeColor
+        QColor("#000000"),  // textColor
+        QColor("#f0f0f0")   // backgroundColor
+    };
+
+    // Connect signals
+    setupConnections();
+    
+    // Load empty initial state
+    if (m_webView) {
+        loadEmptyVisualization();
+    }
+}
+
+void MainWindow::setupVisualizationComponents() {
+
+    if (!ui || !ui->splitter_2) {
+        qCritical() << "UI not properly initialized";
+        return;
+    }
+
+    if (!m_webView) {
+        m_webView = new QWebEngineView(this);
+        ui->splitter_2->insertWidget(0, m_webView);
+    }
+
+    if (!m_webChannel) {
+        m_webChannel = new QWebChannel(this);
+    }
+    // Create web view with safety checks
+    if (!m_webView) {
+        m_webView = new QWebEngineView(this);
+        // Check if ui and splitter_2 exist before accessing them
+        if (ui && ui->splitter_2) {
+            ui->splitter_2->insertWidget(0, m_webView);
+            m_webView->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+            
+            // Only proceed with web setup if m_webChannel exists
+            if (m_webChannel) {
+                m_webChannel->registerObject("bridge", this);
+                m_webView->page()->setWebChannel(m_webChannel);
+                
+                QWebEngineSettings* settings = m_webView->settings();
+                settings->setAttribute(QWebEngineSettings::LocalStorageEnabled, true);
+                settings->setAttribute(QWebEngineSettings::JavascriptEnabled, true);
+            }
+        } else {
+            // Handle missing UI component
+            qWarning() << "splitter_2 widget not found in UI";
+
+            QVBoxLayout* mainLayout = new QVBoxLayout();
+            mainLayout->addWidget(m_webView);
+            QWidget* centralWidget = new QWidget(this);
+            centralWidget->setLayout(mainLayout);
+            setCentralWidget(centralWidget);
+        }
     }
     
-    // Connect all signals
-    connect(ui->browseButton, &QPushButton::clicked, this, &MainWindow::on_browseButton_clicked);
-    connect(ui->analyzeButton, &QPushButton::clicked, this, &MainWindow::on_analyzeButton_clicked);
+    // Initialize graph view with safety checks
+    if (!m_graphView) {
+        m_graphView = new CustomGraphView(this);
+        
+        QWidget* central = centralWidget();
+        if (central) {
+            if (!central->layout()) {
+                central->setLayout(new QVBoxLayout());
+            }
+            central->layout()->addWidget(m_graphView);
+        }
+        
+        // Create scene
+        if (!m_scene) {
+            m_scene = new QGraphicsScene(this);
+            if (m_graphView) {
+                m_graphView->setScene(m_scene);
+            }
+        }
+    }
+}
+
+void MainWindow::setupConnections()
+{
+    // File operations
+    connect(ui->browseButton, &QPushButton::clicked, 
+            this, &MainWindow::on_browseButton_clicked);
+    connect(ui->analyzeButton, &QPushButton::clicked,
+            this, &MainWindow::on_analyzeButton_clicked);
+
+    connect(ui->extractAstButton, &QPushButton::clicked, this, &MainWindow::on_extractAstButton_clicked);
     connect(ui->openFilesButton, &QPushButton::clicked, this, &MainWindow::on_openFilesButton_clicked);
-    connect(ui->searchButton, &QPushButton::clicked, this, &MainWindow::on_searchButton_clicked);
-    connect(ui->toggleFunctionGraph, &QPushButton::clicked, this, &MainWindow::on_toggleFunctionGraph_clicked);
-    connect(ui->fileList, &QListWidget::itemClicked, this, &MainWindow::on_fileList_itemClicked);
     connect(ui->loadJsonButton, &QPushButton::clicked, this, &MainWindow::onLoadJsonClicked);
     connect(ui->mergeCfgsButton, &QPushButton::clicked, this, &MainWindow::onMergeCfgsClicked);
+    
+    // Visualization controls
+    connect(ui->toggleFunctionGraph, &QPushButton::clicked, 
+            this, &MainWindow::toggleVisualizationMode);
+    connect(ui->searchButton, &QPushButton::clicked, 
+            this, &MainWindow::highlightSearchResults);
+    
+    // Context menu
+    m_webView->setContextMenuPolicy(Qt::CustomContextMenu);
+    connect(m_webView, &QWebEngineView::customContextMenuRequested,
+            this, &MainWindow::showVisualizationContextMenu);
+}
 
-    connect(ui->extractAstButton, &QPushButton::clicked, 
-            this, &MainWindow::on_extractAstButton_clicked);
+void MainWindow::showVisualizationContextMenu(const QPoint& pos) {
+    QMenu menu;
+    menu.addAction("Export as PNG", this, [this]() {
+        exportGraph("png");
+    });
+    menu.addAction("Export as SVG", this, [this]() {
+        exportGraph("svg");
+    });
+    menu.addAction("Export as DOT", this, [this]() {
+        exportGraph("dot");
+    });
+    menu.addSeparator();
+    menu.addAction("Zoom In", this, &MainWindow::zoomIn);
+    menu.addAction("Zoom Out", this, &MainWindow::zoomOut);
+    menu.addAction("Reset View", this, &MainWindow::resetZoom);
+    
+    menu.exec(m_webView->mapToGlobal(pos));
+}
 
-    // Initial UI state
-    setUiEnabled(true);
+void MainWindow::setupWebView()
+{
+    m_webChannel->registerObject("bridge", this);
+    m_webView->page()->setWebChannel(m_webChannel);
+    
+    // Enable JavaScript
+    m_webView->settings()->setAttribute(QWebEngineSettings::JavascriptEnabled, true);
+}
+
+void MainWindow::loadEmptyVisualization() {
+    if (m_webView && m_webView->isVisible()) {
+        QString html = R"(
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body { 
+            background-color: #f0f0f0;
+            color: #000000;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        #placeholder {
+            text-align: center;
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+    <div id="placeholder">
+        <h1>No CFG Loaded</h1>
+        <p>Analyze a C++ file to visualize its control flow graph</p>
+    </div>
+</body>
+</html>
+        )";
+        m_webView->setHtml(html);
+    } else {
+        ui->graphLabel->setText("No CFG Loaded\nAnalyze a C++ file to visualize its control flow graph");
+        ui->graphLabel->setAlignment(Qt::AlignCenter);
+        ui->graphLabel->show();
+    }
+}
+
+void MainWindow::displayGraph(const QString& dotContent)
+{
+    if (!m_webView) {
+        qCritical() << "Web view not initialized";
+        return;
+    }
+
+    m_currentDotContent = dotContent;
+    
+    QString escapedDotContent = dotContent;
+    escapedDotContent.replace("\\", "\\\\").replace("`", "\\`");
+    
+    QString html = QString(R"(
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CFG Visualization</title>
+    <script src="qrc:/qtwebchannel/qwebchannel.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/viz.js/2.1.2/viz.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/viz.js/2.1.2/full.render.js"></script>
+    <style>
+        body { margin:0; padding:0; overflow:hidden; }
+        #graph-container { 
+            width:100%; 
+            height:100%;
+            background:#f8f8f8;
+        }
+        .node:hover { stroke-width:2px; }
+        .edge:hover { stroke-width:3px; }
+    </style>
+</head>
+<body>
+    <div id="graph-container"></div>
+    <script>
+        new QWebChannel(qt.webChannelTransport, function(channel) {
+            window.bridge = channel.objects.bridge;
+        });
+
+        const viz = new Viz();
+        const dot = `%1`;
+        
+        viz.renderSVGElement(dot)
+            .then(element => {
+                element.style.width = '100%';
+                element.style.height = '100%';
+                
+                element.addEventListener('click', (e) => {
+                    const node = e.target.closest('[id^="node"]');
+                    if (node && window.bridge) {
+                        window.bridge.onNodeClicked(node.id.replace('node', ''));
+                    }
+                });
+                
+                element.addEventListener('mouseover', (e) => {
+                    const edge = e.target.closest('[id^="edge"]');
+                    if (edge && window.bridge) {
+                        const [from, to] = edge.id.replace('edge', '').split('_');
+                        window.bridge.onEdgeHovered(from, to);
+                    }
+                });
+                
+                document.getElementById('graph-container').appendChild(element);
+            })
+            .catch(error => {
+                document.getElementById('graph-container').innerHTML = 
+                    '<p style="color:red;padding:20px">Error rendering graph:<br>' + 
+                    error + '</p>';
+                console.error(error);
+            });
+    </script>
+</body>
+</html>
+    )").arg(escapedDotContent);
+    
+    m_webView->setHtml(html);
+}
+
+QString MainWindow::generateInteractiveGraphHtml(const QString& dotContent)
+{
+    QString escapedDotContent = dotContent;
+    escapedDotContent.replace("\\", "\\\\")
+                   .replace("`", "\\`")
+                   .replace("$", "\\$")
+                   .replace("\"", "\\\"");
+
+    QString html = QString(R"(
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>CFG Visualization</title>
+    <script src="qrc:/qtwebchannel/qwebchannel.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/viz.js/2.1.2/viz.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/viz.js/2.1.2/full.render.js"></script>
+    <style>
+        body { 
+            margin: 0; 
+            padding: 0; 
+            overflow: hidden;
+            background: #f8f8f8;
+            font-family: Arial, sans-serif;
+        }
+        #graph-container {
+            width: 100%;
+            height: 100vh;
+            position: relative;
+        }
+        #graph-svg {
+            width: 100%;
+            height: 100%;
+        }
+        .node {
+            stroke-width: 1px;
+            stroke: #333;
+        }
+        .node:hover { 
+            stroke-width: 2px;
+            stroke: #0066cc;
+            cursor: pointer;
+        }
+        .edge {
+            fill: none;
+            stroke: #666;
+            stroke-width: 1.5px;
+        }
+        .edge:hover {
+            stroke-width: 3px;
+            stroke: #cc0000;
+        }
+        .node-label {
+            font-size: 12px;
+            font-weight: bold;
+            fill: #333;
+            pointer-events: none;
+        }
+        .edge-label {
+            font-size: 10px;
+            fill: #666;
+            pointer-events: none;
+        }
+        #loading-message {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 16px;
+            color: #666;
+        }
+        .error-message {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #cc0000;
+            padding: 20px;
+            text-align: center;
+            max-width: 80%;
+            background: rgba(255,255,255,0.9);
+            border-radius: 5px;
+        }
+        #tooltip {
+            position: absolute;
+            padding: 8px;
+            background: rgba(0,0,0,0.8);
+            color: white;
+            border-radius: 4px;
+            pointer-events: none;
+            font-size: 12px;
+            max-width: 300px;
+            z-index: 100;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="graph-container">
+        <div id="loading-message">Rendering control flow graph...</div>
+        <div id="tooltip"></div>
+    </div>
+
+    <script>
+        // Initialize Qt WebChannel
+        var bridgeReady = false;
+        new QWebChannel(qt.webChannelTransport, function(channel) {
+            window.bridge = channel.objects.bridge;
+            bridgeReady = true;
+        });
+
+        // DOM elements
+        const container = document.getElementById('graph-container');
+        const loadingMsg = document.getElementById('loading-message');
+        const tooltip = document.getElementById('tooltip');
+
+        // Track mouse position for tooltip
+        let mouseX = 0, mouseY = 0;
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        // Enhanced label styling function
+        function styleLabels(svgElement) {
+            const nodes = svgElement.querySelectorAll('[id^="node"]');
+            const edges = svgElement.querySelectorAll('[id^="edge"]');
+            
+            // Style node labels
+            nodes.forEach(node => {
+                const labels = node.querySelectorAll('text');
+                labels.forEach(label => {
+                    label.classList.add('node-label');
+                    
+                    // Add title for tooltip
+                    const title = document.createElementNS('http://www.w3.org/2000/svg', 'title');
+                    title.textContent = label.textContent;
+                    node.appendChild(title);
+                });
+            });
+            
+            // Style edge labels
+            edges.forEach(edge => {
+                const labels = edge.querySelectorAll('text');
+                labels.forEach(label => {
+                    label.classList.add('edge-label');
+                });
+            });
+        }
+
+        // Tooltip functions
+        function showTooltip(content) {
+            tooltip.innerHTML = content;
+            tooltip.style.display = 'block';
+            tooltip.style.left = (mouseX + 15) + 'px';
+            tooltip.style.top = (mouseY + 15) + 'px';
+        }
+
+        function hideTooltip() {
+            tooltip.style.display = 'none';
+        }
+
+        // Event handlers
+        function handleNodeClick(e) {
+            const node = e.target.closest('[id^="node"]');
+            if (node && bridgeReady) {
+                const nodeId = node.id.replace('node', '');
+                try {
+                    window.bridge.onNodeClicked(nodeId);
+                } catch (e) {
+                    console.error('Node click handler error:', e);
+                }
+            }
+        }
+
+        function handleEdgeHover(e) {
+            const edge = e.target.closest('[id^="edge"]');
+            if (edge && bridgeReady) {
+                const [from, to] = edge.id.replace('edge', '').split('_');
+                try {
+                    window.bridge.onEdgeHovered(from, to);
+                } catch (e) {
+                    console.error('Edge hover handler error:', e);
+                }
+            }
+        }
+
+        function handleMouseOver(e) {
+            const element = e.target;
+            const title = element.querySelector('title');
+            if (title) {
+                showTooltip(title.textContent);
+            }
+        }
+
+        function handleMouseOut() {
+            hideTooltip();
+        }
+
+        // Main rendering function
+        function renderGraph() {
+            try {
+                const viz = new Viz();
+                const dot = `%1`;
+                
+                viz.renderSVGElement(dot)
+                    .then(svg => {
+                        // Remove loading message
+                        container.removeChild(loadingMsg);
+                        
+                        // Configure SVG element
+                        svg.id = 'graph-svg';
+                        svg.style.width = '100%';
+                        svg.style.height = '100%';
+                        
+                        // Enhance labels and tooltips
+                        styleLabels(svg);
+                        
+                        // Add interactivity
+                        svg.addEventListener('click', handleNodeClick);
+                        svg.addEventListener('mousemove', handleEdgeHover);
+                        svg.addEventListener('mouseover', handleMouseOver);
+                        svg.addEventListener('mouseout', handleMouseOut);
+                        
+                        container.appendChild(svg);
+                    })
+                    .catch(error => {
+                        showError('Failed to render graph: ' + error);
+                        console.error('Viz.js error:', error);
+                    });
+            } catch (e) {
+                showError('Initialization error: ' + e);
+                console.error('Initialization error:', e);
+            }
+        }
+
+        function showError(message) {
+            container.removeChild(loadingMsg);
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'error-message';
+            errorDiv.innerHTML = message;
+            container.appendChild(errorDiv);
+        }
+
+        // Start rendering when ready
+        if (document.readyState === 'complete') {
+            renderGraph();
+        } else {
+            window.addEventListener('load', renderGraph);
+        }
+    </script>
+</body>
+</html>
+    )").arg(escapedDotContent);
+
+    return html;
+}
+
+void MainWindow::onDisplayGraphClicked()
+{
+    if (!m_currentGraph) {
+        QMessageBox::warning(this, "Warning", "No graph to display. Please analyze a file first.");
+        return;
+    }
+    
+    if (ui->webView->isVisible()) {
+        visualizeCurrentGraph();
+    } else if (m_graphView) {
+        visualizeCFG(m_currentGraph);
+    }
+}
+
+void MainWindow::exportGraph(const QString& defaultFormat) {
+    QString fileName = QFileDialog::getSaveFileName(
+        this,
+        "Export Graph",
+        QDir::homePath(),
+        "PNG Files (*.png);;SVG Files (*.svg);;PDF Files (*.pdf);;DOT Files (*.dot)"
+    );
+
+    if (fileName.isEmpty()) return;
+
+    if (!m_currentGraph) {
+        QMessageBox::warning(this, "Warning", "No graph to export");
+        return;
+    }
+
+    try {
+        std::string dotContent = Visualizer::generateDotRepresentation(m_currentGraph.get());
+        
+        if (fileName.endsWith(".dot")) {
+            QFile file(fileName);
+            if (file.open(QIODevice::WriteOnly)) {
+                file.write(dotContent.c_str());
+            }
+        } else {
+            QString format;
+            if (fileName.endsWith(".png")) format = "png";
+            else if (fileName.endsWith(".svg")) format = "svg";
+            else format = "pdf";
+            
+            QTemporaryFile tempFile;
+            if (tempFile.open()) {
+                tempFile.write(dotContent.c_str());
+                tempFile.close();
+                renderDotToImage(tempFile.fileName(), fileName, format);
+            }
+        }
+    } catch (const std::exception& e) {
+        QMessageBox::critical(this, "Export Error", QString("Failed to export: %1").arg(e.what()));
+    }
+}
+
+void MainWindow::displaySvgInWebView(const QString& svgPath) {
+    QFile file(svgPath);
+    if (!file.open(QIODevice::ReadOnly)) {
+        return;
+    }
+
+    QString svgContent = file.readAll();
+    file.close();
+    
+    // Create HTML wrapper
+    QString html = QString(
+        "<html><body style='margin:0;padding:0;'>"
+        "<div style='width:100%%;height:100%%;overflow:auto;'>%1</div>"
+        "</body></html>"
+    ).arg(svgContent);
+    
+    if (!m_webView) {
+        return;
+    }
+    
+    m_webView->setHtml(html);
+}
+
+bool MainWindow::displayImage(const QString& imagePath) {
+    QPixmap pixmap(imagePath);
+    if (pixmap.isNull()) return false;
+
+    if (m_graphView) {
+        QGraphicsScene* scene = new QGraphicsScene(this);
+        scene->addPixmap(pixmap);
+        m_graphView->setScene(scene);
+        m_graphView->fitInView(scene->sceneRect(), Qt::KeepAspectRatio);
+        return true;
+    }
+    else if (m_scene) {
+        m_scene->clear();
+        m_scene->addPixmap(pixmap);
+        if (m_graphView) {
+            m_graphView->fitInView(m_scene->itemsBoundingRect(), Qt::KeepAspectRatio);
+        }
+        return true;
+    }
+    return false;
+}
+
+bool MainWindow::renderAndDisplayDot(const QString& dotContent) {
+    // Save DOT content
+    QString dotPath = QDir::temp().filePath("live_cfg.dot");
+    QFile dotFile(dotPath);
+    if (!dotFile.open(QIODevice::WriteOnly | QIODevice::Text)) {
+        qWarning() << "Could not write DOT to file:" << dotPath;
+        return false;
+    }
+    QTextStream out(&dotFile);
+    out << dotContent;
+    dotFile.close();
+
+    QString outputPath;
+    if (m_webView && m_webView->isVisible()) {
+        outputPath = dotPath + ".svg";
+        if (!renderDotToImage(dotPath, outputPath, "svg")) return false;
+        displaySvgInWebView(outputPath);
+        return true;
+    } else {
+        outputPath = dotPath + ".png";
+        if (!renderDotToImage(dotPath, outputPath, "png")) return false;
+        return displayImage(outputPath);
+    }
 }
 
 void MainWindow::safeInitialize() {
@@ -122,11 +744,10 @@ bool MainWindow::tryInitializeView(bool tryHardware) {
     }
 
     try {
-        // 1. Create basic scene
+        // Create basic scene
         m_scene = new QGraphicsScene(this);
         m_scene->setBackgroundBrush(Qt::white);
         
-        // 2. Configure view based on rendering mode
         m_graphView = new CustomGraphView(centralWidget());
         
         if (tryHardware) {
@@ -138,16 +759,14 @@ bool MainWindow::tryInitializeView(bool tryHardware) {
             m_graphView->setViewport(simpleViewport);
         }
         
-        // 3. Connect scene and view
         m_graphView->setScene(m_scene);
         
-        // 4. Add to layout
+        // Add to layout
         if (!centralWidget()->layout()) {
             centralWidget()->setLayout(new QVBoxLayout());
         }
         centralWidget()->layout()->addWidget(m_graphView);
         
-        // 5. Test rendering
         return testRendering();
         
     } catch (...) {
@@ -155,12 +774,61 @@ bool MainWindow::tryInitializeView(bool tryHardware) {
     }
 }
 
+bool MainWindow::verifyDotFile(const QString& filePath) {
+    QFileInfo fileInfo(filePath);
+    if (!fileInfo.exists()) {
+        qDebug() << "File does not exist:" << filePath;
+        return false;
+    }
+    
+    if (fileInfo.size() == 0) {
+        qDebug() << "File is empty:" << filePath;
+        return false;
+    }
+
+    QFile file(filePath);
+    if (!file.open(QIODevice::ReadOnly)) {
+        qDebug() << "Cannot open file:" << file.errorString();
+        return false;
+    }
+
+    QTextStream in(&file);
+    QString firstLine = in.readLine();
+    file.close();
+
+    if (!firstLine.contains("digraph") && !firstLine.contains("graph")) {
+        qDebug() << "Not a valid DOT file:" << firstLine;
+        return false;
+    }
+
+    return true;
+}
+
+bool MainWindow::verifyGraphvizInstallation() {
+    QString dotPath = QStandardPaths::findExecutable("dot");
+    if (dotPath.isEmpty()) {
+        qWarning() << "Graphviz 'dot' executable not found";
+        return false;
+    }
+
+    QProcess dotCheck;
+    dotCheck.start(dotPath, {"-V"});
+    if (!dotCheck.waitForFinished(1000) || dotCheck.exitCode() != 0) {
+        qWarning() << "Graphviz check failed:" << dotCheck.errorString();
+        return false;
+    }
+
+    qDebug() << "Graphviz found at:" << dotPath;
+    return true;
+}
+
 bool MainWindow::testRendering() {
-    // Add test item
+    #pragma GCC diagnostic push
+    #pragma GCC diagnostic ignored "-Wunused-variable"
     QGraphicsRectItem* testItem = m_scene->addRect(0, 0, 100, 100, 
         QPen(Qt::red), QBrush(Qt::blue));
+    #pragma GCC diagnostic pop
     
-    // Try rendering to an image
     QImage testImg(100, 100, QImage::Format_ARGB32);
     QPainter painter(&testImg);
     m_scene->render(&painter);
@@ -172,9 +840,7 @@ bool MainWindow::testRendering() {
 
 void MainWindow::startTextOnlyMode() {
     qDebug() << "Starting in text-only mode";
-    ui->graphicsView->hide();
     
-    // Connect to the analysisComplete signal
     connect(this, &MainWindow::analysisComplete, this, 
         [this](const CFGAnalyzer::AnalysisResult& result) {
             ui->reportTextEdit->setPlainText(QString::fromStdString(result.dotOutput));
@@ -198,25 +864,20 @@ void MainWindow::createNode() {
 }
 
 void MainWindow::createEdge() {
-    // 1. Thread safety check
     Q_ASSERT(QThread::currentThread() == QCoreApplication::instance()->thread());
     
-    // 2. Validate scene and view existence
     if (!m_graphView || !m_graphView->scene()) {
         qWarning() << "Cannot create edge - graph view or scene not initialized";
         return;
     }
 
-    // 3. Create edge with proper initialization
     QGraphicsLineItem* edgeItem = new QGraphicsLineItem();
     edgeItem->setData(MainWindow::EdgeItemType, 1);
     
-    // 4. Configure edge properties
     edgeItem->setPen(QPen(Qt::black, 2));
     edgeItem->setFlag(QGraphicsItem::ItemIsSelectable);
-    edgeItem->setZValue(-1); // Ensure edges render below nodes
+    edgeItem->setZValue(-1);
 
-    // 5. Safe addition to scene
     try {
         m_graphView->scene()->addItem(edgeItem);
         qDebug() << "Edge created - scene items:" << m_graphView->scene()->items().size();
@@ -226,17 +887,35 @@ void MainWindow::createEdge() {
     }
 }
 
+void MainWindow::onAnalysisComplete(CFGAnalyzer::AnalysisResult result)
+{
+    Q_ASSERT(QThread::currentThread() == QCoreApplication::instance()->thread());
+    
+    if (result.success) {
+        if (!result.dotOutput.empty()) {
+            m_currentGraph = parseDotToCFG(QString::fromStdString(result.dotOutput));
+            visualizeCFG(m_currentGraph);
+        }
+        
+        ui->reportTextEdit->setPlainText(QString::fromStdString(result.report));
+    } else {
+        QMessageBox::warning(this, "Analysis Failed", 
+                            QString::fromStdString(result.report));
+    }
+    
+    setUiEnabled(true);
+}
+
 void MainWindow::connectNodesWithEdge(QGraphicsEllipseItem* from, QGraphicsEllipseItem* to) {
     if (!from || !to || !m_scene) return;
 
-    // Calculate line between node centers
     QPointF fromCenter = from->mapToScene(from->rect().center());
     QPointF toCenter = to->mapToScene(to->rect().center());
     
     QGraphicsLineItem* edge = new QGraphicsLineItem(QLineF(fromCenter, toCenter));
     edge->setData(EdgeItemType, 1);
     edge->setPen(QPen(Qt::black, 2));
-    edge->setZValue(-1); // Render behind nodes
+    edge->setZValue(-1);
     
     m_scene->addItem(edge);
 }
@@ -261,7 +940,6 @@ void MainWindow::setupGraphView()
 {
     qDebug() << "=== Starting graph view setup ===";
     
-    // 1. Clean existing resources
     if (m_scene) {
         m_scene->clear();
         delete m_scene;
@@ -271,19 +949,16 @@ void MainWindow::setupGraphView()
         delete m_graphView;
     }
 
-    // 2. Create new scene with test content
     m_scene = new QGraphicsScene(this);
     QGraphicsRectItem* testItem = m_scene->addRect(0, 0, 100, 100, 
         QPen(Qt::red), QBrush(Qt::blue));
     testItem->setFlag(QGraphicsItem::ItemIsMovable);
 
-    // 3. Configure view with software rendering
     m_graphView = new CustomGraphView(centralWidget());
-    m_graphView->setViewport(new QWidget()); // Force software
-    m_graphView->setScene(m_scene); // This sets both QGraphicsView's scene and CustomGraphView's m_scene
+    m_graphView->setViewport(new QWidget());
+    m_graphView->setScene(m_scene);
     m_graphView->setRenderHint(QPainter::Antialiasing, false);
 
-    // 4. Add to layout
     if (!centralWidget()->layout()) {
         centralWidget()->setLayout(new QVBoxLayout());
     }
@@ -296,48 +971,50 @@ void MainWindow::setupGraphView()
 
 void MainWindow::visualizeCFG(std::shared_ptr<GraphGenerator::CFGGraph> graph)
 {
-    if (!graph) {
-        qWarning() << "Null CFGGraph provided!";
-        return;
-    }
-
-    Q_ASSERT(QThread::currentThread() == QCoreApplication::instance()->thread());
-
-    if (!m_graphView || !m_graphView->scene()) {
-        qWarning() << "Graphics view not initialized";
+    if (!graph || !m_webView) {
+        qWarning() << "Invalid graph or web view";
         return;
     }
 
     try {
         std::string dotContent = Visualizer::generateDotRepresentation(graph.get());
-        QString qDotContent = QString::fromStdString(dotContent);
-        
-        if (!m_graphView->parseDotFormat(qDotContent)) {
-            throw std::runtime_error("Failed to parse DOT content");
-        }
-
-        // Store the graph
         m_currentGraph = graph;
-
-        QTimer::singleShot(50, this, [this]() {
-            if (m_graphView && m_graphView->scene()) {
-                m_graphView->applyHierarchicalLayout();
-                m_graphView->fitInView(m_graphView->scene()->itemsBoundingRect(), 
-                                     Qt::KeepAspectRatio);
-            }
-        });
-
+        
+        ui->webView->show();
+        ui->graphLabel->hide();
+        
+        QString html = generateInteractiveGraphHtml(QString::fromStdString(dotContent));
+        m_webView->setHtml(html);
+        
+        // Make sure the web view gets focus
+        ui->splitter_2->setSizes({500, 100});
+        
     } catch (const std::exception& e) {
         qCritical() << "Visualization error:" << e.what();
-        handleVisualizationError(QString::fromStdString(e.what()));
+        QMessageBox::critical(this, "Error", 
+            QString("Failed to visualize graph:\n%1").arg(e.what()));
     }
+}
+
+void MainWindow::onVisualizationError(const QString& error) {
+    QMessageBox::warning(this, "Visualization Error", error);
+    statusBar()->showMessage("Visualization failed", 3000);
+}
+
+void MainWindow::showEdgeContextMenu(const QPoint& pos) {
+    QMenu menu;
+    menu.addAction("Highlight Path", this, [this](){
+        // Implementation for highlighting path
+        statusBar()->showMessage("Path highlighting not implemented yet", 2000);
+    });
+    
+    menu.exec(m_graphView->mapToGlobal(pos));
 }
 
 std::shared_ptr<GraphGenerator::CFGGraph> MainWindow::parseDotToCFG(const QString& dotContent)
 {
     auto graph = std::make_shared<GraphGenerator::CFGGraph>();
         
-    // Initialize regular expressions with properly escaped patterns
     QRegularExpression nodeRegex(R"(^\s*(\d+)\s*\[([^\]]*)\]\s*;?\s*$)");
     QRegularExpression edgeRegex(R"(^\s*(\d+)\s*->\s*(\d+)\s*\[([^\]]*)\]\s*;?\s*$)");
     QRegularExpression labelRegex(R"~(label\s*=\\s*"([^"]*)")~");
@@ -361,13 +1038,11 @@ std::shared_ptr<GraphGenerator::CFGGraph> MainWindow::parseDotToCFG(const QStrin
         return graph;
     }
 
-    // Split and process DOT content
     QStringList lines = dotContent.split('\n', Qt::SkipEmptyParts);
     
     for (const QString& line : lines) {
         QString trimmed = line.trimmed();
         
-        // Skip comments and graph declarations
         if (trimmed.startsWith("//") || trimmed.startsWith("/*") || 
             trimmed.startsWith("digraph") || trimmed.startsWith("}") || 
             trimmed.isEmpty()) {
@@ -424,7 +1099,6 @@ std::shared_ptr<GraphGenerator::CFGGraph> MainWindow::parseDotToCFG(const QStrin
 
 void MainWindow::loadAndProcessJson(const QString& filePath) 
 {
-    // Verify file exists
     if (!QFile::exists(filePath)) {
         qWarning() << "JSON file does not exist:" << filePath;
         QMessageBox::warning(this, "Error", "JSON file not found: " + filePath);
@@ -458,7 +1132,6 @@ void MainWindow::loadAndProcessJson(const QString& filePath)
         return;
     }
 
-    // Process the JSON data
     try {
         QJsonObject jsonObj = doc.object();
         
@@ -473,9 +1146,7 @@ void MainWindow::loadAndProcessJson(const QString& filePath)
             }
         }
         
-        // Update UI or visualization
         QMetaObject::invokeMethod(this, [this, jsonObj]() {
-            // Update your graph view here
             m_graphView->parseJson(QJsonDocument(jsonObj).toJson());
             statusBar()->showMessage("JSON loaded successfully", 3000);
         });
@@ -503,6 +1174,295 @@ void MainWindow::initializeGraphviz()
     setupGraphView();
 }
 
+void MainWindow::analyzeDotFile(const QString& filePath) {
+    if (!verifyDotFile(filePath)) return;
+
+    QString tempDir = QDir::tempPath();
+    QString baseName = QFileInfo(filePath).completeBaseName();
+    QString pngPath = tempDir + "/" + baseName + "_graph.png";
+    QString svgPath = tempDir + "/" + baseName + "_graph.svg";
+
+    // Try PNG first
+    if (renderDotToImage(filePath, pngPath)) {
+        displayImage(pngPath);
+        return;
+    }
+
+    // Fallback to SVG
+    if (renderDotToImage(filePath, svgPath)) {
+        displaySvgInWebView(svgPath);
+        return;
+    }
+
+    showRawDotContent(filePath);
+}
+
+bool MainWindow::renderDotToImage(const QString& dotPath, const QString& outputPath, const QString& format)
+{
+    // Validate inputs
+    if (!QFile::exists(dotPath)) {  // Using parameter dotPath here
+        qWarning() << "DOT file does not exist:" << dotPath;
+        return false;
+    }
+
+    // Determine output format
+    QString outputFormat = format.toLower();
+    if (outputFormat.isEmpty()) {
+        if (outputPath.endsWith(".png", Qt::CaseInsensitive)) outputFormat = "png";
+        else if (outputPath.endsWith(".svg", Qt::CaseInsensitive)) outputFormat = "svg";
+        else if (outputPath.endsWith(".pdf", Qt::CaseInsensitive)) outputFormat = "pdf";
+        else {
+            qWarning() << "Unsupported output format:" << outputPath;
+            return false;
+        }
+    }
+
+    QString program = "dot";
+    QString dotExecutablePath = QStandardPaths::findExecutable(program);
+    if (dotExecutablePath.isEmpty()) {
+        qWarning() << "Graphviz not found in PATH";
+        QMessageBox::warning(this, "Error", 
+                           "Graphviz 'dot' tool not found.\n"
+                           "Please install Graphviz (sudo apt install graphviz)");
+        return false;
+    }
+
+    QStringList arguments;
+    arguments << QString("-T%1").arg(outputFormat)
+              << dotPath
+              << "-o" << outputPath;
+
+    QProcess dotProcess;
+    dotProcess.start(dotExecutablePath, arguments);
+    
+    if (!dotProcess.waitForFinished(5000)) {
+        qWarning() << "Graphviz error:" << dotProcess.errorString()
+                  << "\nProcess output:" << dotProcess.readAllStandardError();
+        return false;
+    }
+    
+    if (dotProcess.exitCode() != 0) {
+        qWarning() << "Graphviz failed with exit code:" << dotProcess.exitCode()
+                  << "\nError output:" << dotProcess.readAllStandardError();
+        return false;
+    }
+
+    return QFile::exists(outputPath);
+}
+
+void MainWindow::showRawDotContent(const QString& dotPath) {
+    QFile file(dotPath);
+    if (file.open(QIODevice::ReadOnly)) {
+        ui->reportTextEdit->setPlainText(file.readAll());
+        file.close();
+    }
+}
+
+void MainWindow::visualizeCurrentGraph() {
+    if (!m_currentGraph) return;
+    
+    std::string dot = Visualizer::generateDotRepresentation(m_currentGraph.get());
+    
+    // Load into web view
+    QString html = QString(R"(
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CFG Visualization</title>
+    <script src="qrc:/qtwebchannel/qwebchannel.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/viz.js/2.1.2/viz.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/viz.js/2.1.2/full.render.js"></script>
+    <style>
+        body { margin:0; background:#2D2D2D; }
+        #graph-container { width:100%; height:100%; }
+    </style>
+</head>
+<body>
+    <div id="graph-container"></div>
+    <script>
+        new QWebChannel(qt.webChannelTransport, function(channel) {
+            window.bridge = channel.objects.bridge;
+        });
+
+        const viz = new Viz();
+        viz.renderSVGElement(`%1`)
+            .then(element => {
+                // Node click handling
+                element.addEventListener('click', (e) => {
+                    const node = e.target.closest('[id^="node"]');
+                    if (node && window.bridge) {
+                        window.bridge.onNodeClicked(node.id.replace('node', ''));
+                    }
+                });
+                
+                // Edge hover handling
+                element.addEventListener('mousemove', (e) => {
+                    const edge = e.target.closest('[id^="edge"]');
+                    if (edge && window.bridge) {
+                        const [from, to] = edge.id.replace('edge', '').split('_');
+                        window.bridge.onEdgeHovered(parseInt(from), parseInt(to));
+                    }
+                });
+                
+                document.getElementById('graph-container').appendChild(element);
+            });
+    </script>
+</body>
+</html>
+    )").arg(QString::fromStdString(dot));
+    
+    m_webView->setHtml(html);
+}
+
+void MainWindow::highlightNode(int nodeId, const QColor& color)
+{
+    if (!m_graphView || !m_graphView->scene()) return;
+    
+    // Reset previous highlighting
+    resetHighlighting();
+    
+    foreach (QGraphicsItem* item, m_graphView->scene()->items()) {
+        if (item->data(MainWindow::NodeItemType).toInt() == 1) {
+            if (auto ellipse = qgraphicsitem_cast<QGraphicsEllipseItem*>(item)) {
+                if (item->data(MainWindow::NodeIdKey).toInt() == nodeId) {
+                    QPen pen = ellipse->pen();
+                    pen.setWidth(3);
+                    pen.setColor(Qt::darkBlue);
+                    ellipse->setPen(pen);
+                    
+                    QBrush brush = ellipse->brush();
+                    brush.setColor(color);
+                    ellipse->setBrush(brush);
+                    
+                    m_highlightNode = item;
+                    m_graphView->centerOn(item);
+                    break;
+                }
+            }
+        }
+    }
+}
+
+void MainWindow::highlightEdge(int fromId, int toId, const QColor& color)
+{
+    if (!m_graphView || !m_graphView->scene()) return;
+    
+    if (m_highlightEdge) {
+        if (auto line = qgraphicsitem_cast<QGraphicsLineItem*>(m_highlightEdge)) {
+            QPen pen = line->pen();
+            pen.setWidth(1);
+            pen.setColor(Qt::black);
+            line->setPen(pen);
+        }
+        m_highlightEdge = nullptr;
+    }
+    
+    foreach (QGraphicsItem* item, m_graphView->scene()->items()) {
+        if (item->data(MainWindow::EdgeItemType).toInt() == 1) {
+            if (auto line = qgraphicsitem_cast<QGraphicsLineItem*>(item)) {
+                if (item->data(MainWindow::EdgeFromKey).toInt() == fromId &&
+                    item->data(MainWindow::EdgeToKey).toInt() == toId) {
+                    QPen pen = line->pen();
+                    pen.setWidth(3);
+                    pen.setColor(color);
+                    line->setPen(pen);
+                    
+                    m_highlightEdge = item;
+                    break;
+                }
+            }
+        }
+    }
+}
+
+void MainWindow::resetHighlighting()
+{
+    if (m_highlightNode) {
+        if (auto ellipse = qgraphicsitem_cast<QGraphicsEllipseItem*>(m_highlightNode)) {
+            QPen pen = ellipse->pen();
+            pen.setWidth(1);
+            pen.setColor(Qt::black);
+            ellipse->setPen(pen);
+            ellipse->setBrush(QBrush(Qt::lightGray));
+        }
+        m_highlightNode = nullptr;
+    }
+    
+    if (m_highlightEdge) {
+        if (auto line = qgraphicsitem_cast<QGraphicsLineItem*>(m_highlightEdge)) {
+            QPen pen = line->pen();
+            pen.setWidth(1);
+            pen.setColor(Qt::black);
+            line->setPen(pen);
+        }
+        m_highlightEdge = nullptr;
+    }
+}
+
+void MainWindow::onNodeClicked(const QString& nodeId)
+{
+    bool ok;
+    int id = nodeId.toInt(&ok);
+    
+    if (ok) {
+        ui->statusbar->showMessage(QString("Node %1 selected").arg(id), 3000);
+        highlightInCodeEditor(id);
+    } else {
+        qWarning() << "Invalid node ID:" << nodeId;
+    }
+}
+
+void MainWindow::onEdgeHovered(const QString& from, const QString& to)
+{
+    bool ok1, ok2;
+    int fromId = from.toInt(&ok1);
+    int toId = to.toInt(&ok2);
+    
+    if (ok1 && ok2) {
+        ui->statusbar->showMessage(QString("Edge %1 → %2").arg(fromId).arg(toId), 2000);
+    } else {
+        ui->statusbar->showMessage(QString("Edge %1 → %2").arg(from).arg(to), 2000);
+    }
+}
+
+void MainWindow::showNodeContextMenu(const QPoint& pos) {
+    QMenu menu;
+    menu.addAction("View Details", this, [this](){
+        // Implement node detail view
+    });
+    menu.addAction("Highlight Path", this, [this](){
+        // Implement path highlighting
+    });
+    menu.addSeparator();
+    menu.addAction("Export as PNG", this, [this](){
+        exportGraph("PNG");
+    });
+    
+    menu.exec(ui->webView->mapToGlobal(pos));
+}
+
+QString MainWindow::generateExportHtml() const {
+    return QString(R"(
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/viz.js/2.1.2/viz.js"></script>
+    <style>
+        body { margin: 0; padding: 0; }
+        svg { width: 100%; height: 100%; }
+    </style>
+</head>
+<body>
+    <script>
+        const dot = `%1`;
+        const svg = Viz(dot, { format: 'svg', engine: 'dot' });
+        document.body.innerHTML = svg;
+    </script>
+</body>
+</html>
+    )").arg(m_currentDotContent);
+}
+
 void MainWindow::onParseButtonClicked()
 {
     QString filePath = ui->filePathEdit->text();
@@ -527,7 +1487,7 @@ void MainWindow::onParseButtonClicked()
             file.close();
             
             // Parse DOT content
-            auto graph = parseDotToCFG(dotContent); // graph is now shared_ptr
+            auto graph = parseDotToCFG(dotContent);
             
             // Count nodes and edges
             int nodeCount = 0;
@@ -542,7 +1502,6 @@ void MainWindow::onParseButtonClicked()
                            + QString("Nodes: %1\n").arg(nodeCount)
                            + QString("Edges: %1\n").arg(edgeCount);
             
-            // Update UI in main thread
             QMetaObject::invokeMethod(this, [this, report, graph]() mutable {
                 ui->reportTextEdit->setPlainText(report);
                 visualizeCFG(graph); // Pass the shared_ptr directly
@@ -562,7 +1521,6 @@ void MainWindow::onParseButtonClicked()
 
 void MainWindow::onParsingFinished(bool success)
 {
-    // Additional post-parsing logic if needed
     if (success) {
         qDebug() << "Parsing completed successfully";
     } else {
@@ -575,7 +1533,34 @@ void MainWindow::applyGraphTheme() {
     QColor tryBlockColor = QColor(173, 216, 230);
     QColor throwBlockColor = QColor(240, 128, 128);
     QColor normalEdgeColor = Qt::black;
-    QColor exceptionEdgeColor = Qt::red;
+
+    const int TryBlockKey = QGraphicsItem::UserType + 3;
+    const int ThrowingExceptionKey = QGraphicsItem::UserType + 4;
+
+    if (m_graphView) {
+        m_graphView->setThemeColors(normalNodeColor, normalEdgeColor, Qt::black);
+        
+        m_currentTheme.nodeColor = normalNodeColor;
+        m_currentTheme.edgeColor = normalEdgeColor;
+        
+        if (m_graphView->scene()) {
+            foreach (QGraphicsItem* item, m_graphView->scene()->items()) {
+                if (item && item->data(NodeItemType).toInt() == 1) {
+                    bool isTryBlock = item->data(TryBlockKey).toBool();
+                    bool isThrowBlock = item->data(ThrowingExceptionKey).toBool();
+                    
+                    if (auto ellipse = dynamic_cast<QGraphicsEllipseItem*>(item)) {
+                        if (isTryBlock)
+                            ellipse->setBrush(tryBlockColor);
+                        else if (isThrowBlock)
+                            ellipse->setBrush(throwBlockColor);
+                        else
+                            ellipse->setBrush(normalNodeColor);
+                    }
+                }
+            }
+        }
+    }
 }
 
 void MainWindow::setupGraphLayout() {
@@ -594,8 +1579,7 @@ void MainWindow::setupGraphLayout() {
     }
 }
 
-void MainWindow::applyGraphLayout()
-{
+void MainWindow::applyGraphLayout() {
     if (!m_graphView) return;
 
     switch (m_currentLayoutAlgorithm) {
@@ -610,7 +1594,6 @@ void MainWindow::applyGraphLayout()
             break;
     }
     
-    // Optional: Fit the view after applying layout
     if (m_graphView->scene()) {
         m_graphView->fitInView(m_graphView->scene()->itemsBoundingRect(), Qt::KeepAspectRatio);
     }
@@ -640,32 +1623,6 @@ void MainWindow::highlightFunction(const QString& functionName) {
     }
 }
 
-void MainWindow::exportGraph() {
-    QString fileName = QFileDialog::getSaveFileName(this, "Export Graph",
-        "", "PNG Images (*.png);;PDF Files (*.pdf);;SVG Files (*.svg)");
-    
-    if (fileName.isEmpty()) return;
-
-    if (fileName.endsWith(".png")) {
-        QImage image(m_graphView->sceneRect().size().toSize(), QImage::Format_ARGB32);
-        QPainter painter(&image);
-        m_graphView->render(&painter);
-        image.save(fileName);
-    }
-    else if (fileName.endsWith(".pdf")) {
-        QPrinter printer(QPrinter::HighResolution);
-        printer.setOutputFileName(fileName);
-        QPainter painter(&printer);
-        m_graphView->render(&painter);
-    }
-    else if (fileName.endsWith(".svg")) {
-        QSvgGenerator generator;
-        generator.setFileName(fileName);
-        QPainter painter(&generator);
-        m_graphView->render(&painter);
-    }
-}
-
 void MainWindow::zoomIn() {
     m_graphView->scale(1.2, 1.2);
 }
@@ -687,41 +1644,116 @@ void MainWindow::resetZoom() {
     }
 }
 
-void MainWindow::on_analyzeButton_clicked() {
-    QString filePath = ui->filePathEdit->text();
+void MainWindow::on_analyzeButton_clicked()
+{
+    QString filePath = ui->filePathEdit->text().trimmed();
+    
     if (filePath.isEmpty()) {
         QMessageBox::warning(this, "Error", "Please select a file first");
         return;
     }
 
-    setUiEnabled(false);
-    ui->reportTextEdit->clear();
-    statusBar()->showMessage("Analyzing file...");
-
-    QFuture<void> future = QtConcurrent::run([this, filePath]() {
-        try {
-            // Create analyzer instance with fully qualified name
-            CFGAnalyzer::CFGAnalyzer analyzer;
-            auto result = analyzer.analyze(filePath.toStdString());
-            
-            // Update UI in main thread
-            QMetaObject::invokeMethod(this, [this, result]() {
-                emit analysisComplete(result);
-                handleAnalysisResult(result);
-                setUiEnabled(true);
-            });
-        } catch (const std::exception& e) {
-            QMetaObject::invokeMethod(this, [this, e]() {
-                QMessageBox::critical(this, "Analysis Error", 
-                                    QString("Analysis failed: %1").arg(e.what()));
-                setUiEnabled(true);
-                statusBar()->showMessage("Analysis failed", 3000);
-            });
+    QApplication::setOverrideCursor(Qt::WaitCursor);
+    try {
+        QFileInfo fileInfo(filePath);
+        if (!fileInfo.exists() || !fileInfo.isReadable()) {
+            throw std::runtime_error("Cannot read the selected file");
         }
-    });
+
+        QStringList validExtensions = {".cpp", ".cxx", ".cc", ".h", ".hpp"};
+        bool validExtension = std::any_of(validExtensions.begin(), validExtensions.end(),
+            [&filePath](const QString& ext) {
+                return filePath.endsWith(ext, Qt::CaseInsensitive);
+            });
+        
+        if (!validExtension) {
+            throw std::runtime_error(
+                "Invalid file type. Please select a C++ source file");
+        }
+
+        // Clear previous results
+        ui->reportTextEdit->clear();
+        loadEmptyVisualization();
+
+        statusBar()->showMessage("Analyzing file...");
+
+        CFGAnalyzer::CFGAnalyzer analyzer;
+        auto result = analyzer.analyzeFile(filePath);
+        
+        if (!result.success) {
+            throw std::runtime_error(result.report);
+        }
+
+        m_currentGraph = parseDotToCFG(QString::fromStdString(result.dotOutput));
+        displayGraph(QString::fromStdString(result.dotOutput));
+        ui->reportTextEdit->setPlainText(QString::fromStdString(result.report));
+        statusBar()->showMessage("Analysis completed", 3000);
+
+    } catch (const std::exception& e) {
+        QString errorMsg = QString("Analysis failed:\n%1\n"
+                                 "Please verify:\n"
+                                 "1. File contains valid C++ code\n"
+                                 "2. Graphviz is installed").arg(e.what());
+        QMessageBox::critical(this, "Error", errorMsg);
+        statusBar()->showMessage("Analysis failed", 3000);
+    }
+    QApplication::restoreOverrideCursor();
+}
+
+void MainWindow::on_exportButton_clicked()
+{
+    if (!verifyGraphvizInstallation()) {
+        QMessageBox::warning(this, "Error", "Graphviz 'dot' tool not found");
+        return;
+    }
+
+    QString fileName = QFileDialog::getSaveFileName(
+        this, "Export Graph", QDir::homePath(),  // Better default path
+        "PNG (*.png);;SVG (*.svg);;PDF (*.pdf);;DOT (*.dot)"
+    );
+
+    if (fileName.isEmpty()) return;
+
+    if (!m_currentGraph) {
+        QMessageBox::warning(this, "Error", "No graph to export");
+        return;
+    }
+
+    try {
+        std::string dotStr = Visualizer::generateDotRepresentation(m_currentGraph.get());
+        QTemporaryFile tempFile;
+        if (!tempFile.open()) {
+            throw std::runtime_error("Could not create temporary file");
+        }
+        tempFile.write(QString::fromStdString(dotStr).toUtf8());
+        tempFile.close();
+
+        if (fileName.endsWith(".dot")) {
+            if (!QFile::copy(tempFile.fileName(), fileName)) {
+                throw std::runtime_error("Could not copy DOT file");
+            }
+        } else {
+            QString format = fileName.endsWith(".png") ? "png" :
+                           fileName.endsWith(".svg") ? "svg" : "pdf";
+            
+            if (!renderDotToImage(tempFile.fileName(), fileName, format)) {
+                throw std::runtime_error("Failed to generate image");
+            }
+        }
+    } catch (const std::exception& e) {
+        QMessageBox::critical(this, "Export Error", 
+                            QString("Failed to export: %1").arg(e.what()));
+    }
 }
 
 void MainWindow::handleAnalysisResult(const CFGAnalyzer::AnalysisResult& result) {
+    if (QThread::currentThread() != this->thread()) {
+        QMetaObject::invokeMethod(this, "handleAnalysisResult", 
+                                 Qt::QueuedConnection,
+                                 Q_ARG(CFGAnalyzer::AnalysisResult, result));
+        return;
+    }
+
     if (!result.success) {
         ui->reportTextEdit->setPlainText(QString::fromStdString(result.report));
         QMessageBox::critical(this, "Analysis Error", 
@@ -729,18 +1761,16 @@ void MainWindow::handleAnalysisResult(const CFGAnalyzer::AnalysisResult& result)
         return;
     }
 
-    // Handle DOT output if available
     if (!result.dotOutput.empty()) {
         try {
             auto graph = parseDotToCFG(QString::fromStdString(result.dotOutput));
-            m_currentGraph = graph; // Now using shared_ptr
+            m_currentGraph = graph;
             visualizeCFG(graph);
         } catch (...) {
             qWarning() << "Failed to visualize CFG";
         }
     }
 
-    // Handle JSON output if available
     if (!result.jsonOutput.empty()) {
         m_graphView->parseJson(QString::fromStdString(result.jsonOutput).toUtf8());
     }
@@ -783,13 +1813,11 @@ void MainWindow::on_extractAstButton_clicked() {
 
 void MainWindow::displayFunctionInfo(const QString& input) {
 
-    // Handle function name case
     if (!m_currentGraph) {
         ui->reportTextEdit->append("No CFG loaded");
         return;
     }
 
-    // Search for the function in the current CFG
     bool found = false;
     const auto& nodes = m_currentGraph->getNodes();
     
@@ -856,10 +1884,30 @@ void MainWindow::on_searchButton_clicked()
 
 void MainWindow::on_toggleFunctionGraph_clicked()
 {
-    // Implement your toggle functionality here
+    if (!m_graphView) {
+        qWarning() << "Graph view not initialized";
+        return;
+    }
+
     static bool showFullGraph = true;
-    m_graphView->toggleGraphDisplay(!showFullGraph);
-    showFullGraph = !showFullGraph;
+    
+    try {
+        m_graphView->toggleGraphDisplay(!showFullGraph);
+        showFullGraph = !showFullGraph;
+        
+        ui->toggleFunctionGraph->setText(showFullGraph ? "Show Simplified" : "Show Full Graph");
+        
+        QTimer::singleShot(100, this, [this]() {
+            if (m_graphView && m_graphView->scene()) {
+                m_graphView->fitInView(m_graphView->scene()->itemsBoundingRect(), 
+                                     Qt::KeepAspectRatio);
+            }
+        });
+    } catch (const std::exception& e) {
+        qCritical() << "Failed to toggle graph view:" << e.what();
+        QMessageBox::critical(this, "Error", 
+                            QString("Failed to toggle view: %1").arg(e.what()));
+    }
 }
 
 void MainWindow::onLoadJsonClicked()
@@ -991,7 +2039,7 @@ void MainWindow::visualizeFunction(const QString& functionName)
         return;
     }
 
-    setUiEnabled(false); // Disable UI during processing
+    setUiEnabled(false);
     statusBar()->showMessage("Generating CFG for function...");
 
     QtConcurrent::run([this, filePath, functionName]() {
@@ -1012,44 +2060,33 @@ std::shared_ptr<GraphGenerator::CFGGraph> MainWindow::generateFunctionCFG(
     const QString& filePath, const QString& functionName)
 {
     try {
-        // Create analyzer instance and use its public methods instead
         CFGAnalyzer::CFGAnalyzer analyzer;
-        
-        // Use the public API to analyze the file - pass QString directly
         auto result = analyzer.analyzeFile(filePath);
         
         if (!result.success) {
-            throw std::runtime_error("Failed to analyze file: " + result.report);
+            QString detailedError = QString("Failed to analyze file %1:\n%2")
+                                  .arg(filePath)
+                                  .arg(QString::fromStdString(result.report));
+            throw std::runtime_error(detailedError.toStdString());
         }
         
-        // Create an empty CFG graph to start with
         auto cfgGraph = std::make_shared<GraphGenerator::CFGGraph>();
         
-        // For simplicity, we'll extract the graph from the DOT output
-        // if the analyzer provides it
         if (!result.dotOutput.empty()) {
-            // Use our DOT parser to convert the DOT output to a CFG graph
             cfgGraph = parseDotToCFG(QString::fromStdString(result.dotOutput));
             
-            // Filter graph to only include the requested function
             if (!functionName.isEmpty()) {
-                // We need to filter nodes to only include those from the function
-                // This is a simplified approach - the actual implementation
-                // might require more sophisticated filtering based on your graph structure
                 auto filteredGraph = std::make_shared<GraphGenerator::CFGGraph>();
-                
                 const auto& nodes = cfgGraph->getNodes();
                 for (const auto& [id, node] : nodes) {
                     if (QString::fromStdString(node.functionName)
                             .compare(functionName, Qt::CaseInsensitive) == 0) {
-                        // Copy this node and its edges to the filtered graph
                         filteredGraph->addNode(id);
                         for (int successor : node.successors) {
                             filteredGraph->addEdge(id, successor);
                         }
                     }
                 }
-                
                 cfgGraph = filteredGraph;
             }
         }
@@ -1062,11 +2099,53 @@ std::shared_ptr<GraphGenerator::CFGGraph> MainWindow::generateFunctionCFG(
     }
 }
 
+void MainWindow::connectSignals() {
+    connect(ui->analyzeButton, &QPushButton::clicked, this, [this](){
+        QString filePath = ui->filePathEdit->text();
+        if (!filePath.isEmpty()) {
+            std::vector<std::string> sourceFiles = { filePath.toStdString() };
+            auto graph = GraphGenerator::generateCFG(sourceFiles);
+            m_currentGraph = std::shared_ptr<GraphGenerator::CFGGraph>(graph.release());
+            visualizeCurrentGraph();
+        }
+    });
+    
+    connect(ui->toggleFunctionGraph, &QPushButton::clicked, this, &MainWindow::toggleVisualizationMode);
+    connect(ui->searchButton, &QPushButton::clicked, this, &MainWindow::highlightSearchResults);
+    
+    m_webView->setContextMenuPolicy(Qt::CustomContextMenu);
+    connect(m_webView, &QWebEngineView::customContextMenuRequested,
+            this, &MainWindow::showNodeContextMenu);
+}
+
+void MainWindow::toggleVisualizationMode() {
+    static bool showFullGraph = true;
+    if (m_graphView) {
+        m_graphView->setVisible(showFullGraph);
+    }
+    if (m_webView) {
+        m_webView->setVisible(!showFullGraph);
+    }
+    showFullGraph = !showFullGraph;
+}
+
+void MainWindow::highlightSearchResults() {
+    QString searchText = ui->search->text().trimmed();
+    if (!searchText.isEmpty()) {
+        highlightFunction(searchText);
+    }
+}
+
+void MainWindow::highlightInCodeEditor(int nodeId) {
+
+    qDebug() << "Highlighting node" << nodeId << "in code editor";
+}
+
 void MainWindow::handleVisualizationResult(std::shared_ptr<GraphGenerator::CFGGraph> graph)
 {
     if (graph) {
         m_currentGraph = graph;
-        visualizeCFG(graph); // Now matches the signature
+        visualizeCFG(graph);
     }
     setUiEnabled(true);
     statusBar()->showMessage("Visualization complete", 3000);
@@ -1087,7 +2166,6 @@ void MainWindow::onErrorOccurred(const QString& message) {
 
 void MainWindow::on_openFilesButton_clicked()
 {
-    // Implementation for opening multiple files
     QStringList filePaths = QFileDialog::getOpenFileNames(this, "Select Source Files");
     if (!filePaths.isEmpty()) {
         ui->fileList->clear();
@@ -1147,20 +2225,17 @@ void MainWindow::verifyScene()
 
 MainWindow::~MainWindow()
 {
-    // Ensure all threads are stopped first
     if (m_analysisThread && m_analysisThread->isRunning()) {
         m_analysisThread->quit();
         m_analysisThread->wait();
     }
 
-    // Clear scene first (may contain items with mutexes)
     if (m_scene) {
         m_scene->clear();
         delete m_scene;
         m_scene = nullptr;
     }
 
-    // Then remove view
     if (m_graphView) {
         if (centralWidget() && centralWidget()->layout()) {
             centralWidget()->layout()->removeWidget(m_graphView);

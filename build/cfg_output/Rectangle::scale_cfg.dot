@@ -1,0 +1,16 @@
+digraph "Rectangle::scale_CFG" {
+  node [shape=rectangle, fontname="Courier"];
+  edge [fontname="Courier"];
+
+  B0 [label="EXIT"];
+  B1 [label="this->width *= factor\nthis->height *= factor"];
+  B2 [label="std::cerr << "Invalid scale factor\n"\nreturn;
+"];
+  B3 [label="factor <= 0"];
+  B4 [label="ENTRY"];
+  B1 -> B0;
+  B2 -> B0;
+  B3 -> B2 [label="true"];
+  B3 -> B1 [label="false"];
+  B4 -> B3;
+}

@@ -1,0 +1,12 @@
+digraph "Triangle::area_CFG" {
+  node [shape=rectangle, fontname="Courier"];
+  edge [fontname="Courier"];
+
+  B0 [label="EXIT"];
+  B1 [label="double s = (this->a + this->b + this->c) / 2;
+\nstd::sqrt(s * (s - this->a) * (s - this->b) * (s - this->c))\nreturn std::sqrt(s * (s - this->a) * (s - this->b) * (s - this->c));
+"];
+  B2 [label="ENTRY"];
+  B1 -> B0;
+  B2 -> B1;
+}

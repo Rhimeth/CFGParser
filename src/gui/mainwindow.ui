@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <ui version="4.0">
   <class>MainWindow</class>
   <widget class="QMainWindow" name="MainWindow">
@@ -78,11 +78,20 @@
             </property>
             <widget class="QListWidget" name="fileList"/>
             <widget class="QSplitter" name="splitter_2">
+            
               <property name="orientation">
                 <enum>Qt::Vertical</enum>
               </property>
-              <widget class="QGraphicsView" name="graphicsView"/>
+              <widget class="QWebEngineView" name="webView"/>
               <widget class="QTextEdit" name="reportTextEdit"/>
+              <widget class="QLabel" name="graphLabel">
+                <property name="alignment">
+                    <set>Qt::AlignCenter</set>
+                </property>
+                <property name="scaledContents">
+                    <bool>true</bool>
+                </property>
+            </widget>
             </widget>
           </widget>
         </item>

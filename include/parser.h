@@ -1,7 +1,6 @@
 #ifndef PARSER_H
 #define PARSER_H
 
-<<<<<<< HEAD
 #include <clang/Frontend/ASTUnit.h>
 #include <clang/AST/ASTContext.h>
 #include <clang/Basic/Diagnostic.h>
@@ -16,21 +15,10 @@ namespace clang {
     class ASTConsumer;
     class FunctionDecl;
     class CFG;
-=======
-#include <clang/AST/AST.h>
-#include <vector>
-#include <string>
-#include <memory>
-
-// Forward declaration
-namespace clang {
-    class CompilerInstance;
->>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
 }
 
 class Parser {
 public:
-<<<<<<< HEAD
     // Forward declare ASTStoringConsumer first
     class ASTStoringConsumer;
     
@@ -53,18 +41,12 @@ public:
         std::vector<CFGEdge> edges;
     };
 
-=======
-    Parser(); // Add a constructor
-    ~Parser(); // Add a destructor
-    
->>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
     struct FunctionInfo {
         std::string name;
         std::string filename;
         unsigned line;
         bool hasBody;
     };
-<<<<<<< HEAD
 
     // Single definition of ThreadLocalState
     struct ThreadLocalState {
@@ -98,18 +80,6 @@ public:
     void HandleTranslationUnit(clang::ASTContext& Context) override {
         this->Context = &Context;
     }
-=======
-    
-    static std::vector<FunctionInfo> parseFunctions(clang::ASTContext& Context);
-    static bool isValidFunction(const clang::FunctionDecl* FD);
-    
-    // Remove the static version and keep only the instance method
-    static clang::ASTContext* parseFile(const std::string& filePath);
-    
-private:
-    static FunctionInfo extractFunctionInfo(const clang::FunctionDecl* FD);
-    static std::unique_ptr<clang::CompilerInstance> compilerInstance;
->>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
 };
 
 #endif // PARSER_H

@@ -1,0 +1,10 @@
+digraph "Circle::print_CFG" {
+  node [shape=rectangle, fontname="Courier"];
+  edge [fontname="Courier"];
+
+  B0 [label="EXIT"];
+  B1 [label="std::cout << "Circle with radius: "\nstd::cout << "Circle with radius: " << this->radius\nstd::cout << "Circle with radius: " << this->radius << std::endl\nstd::cout << "Area: "\nthis->area()\nstd::cout << "Area: " << this->area()\nstd::cout << "Area: " << this->area() << std::endl\nstd::cout << "Perimeter: "\nthis->perimeter()\nstd::cout << "Perimeter: " << this->perimeter()\nstd::cout << "Perimeter: " << this->perimeter() << std::endl"];
+  B2 [label="ENTRY"];
+  B1 -> B0;
+  B2 -> B1;
+}

@@ -1,12 +1,9 @@
 #ifndef CFG_GUI_H
 #define CFG_GUI_H
 
-<<<<<<< HEAD
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonArray>
-=======
->>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
 #include <QMainWindow>
 #include <QGraphicsScene>
 #include <QGraphicsView>
@@ -17,17 +14,13 @@
 #include <QHBoxLayout>
 #include <QLabel>
 #include <QComboBox>
-<<<<<<< HEAD
 #include <QListWidget>
-=======
->>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
 #include <QTabWidget>
 #include <QTextEdit>
 #include <QMessageBox>
 #include <unordered_map>
 #include <set>
 #include <string>
-<<<<<<< HEAD
 #include <memory>  // For std::unique_ptr
 
 // Forward declarations to resolve dependencies
@@ -37,8 +30,6 @@ namespace GraphGenerator {
 namespace Visualizer {
     std::string generateDotRepresentation(const GraphGenerator::CFGGraph* graph);
 }
-=======
->>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
 
 namespace CFGAnalyzer {
 
@@ -47,7 +38,6 @@ class CFGVisualizerWindow : public QMainWindow {
 
 public:
     explicit CFGVisualizerWindow(QWidget *parent = nullptr);
-<<<<<<< HEAD
     ~CFGVisualizerWindow() override;
 
     // Load function dependencies for visualization
@@ -61,12 +51,6 @@ public slots:
     void showFileInfo();
     void exportSelectedCFG();
     void mergeCFGs();
-=======
-    ~CFGVisualizerWindow();
-
-    // Load function dependencies for visualization
-    void loadFunctionDependencies(const std::unordered_map<std::string, std::set<std::string>>& dependencies);
->>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
     
 private slots:
     void browseFile();
@@ -76,7 +60,6 @@ private slots:
     void resetZoom();
     void exportGraph();
     void showAbout();
-<<<<<<< HEAD
     void loadJsonFile();
     void mergeSelectedCfgs();
     void updateFileList();
@@ -90,12 +73,6 @@ private:
     void setupUI();
     void setupBasicUI();
     void renderDotGraph(const QString& dotGraph);
-=======
-    void switchLayoutAlgorithm(int index);
-
-private:
-    void setupUI();
->>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
     void renderDependencyGraph();
     void clearGraph();
     
@@ -103,26 +80,16 @@ private:
     QWidget* centralWidget;
     QTabWidget* tabWidget;
     
-<<<<<<< HEAD
     // Input tab elements
-=======
-    // File input tab
->>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
     QWidget* inputTab;
     QLineEdit* filePathEdit;
     QPushButton* browseButton;
     QPushButton* analyzeButton;
-<<<<<<< HEAD
     QPushButton* loadDotButton;
     QTextEdit* outputConsole;
     QListWidget* loadedFilesList;
     
     // Visualization tab elements
-=======
-    QTextEdit* outputConsole;
-    
-    // Visualization tab
->>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
     QWidget* visualizationTab;
     QGraphicsScene* scene;
     QGraphicsView* view;
@@ -131,15 +98,10 @@ private:
     QPushButton* zoomOutButton;
     QPushButton* resetZoomButton;
     QPushButton* exportButton;
-<<<<<<< HEAD
     QStringList currentFiles;
 
     // Data members
     std::unique_ptr<GraphGenerator::CFGGraph> currentGraph;
-=======
-    
-    // Data
->>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
     std::unordered_map<std::string, std::set<std::string>> functionDependencies;
     std::string currentFile;
     double zoomFactor;

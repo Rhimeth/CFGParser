@@ -85,7 +85,6 @@ rebuild_cache:
 rebuild_cache/fast: rebuild_cache
 .PHONY : rebuild_cache/fast
 
-<<<<<<< HEAD
 # Special rule for the target list_install_components
 list_install_components:
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Available install components are: \"Unspecified\""
@@ -131,8 +130,6 @@ install/strip/fast: preinstall/fast
 	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
 .PHONY : install/strip/fast
 
-=======
->>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
 # The main all target
 all: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/dubem/cfg_parser/build/CMakeFiles /home/dubem/cfg_parser/build//CMakeFiles/progress.marks
@@ -243,22 +240,84 @@ CFGParser/fast:
 .PHONY : CFGParser/fast
 
 #=============================================================================
-<<<<<<< HEAD
-# Target rules for targets named generate_visualizations
+# Target rules for targets named process_dot_files
 
 # Build rule for target.
-generate_visualizations: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 generate_visualizations
-.PHONY : generate_visualizations
+process_dot_files: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 process_dot_files
+.PHONY : process_dot_files
 
 # fast build rule for target.
-generate_visualizations/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/generate_visualizations.dir/build.make CMakeFiles/generate_visualizations.dir/build
-.PHONY : generate_visualizations/fast
+process_dot_files/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/process_dot_files.dir/build.make CMakeFiles/process_dot_files.dir/build
+.PHONY : process_dot_files/fast
 
 #=============================================================================
-=======
->>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
+# Target rules for targets named process_Rectangle_cfg
+
+# Build rule for target.
+process_Rectangle_cfg: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 process_Rectangle_cfg
+.PHONY : process_Rectangle_cfg
+
+# fast build rule for target.
+process_Rectangle_cfg/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/process_Rectangle_cfg.dir/build.make CMakeFiles/process_Rectangle_cfg.dir/build
+.PHONY : process_Rectangle_cfg/fast
+
+#=============================================================================
+# Target rules for targets named process_area_cfg
+
+# Build rule for target.
+process_area_cfg: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 process_area_cfg
+.PHONY : process_area_cfg
+
+# fast build rule for target.
+process_area_cfg/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/process_area_cfg.dir/build.make CMakeFiles/process_area_cfg.dir/build
+.PHONY : process_area_cfg/fast
+
+#=============================================================================
+# Target rules for targets named process_combined_cfg
+
+# Build rule for target.
+process_combined_cfg: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 process_combined_cfg
+.PHONY : process_combined_cfg
+
+# fast build rule for target.
+process_combined_cfg/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/process_combined_cfg.dir/build.make CMakeFiles/process_combined_cfg.dir/build
+.PHONY : process_combined_cfg/fast
+
+#=============================================================================
+# Target rules for targets named process__Shape_cfg
+
+# Build rule for target.
+process__Shape_cfg: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 process__Shape_cfg
+.PHONY : process__Shape_cfg
+
+# fast build rule for target.
+process__Shape_cfg/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/process__Shape_cfg.dir/build.make CMakeFiles/process__Shape_cfg.dir/build
+.PHONY : process__Shape_cfg/fast
+
+#=============================================================================
+# Target rules for targets named uninstall
+
+# Build rule for target.
+uninstall: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 uninstall
+.PHONY : uninstall
+
+# fast build rule for target.
+uninstall/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/uninstall.dir/build.make CMakeFiles/uninstall.dir/build
+.PHONY : uninstall/fast
+
+#=============================================================================
 # Target rules for targets named CFGParser_autogen_timestamp_deps
 
 # Build rule for target.
@@ -308,82 +367,6 @@ CFGParser_autogen/mocs_compilation.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CFGParser.dir/build.make CMakeFiles/CFGParser.dir/CFGParser_autogen/mocs_compilation.cpp.s
 .PHONY : CFGParser_autogen/mocs_compilation.cpp.s
 
-<<<<<<< HEAD
-=======
-include/moc_cfg_gui.o: include/moc_cfg_gui.cpp.o
-.PHONY : include/moc_cfg_gui.o
-
-# target to build an object file
-include/moc_cfg_gui.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CFGParser.dir/build.make CMakeFiles/CFGParser.dir/include/moc_cfg_gui.cpp.o
-.PHONY : include/moc_cfg_gui.cpp.o
-
-include/moc_cfg_gui.i: include/moc_cfg_gui.cpp.i
-.PHONY : include/moc_cfg_gui.i
-
-# target to preprocess a source file
-include/moc_cfg_gui.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CFGParser.dir/build.make CMakeFiles/CFGParser.dir/include/moc_cfg_gui.cpp.i
-.PHONY : include/moc_cfg_gui.cpp.i
-
-include/moc_cfg_gui.s: include/moc_cfg_gui.cpp.s
-.PHONY : include/moc_cfg_gui.s
-
-# target to generate assembly for a file
-include/moc_cfg_gui.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CFGParser.dir/build.make CMakeFiles/CFGParser.dir/include/moc_cfg_gui.cpp.s
-.PHONY : include/moc_cfg_gui.cpp.s
-
->>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
-include/moc_customgraphview.o: include/moc_customgraphview.cpp.o
-.PHONY : include/moc_customgraphview.o
-
-# target to build an object file
-include/moc_customgraphview.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CFGParser.dir/build.make CMakeFiles/CFGParser.dir/include/moc_customgraphview.cpp.o
-.PHONY : include/moc_customgraphview.cpp.o
-
-include/moc_customgraphview.i: include/moc_customgraphview.cpp.i
-.PHONY : include/moc_customgraphview.i
-
-# target to preprocess a source file
-include/moc_customgraphview.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CFGParser.dir/build.make CMakeFiles/CFGParser.dir/include/moc_customgraphview.cpp.i
-.PHONY : include/moc_customgraphview.cpp.i
-
-include/moc_customgraphview.s: include/moc_customgraphview.cpp.s
-.PHONY : include/moc_customgraphview.s
-
-# target to generate assembly for a file
-include/moc_customgraphview.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CFGParser.dir/build.make CMakeFiles/CFGParser.dir/include/moc_customgraphview.cpp.s
-.PHONY : include/moc_customgraphview.cpp.s
-
-include/moc_mainwindow.o: include/moc_mainwindow.cpp.o
-.PHONY : include/moc_mainwindow.o
-
-# target to build an object file
-include/moc_mainwindow.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CFGParser.dir/build.make CMakeFiles/CFGParser.dir/include/moc_mainwindow.cpp.o
-.PHONY : include/moc_mainwindow.cpp.o
-
-include/moc_mainwindow.i: include/moc_mainwindow.cpp.i
-.PHONY : include/moc_mainwindow.i
-
-# target to preprocess a source file
-include/moc_mainwindow.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CFGParser.dir/build.make CMakeFiles/CFGParser.dir/include/moc_mainwindow.cpp.i
-.PHONY : include/moc_mainwindow.cpp.i
-
-include/moc_mainwindow.s: include/moc_mainwindow.cpp.s
-.PHONY : include/moc_mainwindow.s
-
-# target to generate assembly for a file
-include/moc_mainwindow.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CFGParser.dir/build.make CMakeFiles/CFGParser.dir/include/moc_mainwindow.cpp.s
-.PHONY : include/moc_mainwindow.cpp.s
-
-<<<<<<< HEAD
 src/ast_extractor.o: src/ast_extractor.cpp.o
 .PHONY : src/ast_extractor.o
 
@@ -408,8 +391,6 @@ src/ast_extractor.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CFGParser.dir/build.make CMakeFiles/CFGParser.dir/src/ast_extractor.cpp.s
 .PHONY : src/ast_extractor.cpp.s
 
-=======
->>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
 src/cfg_analyzer.o: src/cfg_analyzer.cpp.o
 .PHONY : src/cfg_analyzer.o
 
@@ -433,54 +414,6 @@ src/cfg_analyzer.s: src/cfg_analyzer.cpp.s
 src/cfg_analyzer.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CFGParser.dir/build.make CMakeFiles/CFGParser.dir/src/cfg_analyzer.cpp.s
 .PHONY : src/cfg_analyzer.cpp.s
-
-src/cfg_generation_action.o: src/cfg_generation_action.cpp.o
-.PHONY : src/cfg_generation_action.o
-
-# target to build an object file
-src/cfg_generation_action.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CFGParser.dir/build.make CMakeFiles/CFGParser.dir/src/cfg_generation_action.cpp.o
-.PHONY : src/cfg_generation_action.cpp.o
-
-src/cfg_generation_action.i: src/cfg_generation_action.cpp.i
-.PHONY : src/cfg_generation_action.i
-
-# target to preprocess a source file
-src/cfg_generation_action.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CFGParser.dir/build.make CMakeFiles/CFGParser.dir/src/cfg_generation_action.cpp.i
-.PHONY : src/cfg_generation_action.cpp.i
-
-src/cfg_generation_action.s: src/cfg_generation_action.cpp.s
-.PHONY : src/cfg_generation_action.s
-
-# target to generate assembly for a file
-src/cfg_generation_action.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CFGParser.dir/build.make CMakeFiles/CFGParser.dir/src/cfg_generation_action.cpp.s
-.PHONY : src/cfg_generation_action.cpp.s
-
-src/cfg_graph.o: src/cfg_graph.cpp.o
-.PHONY : src/cfg_graph.o
-
-# target to build an object file
-src/cfg_graph.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CFGParser.dir/build.make CMakeFiles/CFGParser.dir/src/cfg_graph.cpp.o
-.PHONY : src/cfg_graph.cpp.o
-
-src/cfg_graph.i: src/cfg_graph.cpp.i
-.PHONY : src/cfg_graph.i
-
-# target to preprocess a source file
-src/cfg_graph.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CFGParser.dir/build.make CMakeFiles/CFGParser.dir/src/cfg_graph.cpp.i
-.PHONY : src/cfg_graph.cpp.i
-
-src/cfg_graph.s: src/cfg_graph.cpp.s
-.PHONY : src/cfg_graph.s
-
-# target to generate assembly for a file
-src/cfg_graph.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CFGParser.dir/build.make CMakeFiles/CFGParser.dir/src/cfg_graph.cpp.s
-.PHONY : src/cfg_graph.cpp.s
 
 src/graph_generator.o: src/graph_generator.cpp.o
 .PHONY : src/graph_generator.o
@@ -506,33 +439,6 @@ src/graph_generator.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CFGParser.dir/build.make CMakeFiles/CFGParser.dir/src/graph_generator.cpp.s
 .PHONY : src/graph_generator.cpp.s
 
-<<<<<<< HEAD
-=======
-src/gui/cfg_gui.o: src/gui/cfg_gui.cpp.o
-.PHONY : src/gui/cfg_gui.o
-
-# target to build an object file
-src/gui/cfg_gui.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CFGParser.dir/build.make CMakeFiles/CFGParser.dir/src/gui/cfg_gui.cpp.o
-.PHONY : src/gui/cfg_gui.cpp.o
-
-src/gui/cfg_gui.i: src/gui/cfg_gui.cpp.i
-.PHONY : src/gui/cfg_gui.i
-
-# target to preprocess a source file
-src/gui/cfg_gui.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CFGParser.dir/build.make CMakeFiles/CFGParser.dir/src/gui/cfg_gui.cpp.i
-.PHONY : src/gui/cfg_gui.cpp.i
-
-src/gui/cfg_gui.s: src/gui/cfg_gui.cpp.s
-.PHONY : src/gui/cfg_gui.s
-
-# target to generate assembly for a file
-src/gui/cfg_gui.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CFGParser.dir/build.make CMakeFiles/CFGParser.dir/src/gui/cfg_gui.cpp.s
-.PHONY : src/gui/cfg_gui.cpp.s
-
->>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
 src/gui/customgraphview.o: src/gui/customgraphview.cpp.o
 .PHONY : src/gui/customgraphview.o
 
@@ -556,6 +462,30 @@ src/gui/customgraphview.s: src/gui/customgraphview.cpp.s
 src/gui/customgraphview.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CFGParser.dir/build.make CMakeFiles/CFGParser.dir/src/gui/customgraphview.cpp.s
 .PHONY : src/gui/customgraphview.cpp.s
+
+src/gui/graph_viewer.o: src/gui/graph_viewer.cpp.o
+.PHONY : src/gui/graph_viewer.o
+
+# target to build an object file
+src/gui/graph_viewer.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CFGParser.dir/build.make CMakeFiles/CFGParser.dir/src/gui/graph_viewer.cpp.o
+.PHONY : src/gui/graph_viewer.cpp.o
+
+src/gui/graph_viewer.i: src/gui/graph_viewer.cpp.i
+.PHONY : src/gui/graph_viewer.i
+
+# target to preprocess a source file
+src/gui/graph_viewer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CFGParser.dir/build.make CMakeFiles/CFGParser.dir/src/gui/graph_viewer.cpp.i
+.PHONY : src/gui/graph_viewer.cpp.i
+
+src/gui/graph_viewer.s: src/gui/graph_viewer.cpp.s
+.PHONY : src/gui/graph_viewer.s
+
+# target to generate assembly for a file
+src/gui/graph_viewer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CFGParser.dir/build.make CMakeFiles/CFGParser.dir/src/gui/graph_viewer.cpp.s
+.PHONY : src/gui/graph_viewer.cpp.s
 
 src/gui/mainwindow.o: src/gui/mainwindow.cpp.o
 .PHONY : src/gui/mainwindow.o
@@ -581,7 +511,6 @@ src/gui/mainwindow.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CFGParser.dir/build.make CMakeFiles/CFGParser.dir/src/gui/mainwindow.cpp.s
 .PHONY : src/gui/mainwindow.cpp.s
 
-<<<<<<< HEAD
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
@@ -605,31 +534,6 @@ src/main.s: src/main.cpp.s
 src/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CFGParser.dir/build.make CMakeFiles/CFGParser.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
-=======
-src/input.o: src/input.cpp.o
-.PHONY : src/input.o
-
-# target to build an object file
-src/input.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CFGParser.dir/build.make CMakeFiles/CFGParser.dir/src/input.cpp.o
-.PHONY : src/input.cpp.o
-
-src/input.i: src/input.cpp.i
-.PHONY : src/input.i
-
-# target to preprocess a source file
-src/input.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CFGParser.dir/build.make CMakeFiles/CFGParser.dir/src/input.cpp.i
-.PHONY : src/input.cpp.i
-
-src/input.s: src/input.cpp.s
-.PHONY : src/input.s
-
-# target to generate assembly for a file
-src/input.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CFGParser.dir/build.make CMakeFiles/CFGParser.dir/src/input.cpp.s
-.PHONY : src/input.cpp.s
->>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
 
 src/parser.o: src/parser.cpp.o
 .PHONY : src/parser.o
@@ -686,80 +590,49 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... edit_cache"
-<<<<<<< HEAD
 	@echo "... install"
 	@echo "... install/local"
 	@echo "... install/strip"
 	@echo "... list_install_components"
-=======
->>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
 	@echo "... rebuild_cache"
 	@echo "... CFGParser_autogen"
 	@echo "... CFGParser_autogen_timestamp_deps"
 	@echo "... RISCVTargetParserTableGen"
 	@echo "... acc_gen"
 	@echo "... clang-tablegen-targets"
-<<<<<<< HEAD
-	@echo "... generate_visualizations"
-=======
->>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
 	@echo "... intrinsics_gen"
 	@echo "... omp_gen"
+	@echo "... process_Rectangle_cfg"
+	@echo "... process__Shape_cfg"
+	@echo "... process_area_cfg"
+	@echo "... process_combined_cfg"
+	@echo "... process_dot_files"
+	@echo "... uninstall"
 	@echo "... CFGParser"
 	@echo "... CFGParser_autogen/mocs_compilation.o"
 	@echo "... CFGParser_autogen/mocs_compilation.i"
 	@echo "... CFGParser_autogen/mocs_compilation.s"
-<<<<<<< HEAD
-=======
-	@echo "... include/moc_cfg_gui.o"
-	@echo "... include/moc_cfg_gui.i"
-	@echo "... include/moc_cfg_gui.s"
->>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
-	@echo "... include/moc_customgraphview.o"
-	@echo "... include/moc_customgraphview.i"
-	@echo "... include/moc_customgraphview.s"
-	@echo "... include/moc_mainwindow.o"
-	@echo "... include/moc_mainwindow.i"
-	@echo "... include/moc_mainwindow.s"
-<<<<<<< HEAD
 	@echo "... src/ast_extractor.o"
 	@echo "... src/ast_extractor.i"
 	@echo "... src/ast_extractor.s"
-=======
->>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
 	@echo "... src/cfg_analyzer.o"
 	@echo "... src/cfg_analyzer.i"
 	@echo "... src/cfg_analyzer.s"
-	@echo "... src/cfg_generation_action.o"
-	@echo "... src/cfg_generation_action.i"
-	@echo "... src/cfg_generation_action.s"
-	@echo "... src/cfg_graph.o"
-	@echo "... src/cfg_graph.i"
-	@echo "... src/cfg_graph.s"
 	@echo "... src/graph_generator.o"
 	@echo "... src/graph_generator.i"
 	@echo "... src/graph_generator.s"
-<<<<<<< HEAD
-=======
-	@echo "... src/gui/cfg_gui.o"
-	@echo "... src/gui/cfg_gui.i"
-	@echo "... src/gui/cfg_gui.s"
->>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
 	@echo "... src/gui/customgraphview.o"
 	@echo "... src/gui/customgraphview.i"
 	@echo "... src/gui/customgraphview.s"
+	@echo "... src/gui/graph_viewer.o"
+	@echo "... src/gui/graph_viewer.i"
+	@echo "... src/gui/graph_viewer.s"
 	@echo "... src/gui/mainwindow.o"
 	@echo "... src/gui/mainwindow.i"
 	@echo "... src/gui/mainwindow.s"
-<<<<<<< HEAD
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
-=======
-	@echo "... src/input.o"
-	@echo "... src/input.i"
-	@echo "... src/input.s"
->>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
 	@echo "... src/parser.o"
 	@echo "... src/parser.i"
 	@echo "... src/parser.s"

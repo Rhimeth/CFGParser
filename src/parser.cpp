@@ -20,7 +20,6 @@
 using namespace clang;
 namespace fs = std::filesystem;
 
-// Cache for statement strings to improve performance
 static std::unordered_map<std::string, std::string> stmtCache;
 
 class Parser::FunctionVisitor : public RecursiveASTVisitor<FunctionVisitor> {
@@ -31,7 +30,10 @@ public:
         if (!decl->hasBody()) return true;
         
         auto loc = context->getSourceManager().getPresumedLoc(decl->getLocation());
-        if (!loc.isValid()) return true;
+        if (!loc.isValid()) {
+            qWarning() << "Invalid source location for function:" << decl->getNameAsString().c_str();
+            return true;
+        }
 
         try {
             functions.push_back({
@@ -42,7 +44,9 @@ public:
             });
             functionDecls[decl->getNameAsString()] = decl;
         } catch (const std::exception& e) {
-            qWarning() << "Error processing function declaration:" << e.what();
+            qCritical() << "Error processing function declaration:" << decl->getNameAsString().c_str() 
+                       << "at" << loc.getFilename() << ":" << loc.getLine()
+                       << "Error:" << e.what();
         }
         return true;
     }
@@ -64,18 +68,26 @@ std::vector<Parser::FunctionInfo> Parser::extractFunctions(const std::string& fi
     std::vector<FunctionInfo> functions;
     
     if (!fs::exists(filePath)) {
-        qWarning() << "File not found:" << filePath.c_str();
+        qCritical() << "File not found:" << filePath.c_str();
         return functions;
     }
 
-    if (ASTContext* context = parseFile(filePath)) {
-        try {
-            FunctionVisitor visitor(context);
-            visitor.TraverseDecl(context->getTranslationUnitDecl());
-            functions = visitor.getFunctions();
-        } catch (const std::exception& e) {
-            qCritical() << "Error extracting functions:" << e.what();
-        }
+    ASTContext* context = parseFile(filePath);
+    if (!context) {
+        qCritical() << "Failed to parse file:" << filePath.c_str();
+        return functions;
+    }
+    
+    try {
+        FunctionVisitor visitor(context);
+        visitor.TraverseDecl(context->getTranslationUnitDecl());
+        functions = visitor.getFunctions();
+        qDebug() << "Successfully extracted" << functions.size() << "functions from" << filePath.c_str();
+    } catch (const std::exception& e) {
+        qCritical() << "Exception while extracting functions from" << filePath.c_str() 
+                   << "Error:" << e.what();
+    } catch (...) {
+        qCritical() << "Unknown exception while extracting functions from" << filePath.c_str();
     }
     return functions;
 }
@@ -84,171 +96,211 @@ std::vector<Parser::FunctionCFG> Parser::extractAllCFGs(const std::string& fileP
     std::vector<FunctionCFG> cfgs;
     
     if (!fs::exists(filePath)) {
-        qWarning() << "File not found:" << filePath.c_str();
+        qCritical() << "File not found:" << filePath.c_str();
         return cfgs;
     }
 
-    if (ASTContext* context = parseFile(filePath)) {
-        try {
-            FunctionVisitor visitor(context);
-            visitor.TraverseDecl(context->getTranslationUnitDecl());
+    ASTContext* context = parseFile(filePath);
+    if (!context) {
+        qCritical() << "Failed to parse file for CFG extraction:" << filePath.c_str();
+        return cfgs;
+    }
+
+    try {
+        FunctionVisitor visitor(context);
+        visitor.TraverseDecl(context->getTranslationUnitDecl());
+        auto functions = visitor.getFunctions();
+        
+        qDebug() << "Extracting CFGs for" << functions.size() << "functions in" << filePath.c_str();
+        
+        for (const auto& funcInfo : functions) {
+            FunctionDecl* decl = visitor.getFunctionDecl(funcInfo.name);
+            if (!decl) {
+                qWarning() << "Function declaration not found for:" << funcInfo.name.c_str();
+                continue;
+            }
             
-            for (const auto& funcInfo : visitor.getFunctions()) {
-                if (FunctionDecl* decl = visitor.getFunctionDecl(funcInfo.name)) {
-                    FunctionCFG cfg;
-                    cfg.functionName = funcInfo.name;
-                    
-                    std::unique_ptr<CFG> cfgPtr = CFG::buildCFG(
-                        decl, 
-                        decl->getBody(), 
-                        context, 
-                        CFG::BuildOptions()
-                    );
-                    
-                    if (!cfgPtr) continue;
-                    
-                    // Process nodes
-                    for (const CFGBlock* block : *cfgPtr) {
-                        CFGNode node;
-                        node.id = block->getBlockID();
+            FunctionCFG cfg;
+            cfg.functionName = funcInfo.name;
+            
+            std::unique_ptr<CFG> cfgPtr = CFG::buildCFG(
+                decl, 
+                decl->getBody(), 
+                context, 
+                CFG::BuildOptions()
+            );
+            
+            if (!cfgPtr) {
+                qWarning() << "Failed to build CFG for function:" << funcInfo.name.c_str();
+                continue;
+            }
+            
+            qDebug() << "Building CFG for function:" << funcInfo.name.c_str() << "with" << cfgPtr->size() << "blocks";
+            
+            // Process nodes
+            for (const CFGBlock* block : *cfgPtr) {
+                CFGNode node;
+                node.id = block->getBlockID();
+                
+                std::string label;
+                if (block->empty()) {
+                    label = (node.id == 0) ? "ENTRY" : "EXIT";
+                } else {
+                    for (const auto& element : *block) {
+                        if (element.getKind() == CFGElement::Statement) {
+                            const Stmt* stmt = element.castAs<CFGStmt>().getStmt();
+                            std::string stmtStr;
+                            llvm::raw_string_ostream os(stmtStr);
+                            stmt->printPretty(os, nullptr, PrintingPolicy(context->getLangOpts()));
+                            os.flush();
+                            
+                            if (stmtCache.count(stmtStr)) {
+                                label += stmtCache[stmtStr];
+                            } else {
+                                stmtCache[stmtStr] = stmtStr + "\n";
+                                label += stmtCache[stmtStr];
+                            }
+                            
+                            if (node.code.empty()) node.code = stmtStr;
+                        }
+                    }
+                }
+                
+                node.label = label.empty() ? "Empty Block" : label;
+                SourceLocation loc = block->empty() ? SourceLocation() :
+                    (block->front().getKind() == CFGElement::Statement) ?
+                        block->front().castAs<CFGStmt>().getStmt()->getBeginLoc() :
+                        SourceLocation();
+                auto presumedLoc = context->getSourceManager().getPresumedLoc(loc);
+                node.line = presumedLoc.isValid() ? presumedLoc.getLine() : 0;
+                
+                cfg.nodes.push_back(node);
+            }
+            
+            for (const CFGBlock* block : *cfgPtr) {
+                unsigned sourceId = block->getBlockID();
+                unsigned edgeIdx = 0;
+                
+                for (auto it = block->succ_begin(); it != block->succ_end(); ++it) {
+                    if (const CFGBlock* succ = *it) {
+                        CFGEdge edge;
+                        edge.sourceId = sourceId;
+                        edge.targetId = succ->getBlockID();
                         
-                        std::string label;
-                        if (block->empty()) {
-                            label = (node.id == 0) ? "ENTRY" : "EXIT";
+                        if (block->succ_size() > 1) {
+                            edge.label = (edgeIdx == 0) ? "True" : "False";
                         } else {
-                            for (const auto& element : *block) {
-                                if (element.getKind() == CFGElement::Statement) {
-                                    const Stmt* stmt = element.castAs<CFGStmt>().getStmt();
-                                    std::string stmtStr;
-                                    llvm::raw_string_ostream os(stmtStr);
-                                    stmt->printPretty(os, nullptr, PrintingPolicy(context->getLangOpts()));
-                                    os.flush();
-                                    
-                                    if (stmtCache.count(stmtStr)) {
-                                        label += stmtCache[stmtStr];
-                                    } else {
-                                        stmtCache[stmtStr] = stmtStr + "\n";
-                                        label += stmtCache[stmtStr];
-                                    }
-                                    
-                                    if (node.code.empty()) node.code = stmtStr;
-                                }
-                            }
+                            edge.label = "Unconditional";
                         }
                         
-                        node.label = label.empty() ? "Empty Block" : label;
-                        SourceLocation loc = block->empty() ? SourceLocation() :
-                            (block->front().getKind() == CFGElement::Statement) ?
-                                block->front().castAs<CFGStmt>().getStmt()->getBeginLoc() :
-                                SourceLocation();
-                        auto presumedLoc = context->getSourceManager().getPresumedLoc(loc);
-                        node.line = presumedLoc.isValid() ? presumedLoc.getLine() : 0;
-                        
-                        cfg.nodes.push_back(node);
+                        cfg.edges.push_back(edge);
+                        edgeIdx++;
+                    } else {
+                        qWarning() << "Null successor found for block ID:" << sourceId << "in function:" << funcInfo.name.c_str();
                     }
-                    
-                    // Process edges
-                    for (const CFGBlock* block : *cfgPtr) {
-                        unsigned sourceId = block->getBlockID();
-                        unsigned edgeIdx = 0;
-                        
-                        for (auto it = block->succ_begin(); it != block->succ_end(); ++it) {
-                            if (const CFGBlock* succ = *it) {
-                                CFGEdge edge;
-                                edge.sourceId = sourceId;
-                                edge.targetId = succ->getBlockID();
-                                
-                                if (block->succ_size() > 1) {
-                                    edge.label = (edgeIdx == 0) ? "True" : "False";
-                                } else {
-                                    edge.label = "Unconditional";
-                                }
-                                
-                                cfg.edges.push_back(edge);
-                                edgeIdx++;
-                            }
-                        }
-                    }
-                    
-                    cfgs.push_back(cfg);
                 }
             }
-        } catch (const std::exception& e) {
-            qCritical() << "Error extracting CFGs:" << e.what();
+            
+            cfgs.push_back(cfg);
+            qDebug() << "Successfully built CFG for" << funcInfo.name.c_str() 
+                    << "with" << cfg.nodes.size() << "nodes and" << cfg.edges.size() << "edges";
         }
+    } catch (const std::exception& e) {
+        qCritical() << "Exception while extracting CFGs from" << filePath.c_str() 
+                   << "Error:" << e.what() << "Stack trace:" << e.what();
+    } catch (...) {
+        qCritical() << "Unknown exception while extracting CFGs from" << filePath.c_str();
     }
     
     return cfgs;
 }
 
 std::string Parser::generateDOT(const FunctionCFG& cfg) {
-    std::ostringstream dot;
-    dot << "digraph \"" << cfg.functionName << "\" {\n";
-    dot << "  node [shape=rectangle, fontname=\"Courier\", fontsize=10];\n";
-    dot << "  edge [fontsize=8];\n\n";
-    
-    // Add nodes
-    for (const auto& node : cfg.nodes) {
-        dot << "  " << node.id << " [";
+    try {
+        std::ostringstream dot;
+        dot << "digraph \"" << cfg.functionName << "\" {\n";
+        dot << "  node [shape=rectangle, fontname=\"Courier\", fontsize=10];\n";
+        dot << "  edge [fontsize=8];\n\n";
         
-        if (node.id == 0) {
-            dot << "label=\"ENTRY\", shape=diamond, style=filled, fillcolor=palegreen";
-        } else if (node.id == 1 && cfg.nodes.size() > 1) {
-            dot << "label=\"EXIT\", shape=diamond, style=filled, fillcolor=palegreen";
-        } else {
-            // Escape special characters
-            std::string label = node.label;
-            std::replace(label.begin(), label.end(), '"', '\'');
-            label = std::regex_replace(label, std::regex("\n"), "\\n");
+        // Add nodes
+        for (const auto& node : cfg.nodes) {
+            dot << "  " << node.id << " [";
             
-            dot << "label=\"" << label << "\"";
-            
-            // Highlight complex nodes
-            if (node.label.find('\n') != std::string::npos) {
-                dot << ", style=filled, fillcolor=lemonchiffon";
-            }
-        }
-        
-        dot << "];\n";
-    }
-    
-    // Add edges
-    for (const auto& edge : cfg.edges) {
-        dot << "  " << edge.sourceId << " -> " << edge.targetId;
-        
-        if (!edge.label.empty()) {
-            dot << " [label=\"" << edge.label << "\"";
-            
-            if (edge.label == "True" || edge.label == "False") {
-                dot << ", color=blue";
+            if (node.id == 0) {
+                dot << "label=\"ENTRY\", shape=diamond, style=filled, fillcolor=palegreen";
+            } else if (node.id == 1 && cfg.nodes.size() > 1) {
+                dot << "label=\"EXIT\", shape=diamond, style=filled, fillcolor=palegreen";
+            } else {
+                std::string label = node.label;
+                std::replace(label.begin(), label.end(), '"', '\'');
+                label = std::regex_replace(label, std::regex("\n"), "\\n");
+                
+                dot << "label=\"" << label << "\"";
+                
+                // Highlight complex nodes
+                if (node.label.find('\n') != std::string::npos) {
+                    dot << ", style=filled, fillcolor=lemonchiffon";
+                }
             }
             
+            dot << "];\n";
         }
         
-        dot << ";\n";
-    }
+        // Add edges
+        for (const auto& edge : cfg.edges) {
+            dot << "  " << edge.sourceId << " -> " << edge.targetId;
+            
+            if (!edge.label.empty()) {
+                dot << " [label=\"" << edge.label << "\"";
+                
+                if (edge.label == "True" || edge.label == "False") {
+                    dot << ", color=blue";
+                }
+                
+            }
+            
+            dot << "];\n";
+        }
 
-    dot << "}\n";
-    return dot.str();
+        dot << "}\n";
+        return dot.str();
+    } catch (const std::exception& e) {
+        qCritical() << "Exception while generating DOT for function:" << cfg.functionName.c_str() 
+                   << "Error:" << e.what();
+        return "digraph \"ERROR\" { node [shape=box, style=filled, color=red]; error [label=\"Error generating DOT: " + 
+               std::string(e.what()) + "\"]; }";
+    }
 }
 
 std::unique_ptr<clang::ASTUnit> Parser::parseFileWithAST(const std::string& filename) {
     if (!fs::exists(filename)) {
-        qWarning() << "File not found:" << filename.c_str();
+        qCritical() << "File not found for AST parsing:" << filename.c_str();
         return nullptr;
     }
 
-    // Find Clang resource directory
     std::string resourceDir;
     if (llvm::sys::fs::exists("/usr/lib/llvm-14/lib/clang/14.0.0/include")) {
         resourceDir = "/usr/lib/llvm-14/lib/clang/14.0.0/include";
     } else {
-        // Fallback to searching common paths
-        for (const auto& entry : fs::directory_iterator("/usr/lib/llvm")) {
-            if (entry.path().string().find("clang") != std::string::npos) {
-                resourceDir = entry.path().string() + "/include";
-                break;
+        bool found = false;
+        try {
+            if (fs::exists("/usr/lib/llvm")) {
+                for (const auto& entry : fs::directory_iterator("/usr/lib/llvm")) {
+                    if (entry.path().string().find("clang") != std::string::npos) {
+                        resourceDir = entry.path().string() + "/include";
+                        found = true;
+                        qDebug() << "Found clang resource dir:" << resourceDir.c_str();
+                        break;
+                    }
+                }
             }
+            
+            if (!found) {
+                qWarning() << "Could not find clang resource directory. Using default paths.";
+            }
+        } catch (const fs::filesystem_error& e) {
+            qCritical() << "Filesystem error while searching for clang resources:" << e.what() 
+                       << "code:" << e.code().value() << e.code().message().c_str();
         }
     }
 
@@ -258,31 +310,44 @@ std::unique_ptr<clang::ASTUnit> Parser::parseFileWithAST(const std::string& file
         "-ferror-limit=2",
         "-fno-exceptions",
         "-O0",
-        "-Wno-everything",
-        "-resource-dir=" + resourceDir
+        "-Wno-everything"
     };
+    
+    if (!resourceDir.empty()) {
+        args.push_back("-resource-dir=" + resourceDir);
+    }
+    
+    qDebug() << "Parsing file with AST:" << filename.c_str() << "with" << args.size() << "args";
 
     auto ast = clang::tooling::buildASTFromCodeWithArgs("", args, filename);
     
     if (!ast) {
-        qCritical() << "AST generation failed for:" << filename.c_str();
-        if (ast && ast->getDiagnostics().getNumErrors()) {
-            qCritical() << "Diagnostics:";
-            // Replace the iterator-based approach with direct reporting
-            const auto& diags = ast->getDiagnostics();
-            qCritical() << "Found" << diags.getNumErrors() << "errors and" 
-                       << diags.getNumWarnings() << "warnings";
-            
-            // We can't iterate through diagnostics directly, so log this info
-            qCritical() << "See compiler output for details";
-        }
+        qCritical() << "AST generation failed completely for:" << filename.c_str();
+        return nullptr;
     }
+    
+    if (ast->getDiagnostics().hasErrorOccurred()) {
+        qCritical() << "AST generation had errors for:" << filename.c_str();
+        qCritical() << "Diagnostics summary:"
+                   << "Errors:" << ast->getDiagnostics().getNumErrors()
+                   << "Warnings:" << ast->getDiagnostics().getNumWarnings();
+        
+        const auto& sm = ast->getSourceManager();
+        auto mainFileID = sm.getMainFileID();
+        auto fileEntry = sm.getFileEntryForID(mainFileID);
+        if (fileEntry) {
+            qCritical() << "Main file with issues:" << fileEntry->getName().str().c_str();
+        }
+    } else {
+        qDebug() << "Successfully generated AST for:" << filename.c_str();
+    }
+    
     return ast;
 }
 
 clang::ASTContext* Parser::ThreadLocalState::parse(const std::string& filePath) {
     if (!fs::exists(filePath)) {
-        qWarning() << "File not found:" << filePath.c_str();
+        qCritical() << "File not found for parsing:" << filePath.c_str();
         return nullptr;
     }
 
@@ -290,6 +355,7 @@ clang::ASTContext* Parser::ThreadLocalState::parse(const std::string& filePath) 
         if (!compiler) {
             compiler = std::make_unique<clang::CompilerInstance>();
             setupCompiler();
+            qDebug() << "Created new compiler instance for parsing";
         }
 
         consumer = std::make_unique<ASTStoringConsumer>();
@@ -307,57 +373,78 @@ clang::ASTContext* Parser::ThreadLocalState::parse(const std::string& filePath) 
         for (const auto& arg : args) {
             cArgs.push_back(arg.c_str());
         }
+        
+        qDebug() << "Parsing file:" << filePath.c_str() << "with" << args.size() << "compiler arguments";
 
+        DiagnosticsEngine& diags = compiler->getDiagnostics();
+        diags.setClient(new clang::DiagnosticConsumer(), true);
+        
         if (!CompilerInvocation::CreateFromArgs(
             compiler->getInvocation(),
             cArgs,
             compiler->getDiagnostics())) {
-            qWarning() << "Failed to create compiler invocation";
+            qCritical() << "Failed to create compiler invocation for:" << filePath.c_str();
             return nullptr;
         }
 
         compiler->setASTConsumer(std::move(consumer));
         SyntaxOnlyAction action;
         if (!compiler->ExecuteAction(action)) {
-            qWarning() << "Failed to execute parse action";
+            qCritical() << "Failed to execute parse action for:" << filePath.c_str();
+            qCritical() << "Diagnostics summary:"
+                       << "Errors:" << compiler->getDiagnostics().getNumErrors()
+                       << "Warnings:" << compiler->getDiagnostics().getNumWarnings();
             return nullptr;
         }
 
+        qDebug() << "Successfully parsed file:" << filePath.c_str();
         return consumer->Context;
     } catch (const std::exception& e) {
-        qCritical() << "Parser exception:" << e.what();
+        qCritical() << "Exception during parsing of" << filePath.c_str() 
+                   << "Error:" << e.what();
+        return nullptr;
+    } catch (...) {
+        qCritical() << "Unknown exception during parsing of" << filePath.c_str();
         return nullptr;
     }
 }
 
 void Parser::ThreadLocalState::setupCompiler() {
-    compiler->createDiagnostics();
-    compiler->createFileManager();
-    compiler->createSourceManager(compiler->getFileManager());
-    compiler->createPreprocessor(TU_Complete);
-    compiler->createASTContext();
+    try {
+        compiler->createDiagnostics();
+        compiler->createFileManager();
+        compiler->createSourceManager(compiler->getFileManager());
+        compiler->createPreprocessor(TU_Complete);
+        compiler->createASTContext();
+        qDebug() << "Compiler setup completed successfully";
+    } catch (const std::exception& e) {
+        qCritical() << "Exception during compiler setup:" << e.what();
+    } catch (...) {
+        qCritical() << "Unknown exception during compiler setup";
+    }
 }
 
 Parser::Parser() {
-    // Initialize any necessary members here
+    qDebug() << "Parser instance created";
 }
 
-// Destructor implementation
 Parser::~Parser() {
-    // Clean up any resources if needed
+    qDebug() << "Parser instance destroyed";
 }
 
-// parseFile implementation
 clang::ASTContext* Parser::parseFile(const std::string& filePath) {
+    qDebug() << "Parsing file:" << filePath.c_str();
     thread_local ThreadLocalState state;
-    return state.parse(filePath);
+    auto context = state.parse(filePath);
+    if (!context) {
+        qCritical() << "Failed to parse file:" << filePath.c_str();
+    }
+    return context;
 }
 
 Parser::ThreadLocalState::~ThreadLocalState() {
-    // Clean up compiler resources
     if (compiler) {
         compiler->getDiagnostics().Reset();
-        // Release other resources if needed
+        qDebug() << "ThreadLocalState resources cleaned up";
     }
-    // consumer will be automatically deleted by unique_ptr
 }

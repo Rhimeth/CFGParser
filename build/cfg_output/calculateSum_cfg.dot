@@ -1,0 +1,17 @@
+digraph "calculateSum_CFG" {
+  node [shape=rectangle, fontname="Courier"];
+  edge [fontname="Courier"];
+
+  B0 [label="EXIT"];
+  B1 [label="sum\nreturn sum;
+"];
+  B2 [label="std::cout << "Sum of "\nstd::cout << "Sum of " << a\nstd::cout << "Sum of " << a << " and "\nstd::cout << "Sum of " << a << " and " << b\nstd::cout << "Sum of " << a << " and " << b << " is: "\nstd::cout << "Sum of " << a << " and " << b << " is: " << sum\nstd::cout << "Sum of " << a << " and " << b << " is: " << sum << std::endl"];
+  B3 [label="int sum = a + b;
+\nprintResult"];
+  B4 [label="ENTRY"];
+  B1 -> B0;
+  B2 -> B1;
+  B3 -> B2 [label="true"];
+  B3 -> B1 [label="false"];
+  B4 -> B3;
+}

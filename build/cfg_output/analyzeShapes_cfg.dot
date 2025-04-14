@@ -1,0 +1,36 @@
+digraph "analyzeShapes_CFG" {
+  node [shape=rectangle, fontname="Courier"];
+  edge [fontname="Courier"];
+
+  B0 [label="EXIT"];
+  B1 [label="shapes.begin()\nshapes.end()\nstd::minmax_element(shapes.begin(), shapes.end(), [](const auto &a, const auto &b) {
+    return a->area() < b->area();
+})\nauto = std::minmax_element(shapes.begin(), shapes.end(), [](const auto &a, const auto &b) {
+    return a->area() < b->area();
+});
+\nget<0UL>()\nstd::tuple_element<0, std::pair<__gnu_cxx::__normal_iterator<const std::unique_ptr<Shape> *, std::vector<std::unique_ptr<Shape>>>, __gnu_cxx::__normal_iterator<const std::unique_ptr<Shape> *, std::vector<std::unique_ptr<Shape>>>>>::type min = get<0UL>();
+\nget<1UL>()\nstd::tuple_element<1, std::pair<__gnu_cxx::__normal_iterator<const std::unique_ptr<Shape> *, std::vector<std::unique_ptr<Shape>>>, __gnu_cxx::__normal_iterator<const std::unique_ptr<Shape> *, std::vector<std::unique_ptr<Shape>>>>>::type max = get<1UL>();
+\nstd::cout << "\nSmallest area: "\n* min\n(* min)\n(* min)->area()\nstd::cout << "\nSmallest area: " << (* min)->area()\nstd::cout << "\nSmallest area: " << (* min)->area() << "\nLargest area: "\n* max\n(* max)\n(* max)->area()\nstd::cout << "\nSmallest area: " << (* min)->area() << "\nLargest area: " << (* max)->area()\nstd::cout << "\nSmallest area: " << (* min)->area() << "\nLargest area: " << (* max)->area() << "\n""];
+  B2 [label="__begin1 != __end1"];
+  B3 [label="++ __begin1"];
+  B4 [label="* __begin1\nconst auto &shape;
+\nshape\nshape->printInfo()"];
+  B5 [label="std::cout << "\n=== Shape Analysis ===\n"\nauto &&__range1 = shapes;
+\n__range1.end()\nauto __end1 = __range1.end();
+\n__range1.begin()\nauto __begin1 = __range1.begin();
+"];
+  B6 [label="std::cout << "No shapes to analyze\n"\nreturn;
+"];
+  B7 [label="shapes.empty()"];
+  B8 [label="ENTRY"];
+  B1 -> B0;
+  B2 -> B4 [label="true"];
+  B2 -> B1 [label="false"];
+  B3 -> B2;
+  B4 -> B3;
+  B5 -> B2;
+  B6 -> B0;
+  B7 -> B6 [label="true"];
+  B7 -> B5 [label="false"];
+  B8 -> B7;
+}

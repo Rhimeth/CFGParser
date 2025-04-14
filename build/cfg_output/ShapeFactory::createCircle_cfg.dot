@@ -1,0 +1,17 @@
+digraph "ShapeFactory::createCircle_CFG" {
+  node [shape=rectangle, fontname="Courier"];
+  edge [fontname="Courier"];
+
+  B0 [label="EXIT"];
+  B1 [label="std::make_shared<Circle>(radius)\nstd::make_shared<Circle>(radius)\nstd::make_shared<Circle>(radius)\nreturn std::make_shared<Circle>(radius);
+"];
+  B2 [label="std::cout << "Error: Invalid radius"\nstd::cout << "Error: Invalid radius" << std::endl\nnullptr\nnullptr\nreturn nullptr;
+"];
+  B3 [label="radius <= 0"];
+  B4 [label="ENTRY"];
+  B1 -> B0;
+  B2 -> B0;
+  B3 -> B2 [label="true"];
+  B3 -> B1 [label="false"];
+  B4 -> B3;
+}

@@ -6,15 +6,12 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
-# Find LLVM and Clang packages
 find_package(LLVM REQUIRED CONFIG)
 find_package(Clang REQUIRED CONFIG)
 
-# Add LLVM and Clang include directories
 include_directories(${LLVM_INCLUDE_DIRS})
 include_directories(${CLANG_INCLUDE_DIRS})
 
-# Find Qt5 packages
 find_package(Qt5 COMPONENTS 
     Core 
     Gui 
@@ -22,7 +19,6 @@ find_package(Qt5 COMPONENTS
     PrintSupport 
     REQUIRED)
 
-# Add include directory explicitly
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 # Source files
@@ -64,7 +60,6 @@ set(HEADERS_WITH_MOC
 
 qt5_wrap_cpp(MOC_FILES ${HEADERS_WITH_MOC})
 
-# Create executable
 add_executable(CFGParser 
     ${SOURCES} 
     ${HEADERS} 
@@ -72,11 +67,9 @@ add_executable(CFGParser
     ${MOC_FILES}
 )
 
-# Add LLVM and Clang definitions
 add_definitions(${LLVM_DEFINITIONS})
 add_definitions(${CLANG_DEFINITIONS})
 
-# Link libraries
 target_link_libraries(CFGParser 
     # Qt Libraries
     Qt5::Core 

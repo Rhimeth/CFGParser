@@ -1,0 +1,20 @@
+digraph "ShapeFactory::createRectangle_CFG" {
+  node [shape=rectangle, fontname="Courier"];
+  edge [fontname="Courier"];
+
+  B0 [label="EXIT"];
+  B1 [label="std::make_shared<Rectangle>(width, height)\nstd::make_shared<Rectangle>(width, height)\nstd::make_shared<Rectangle>(width, height)\nreturn std::make_shared<Rectangle>(width, height);
+"];
+  B2 [label="std::cout << "Error: Invalid dimensions"\nstd::cout << "Error: Invalid dimensions" << std::endl\nnullptr\nnullptr\nreturn nullptr;
+"];
+  B3 [label="height <= 0"];
+  B4 [label="width <= 0"];
+  B5 [label="ENTRY"];
+  B1 -> B0;
+  B2 -> B0;
+  B3 -> B2 [label="true"];
+  B3 -> B1 [label="false"];
+  B4 -> B2 [label="true"];
+  B4 -> B3 [label="false"];
+  B5 -> B4;
+}

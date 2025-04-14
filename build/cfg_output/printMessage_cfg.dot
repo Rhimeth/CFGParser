@@ -1,0 +1,10 @@
+digraph "printMessage_CFG" {
+  node [shape=rectangle, fontname="Courier"];
+  edge [fontname="Courier"];
+
+  B0 [label="EXIT"];
+  B1 [label="std::cout << "Message: "\nstd::cout << "Message: " << message\nstd::cout << "Message: " << message << std::endl"];
+  B2 [label="ENTRY"];
+  B1 -> B0;
+  B2 -> B1;
+}

@@ -24,14 +24,16 @@ CFGParser_IS_TOP_LEVEL:STATIC=ON
 CFGParser_SOURCE_DIR:STATIC=/home/dubem/cfg_parser
 
 //Path to a program.
+CLANG_TIDY_EXE:FILEPATH=/usr/bin/clang-tidy
+
+//Path to a program.
 CMAKE_ADDR2LINE:FILEPATH=/usr/bin/addr2line
 
 //Path to a program.
 CMAKE_AR:FILEPATH=/usr/bin/ar
 
-//Choose the type of build, options are: None Debug Release RelWithDebInfo
-// MinSizeRel ...
-CMAKE_BUILD_TYPE:STRING=
+//Choose the type of build
+CMAKE_BUILD_TYPE:STRING=RelWithDebInfo
 
 //Enable/Disable color output during build.
 CMAKE_COLOR_MAKEFILE:BOOL=ON
@@ -112,8 +114,56 @@ CMAKE_EXPORT_COMPILE_COMMANDS:BOOL=
 //Value Computed by CMake.
 CMAKE_FIND_PACKAGE_REDIRECTS_DIR:STATIC=/home/dubem/cfg_parser/build/CMakeFiles/pkgRedirects
 
+//User executables (bin)
+CMAKE_INSTALL_BINDIR:PATH=bin
+
+//Read-only architecture-independent data (DATAROOTDIR)
+CMAKE_INSTALL_DATADIR:PATH=
+
+//Read-only architecture-independent data root (share)
+CMAKE_INSTALL_DATAROOTDIR:PATH=share
+
+//Documentation root (DATAROOTDIR/doc/PROJECT_NAME)
+CMAKE_INSTALL_DOCDIR:PATH=
+
+//C header files (include)
+CMAKE_INSTALL_INCLUDEDIR:PATH=include
+
+//Info documentation (DATAROOTDIR/info)
+CMAKE_INSTALL_INFODIR:PATH=
+
+//Object code libraries (lib)
+CMAKE_INSTALL_LIBDIR:PATH=lib
+
+//Program executables (libexec)
+CMAKE_INSTALL_LIBEXECDIR:PATH=libexec
+
+//Locale-dependent data (DATAROOTDIR/locale)
+CMAKE_INSTALL_LOCALEDIR:PATH=
+
+//Modifiable single-machine data (var)
+CMAKE_INSTALL_LOCALSTATEDIR:PATH=var
+
+//Man documentation (DATAROOTDIR/man)
+CMAKE_INSTALL_MANDIR:PATH=
+
+//C header files for non-gcc (/usr/include)
+CMAKE_INSTALL_OLDINCLUDEDIR:PATH=/usr/include
+
 //Install path prefix, prepended onto install directories.
 CMAKE_INSTALL_PREFIX:PATH=/usr/local
+
+//Run-time variable data (LOCALSTATEDIR/run)
+CMAKE_INSTALL_RUNSTATEDIR:PATH=
+
+//System admin executables (sbin)
+CMAKE_INSTALL_SBINDIR:PATH=sbin
+
+//Modifiable architecture-independent data (com)
+CMAKE_INSTALL_SHAREDSTATEDIR:PATH=com
+
+//Read-only single-machine data (etc)
+CMAKE_INSTALL_SYSCONFDIR:PATH=etc
 
 //Path to a program.
 CMAKE_LINKER:FILEPATH=/usr/bin/ld
@@ -158,6 +208,21 @@ CMAKE_PROJECT_HOMEPAGE_URL:STATIC=
 
 //Value Computed by CMake
 CMAKE_PROJECT_NAME:STATIC=CFGParser
+
+//Value Computed by CMake
+CMAKE_PROJECT_VERSION:STATIC=1.0.0
+
+//Value Computed by CMake
+CMAKE_PROJECT_VERSION_MAJOR:STATIC=1
+
+//Value Computed by CMake
+CMAKE_PROJECT_VERSION_MINOR:STATIC=0
+
+//Value Computed by CMake
+CMAKE_PROJECT_VERSION_PATCH:STATIC=0
+
+//Value Computed by CMake
+CMAKE_PROJECT_VERSION_TWEAK:STATIC=
 
 //Path to a program.
 CMAKE_RANLIB:FILEPATH=/usr/bin/ranlib
@@ -236,13 +301,11 @@ CURL_LIBRARY_DEBUG:FILEPATH=CURL_LIBRARY_DEBUG-NOTFOUND
 //Path to a library.
 CURL_LIBRARY_RELEASE:FILEPATH=/usr/lib/x86_64-linux-gnu/libcurl.so
 
-<<<<<<< HEAD
-//Path to a program.
-DOT_EXECUTABLE:FILEPATH=/usr/bin/dot
-=======
 //The directory containing a CMake configuration file for Clang.
 Clang_DIR:PATH=/usr/lib/cmake/clang-18
->>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
+
+//Path to a program.
+DOT_EXECUTABLE:FILEPATH=/usr/bin/dot
 
 //Path to a file.
 FFI_INCLUDE_DIRS:PATH=/usr/include/x86_64-linux-gnu
@@ -262,12 +325,12 @@ LIBXML2_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libxml2.so
 //Path to a program.
 LIBXML2_XMLLINT_EXECUTABLE:FILEPATH=LIBXML2_XMLLINT_EXECUTABLE-NOTFOUND
 
-<<<<<<< HEAD
-=======
 //The directory containing a CMake configuration file for LLVM.
 LLVM_DIR:PATH=/usr/lib/llvm-18/cmake
 
->>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
+//The directory containing a CMake configuration file for LibEdit.
+LibEdit_DIR:PATH=LibEdit_DIR-NOTFOUND
+
 //Path to a file.
 LibEdit_INCLUDE_DIRS:PATH=/usr/include
 
@@ -278,14 +341,10 @@ LibEdit_LIBRARIES:FILEPATH=/usr/lib/x86_64-linux-gnu/libedit.so
 PKG_CONFIG_ARGN:STRING=
 
 //pkg-config executable
-<<<<<<< HEAD
 PKG_CONFIG_EXECUTABLE:FILEPATH=/usr/bin/pkg-config
 
 //The directory containing a CMake configuration file for Qt5Concurrent.
 Qt5Concurrent_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/Qt5Concurrent
-=======
-PKG_CONFIG_EXECUTABLE:FILEPATH=PKG_CONFIG_EXECUTABLE-NOTFOUND
->>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
 
 //The directory containing a CMake configuration file for Qt5Core.
 Qt5Core_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/Qt5Core
@@ -293,21 +352,39 @@ Qt5Core_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/Qt5Core
 //The directory containing a CMake configuration file for Qt5Gui.
 Qt5Gui_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/Qt5Gui
 
-<<<<<<< HEAD
+//The directory containing a CMake configuration file for Qt5Network.
+Qt5Network_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/Qt5Network
+
 //The directory containing a CMake configuration file for Qt5OpenGL.
 Qt5OpenGL_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/Qt5OpenGL
 
+//The directory containing a CMake configuration file for Qt5Positioning.
+Qt5Positioning_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/Qt5Positioning
+
 //The directory containing a CMake configuration file for Qt5PrintSupport.
 Qt5PrintSupport_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/Qt5PrintSupport
+
+//The directory containing a CMake configuration file for Qt5QmlModels.
+Qt5QmlModels_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/Qt5QmlModels
+
+//The directory containing a CMake configuration file for Qt5Qml.
+Qt5Qml_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/Qt5Qml
+
+//The directory containing a CMake configuration file for Qt5Quick.
+Qt5Quick_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/Qt5Quick
 
 //The directory containing a CMake configuration file for Qt5Svg.
 Qt5Svg_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/Qt5Svg
 
-=======
-//The directory containing a CMake configuration file for Qt5PrintSupport.
-Qt5PrintSupport_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/Qt5PrintSupport
+//The directory containing a CMake configuration file for Qt5WebChannel.
+Qt5WebChannel_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/Qt5WebChannel
 
->>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
+//The directory containing a CMake configuration file for Qt5WebEngineCore.
+Qt5WebEngineCore_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/Qt5WebEngineCore
+
+//The directory containing a CMake configuration file for Qt5WebEngineWidgets.
+Qt5WebEngineWidgets_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/Qt5WebEngineWidgets
+
 //The directory containing a CMake configuration file for Qt5Widgets.
 Qt5Widgets_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/Qt5Widgets
 
@@ -326,7 +403,6 @@ ZLIB_LIBRARY_DEBUG:FILEPATH=ZLIB_LIBRARY_DEBUG-NOTFOUND
 //Path to a library.
 ZLIB_LIBRARY_RELEASE:FILEPATH=/usr/lib/x86_64-linux-gnu/libz.so
 
-<<<<<<< HEAD
 //Path to a library.
 pkgcfg_lib_PC_CURL_curl:FILEPATH=/usr/lib/x86_64-linux-gnu/libcurl.so
 
@@ -336,8 +412,6 @@ pkgcfg_lib_PC_LIBEDIT_edit:FILEPATH=/usr/lib/x86_64-linux-gnu/libedit.so
 //Path to a library.
 pkgcfg_lib_PC_LIBXML_xml2:FILEPATH=/usr/lib/x86_64-linux-gnu/libxml2.so
 
-=======
->>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
 //Path to a file.
 zstd_INCLUDE_DIR:PATH=/usr/include
 
@@ -356,6 +430,8 @@ zstd_STATIC_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libzstd.a
 CMAKE_ADDR2LINE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_AR
 CMAKE_AR-ADVANCED:INTERNAL=1
+//STRINGS property for variable: CMAKE_BUILD_TYPE
+CMAKE_BUILD_TYPE-STRINGS:INTERNAL=Debug;Release;MinSizeRel;RelWithDebInfo
 //This is the directory where this CMakeCache.txt was created
 CMAKE_CACHEFILE_DIR:INTERNAL=/home/dubem/cfg_parser/build
 //Major version of cmake used to create the current loaded cache
@@ -433,8 +509,40 @@ CMAKE_GENERATOR_TOOLSET:INTERNAL=
 //Source directory with the top level CMakeLists.txt file for this
 // project
 CMAKE_HOME_DIRECTORY:INTERNAL=/home/dubem/cfg_parser
+//ADVANCED property for variable: CMAKE_INSTALL_BINDIR
+CMAKE_INSTALL_BINDIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_INSTALL_DATADIR
+CMAKE_INSTALL_DATADIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_INSTALL_DATAROOTDIR
+CMAKE_INSTALL_DATAROOTDIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_INSTALL_DOCDIR
+CMAKE_INSTALL_DOCDIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_INSTALL_INCLUDEDIR
+CMAKE_INSTALL_INCLUDEDIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_INSTALL_INFODIR
+CMAKE_INSTALL_INFODIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_INSTALL_LIBDIR
+CMAKE_INSTALL_LIBDIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_INSTALL_LIBEXECDIR
+CMAKE_INSTALL_LIBEXECDIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_INSTALL_LOCALEDIR
+CMAKE_INSTALL_LOCALEDIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_INSTALL_LOCALSTATEDIR
+CMAKE_INSTALL_LOCALSTATEDIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_INSTALL_MANDIR
+CMAKE_INSTALL_MANDIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_INSTALL_OLDINCLUDEDIR
+CMAKE_INSTALL_OLDINCLUDEDIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_INSTALL_RUNSTATEDIR
+CMAKE_INSTALL_RUNSTATEDIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_INSTALL_SBINDIR
+CMAKE_INSTALL_SBINDIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_INSTALL_SHAREDSTATEDIR
+CMAKE_INSTALL_SHAREDSTATEDIR-ADVANCED:INTERNAL=1
 //Install .so files without execute permission.
 CMAKE_INSTALL_SO_NO_EXE:INTERNAL=1
+//ADVANCED property for variable: CMAKE_INSTALL_SYSCONFDIR
+CMAKE_INSTALL_SYSCONFDIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_LINKER
 CMAKE_LINKER-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_MAKE_PROGRAM
@@ -547,7 +655,6 @@ LIBXML2_XMLLINT_EXECUTABLE-ADVANCED:INTERNAL=1
 LibEdit_INCLUDE_DIRS-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: LibEdit_LIBRARIES
 LibEdit_LIBRARIES-ADVANCED:INTERNAL=1
-<<<<<<< HEAD
 PC_CURL_CFLAGS:INTERNAL=-I/usr/include/x86_64-linux-gnu
 PC_CURL_CFLAGS_I:INTERNAL=
 PC_CURL_CFLAGS_OTHER:INTERNAL=
@@ -594,19 +701,10 @@ PC_LIBEDIT_LDFLAGS_OTHER:INTERNAL=
 PC_LIBEDIT_LIBDIR:INTERNAL=/usr/lib/x86_64-linux-gnu
 PC_LIBEDIT_LIBRARIES:INTERNAL=edit
 PC_LIBEDIT_LIBRARY_DIRS:INTERNAL=/usr/lib/x86_64-linux-gnu
-=======
-PC_LIBEDIT_CFLAGS:INTERNAL=
-PC_LIBEDIT_CFLAGS_I:INTERNAL=
-PC_LIBEDIT_CFLAGS_OTHER:INTERNAL=
-PC_LIBEDIT_FOUND:INTERNAL=
-PC_LIBEDIT_INCLUDEDIR:INTERNAL=
-PC_LIBEDIT_LIBDIR:INTERNAL=
->>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
 PC_LIBEDIT_LIBS:INTERNAL=
 PC_LIBEDIT_LIBS_L:INTERNAL=
 PC_LIBEDIT_LIBS_OTHER:INTERNAL=
 PC_LIBEDIT_LIBS_PATHS:INTERNAL=
-<<<<<<< HEAD
 PC_LIBEDIT_MODULE_NAME:INTERNAL=libedit
 PC_LIBEDIT_PREFIX:INTERNAL=/usr
 PC_LIBEDIT_STATIC_CFLAGS:INTERNAL=-I/usr/include;-I/usr/include/editline
@@ -618,19 +716,10 @@ PC_LIBEDIT_STATIC_LDFLAGS_OTHER:INTERNAL=
 PC_LIBEDIT_STATIC_LIBDIR:INTERNAL=
 PC_LIBEDIT_STATIC_LIBRARIES:INTERNAL=edit;termcap;bsd
 PC_LIBEDIT_STATIC_LIBRARY_DIRS:INTERNAL=/usr/lib/x86_64-linux-gnu
-=======
-PC_LIBEDIT_MODULE_NAME:INTERNAL=
-PC_LIBEDIT_PREFIX:INTERNAL=
-PC_LIBEDIT_STATIC_CFLAGS:INTERNAL=
-PC_LIBEDIT_STATIC_CFLAGS_I:INTERNAL=
-PC_LIBEDIT_STATIC_CFLAGS_OTHER:INTERNAL=
-PC_LIBEDIT_STATIC_LIBDIR:INTERNAL=
->>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
 PC_LIBEDIT_STATIC_LIBS:INTERNAL=
 PC_LIBEDIT_STATIC_LIBS_L:INTERNAL=
 PC_LIBEDIT_STATIC_LIBS_OTHER:INTERNAL=
 PC_LIBEDIT_STATIC_LIBS_PATHS:INTERNAL=
-<<<<<<< HEAD
 PC_LIBEDIT_VERSION:INTERNAL=3.1
 PC_LIBEDIT_libedit_INCLUDEDIR:INTERNAL=
 PC_LIBEDIT_libedit_LIBDIR:INTERNAL=
@@ -647,20 +736,10 @@ PC_LIBXML_LDFLAGS_OTHER:INTERNAL=
 PC_LIBXML_LIBDIR:INTERNAL=/usr/lib/x86_64-linux-gnu
 PC_LIBXML_LIBRARIES:INTERNAL=xml2
 PC_LIBXML_LIBRARY_DIRS:INTERNAL=/usr/lib/x86_64-linux-gnu
-=======
-PC_LIBEDIT_VERSION:INTERNAL=
-PC_LIBXML_CFLAGS:INTERNAL=
-PC_LIBXML_CFLAGS_I:INTERNAL=
-PC_LIBXML_CFLAGS_OTHER:INTERNAL=
-PC_LIBXML_FOUND:INTERNAL=
-PC_LIBXML_INCLUDEDIR:INTERNAL=
-PC_LIBXML_LIBDIR:INTERNAL=
->>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
 PC_LIBXML_LIBS:INTERNAL=
 PC_LIBXML_LIBS_L:INTERNAL=
 PC_LIBXML_LIBS_OTHER:INTERNAL=
 PC_LIBXML_LIBS_PATHS:INTERNAL=
-<<<<<<< HEAD
 PC_LIBXML_MODULE_NAME:INTERNAL=libxml-2.0
 PC_LIBXML_PREFIX:INTERNAL=/usr
 PC_LIBXML_STATIC_CFLAGS:INTERNAL=-I/usr/include/libxml2
@@ -672,27 +751,15 @@ PC_LIBXML_STATIC_LDFLAGS_OTHER:INTERNAL=
 PC_LIBXML_STATIC_LIBDIR:INTERNAL=
 PC_LIBXML_STATIC_LIBRARIES:INTERNAL=xml2;icui18n;icuuc;icudata;z;lzma;m
 PC_LIBXML_STATIC_LIBRARY_DIRS:INTERNAL=/usr/lib/x86_64-linux-gnu
-=======
-PC_LIBXML_MODULE_NAME:INTERNAL=
-PC_LIBXML_PREFIX:INTERNAL=
-PC_LIBXML_STATIC_CFLAGS:INTERNAL=
-PC_LIBXML_STATIC_CFLAGS_I:INTERNAL=
-PC_LIBXML_STATIC_CFLAGS_OTHER:INTERNAL=
-PC_LIBXML_STATIC_LIBDIR:INTERNAL=
->>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
 PC_LIBXML_STATIC_LIBS:INTERNAL=
 PC_LIBXML_STATIC_LIBS_L:INTERNAL=
 PC_LIBXML_STATIC_LIBS_OTHER:INTERNAL=
 PC_LIBXML_STATIC_LIBS_PATHS:INTERNAL=
-<<<<<<< HEAD
 PC_LIBXML_VERSION:INTERNAL=2.9.14
 PC_LIBXML_libxml-2.0_INCLUDEDIR:INTERNAL=
 PC_LIBXML_libxml-2.0_LIBDIR:INTERNAL=
 PC_LIBXML_libxml-2.0_PREFIX:INTERNAL=
 PC_LIBXML_libxml-2.0_VERSION:INTERNAL=
-=======
-PC_LIBXML_VERSION:INTERNAL=
->>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
 //ADVANCED property for variable: PKG_CONFIG_ARGN
 PKG_CONFIG_ARGN-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: PKG_CONFIG_EXECUTABLE
@@ -711,7 +778,8 @@ ZLIB_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
 ZLIB_LIBRARY_RELEASE-ADVANCED:INTERNAL=1
 //linker supports push/pop state
 _CMAKE_LINKER_PUSHPOP_STATE_SUPPORTED:INTERNAL=TRUE
-<<<<<<< HEAD
+//CMAKE_INSTALL_PREFIX during last run
+_GNUInstallDirs_LAST_CMAKE_INSTALL_PREFIX:INTERNAL=/usr/local
 __pkg_config_arguments_PC_CURL:INTERNAL=QUIET;libcurl
 __pkg_config_arguments_PC_LIBEDIT:INTERNAL=QUIET;libedit
 __pkg_config_arguments_PC_LIBXML:INTERNAL=QUIET;libxml-2.0
@@ -725,10 +793,6 @@ pkgcfg_lib_PC_LIBEDIT_edit-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: pkgcfg_lib_PC_LIBXML_xml2
 pkgcfg_lib_PC_LIBXML_xml2-ADVANCED:INTERNAL=1
 prefix_result:INTERNAL=AsynchDNS;GSS-API;HSTS;HTTP2;HTTPS-proxy;IDN;IPv6;Kerberos;Largefile;NTLM;PSL;SPNEGO;SSL;TLS-SRP;UnixSockets;alt-svc;brotli;libz;threadsafe;zstd
-=======
-__pkg_config_checked_PC_LIBEDIT:INTERNAL=1
-__pkg_config_checked_PC_LIBXML:INTERNAL=1
->>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
 //ADVANCED property for variable: zstd_INCLUDE_DIR
 zstd_INCLUDE_DIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: zstd_LIBRARY

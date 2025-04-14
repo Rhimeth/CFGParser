@@ -1,0 +1,21 @@
+digraph "CompositeShape::printInfo_CFG" {
+  node [shape=rectangle, fontname="Courier"];
+  edge [fontname="Courier"];
+
+  B0 [label="EXIT"];
+  B1 [label="__begin1 != __end1"];
+  B2 [label="++ __begin1"];
+  B3 [label="* __begin1\nconst auto &shape;
+\nshape\nshape->printInfo()"];
+  B4 [label="std::cout << "Composite Shape contains "\nthis->shapes.size()\nstd::cout << "Composite Shape contains " << this->shapes.size()\nstd::cout << "Composite Shape contains " << this->shapes.size() << " elements:\n"\nauto &&__range1 = this->shapes;
+\n__range1.end()\nauto __end1 = __range1.end();
+\n__range1.begin()\nauto __begin1 = __range1.begin();
+"];
+  B5 [label="ENTRY"];
+  B1 -> B3 [label="true"];
+  B1 -> B0 [label="false"];
+  B2 -> B1;
+  B3 -> B2;
+  B4 -> B1;
+  B5 -> B4;
+}

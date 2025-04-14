@@ -41,10 +41,7 @@
 #define __cpp_variable_templates 201304L
 #define __FLT32X_MAX_EXP__ 1024
 #define __GCC_HAVE_SYNC_COMPARE_AND_SWAP_1 1
-<<<<<<< HEAD
 #define QT_OPENGL_LIB 1
-=======
->>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
 #define __FLT32_HAS_DENORM__ 1
 #define __UINT_FAST8_MAX__ 0xff
 #define __cpp_rvalue_reference 200610L
@@ -75,6 +72,7 @@
 #define __BFLT16_DECIMAL_DIG__ 4
 #define __linux 1
 #define __DEC32_EPSILON__ 1E-6DF
+#define QT_QMLMODELS_LIB 1
 #define __FLT_EVAL_METHOD_TS_18661_3__ 0
 #define __UINT32_MAX__ 0xffffffffU
 #define __GXX_EXPERIMENTAL_CXX0X__ 1
@@ -87,10 +85,7 @@
 #define __SCHAR_MAX__ 0x7f
 #define __FLT128_MANT_DIG__ 113
 #define __WCHAR_MIN__ (-__WCHAR_MAX__ - 1)
-<<<<<<< HEAD
 #define QT_SVG_LIB 1
-=======
->>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
 #define __INT64_C(c) c ## L
 #define __SSP_STRONG__ 3
 #define __GCC_ATOMIC_POINTER_LOCK_FREE 2
@@ -149,6 +144,7 @@
 #define __DBL_MAX__ double(1.79769313486231570814527423731704357e+308L)
 #define __cpp_raw_strings 200710L
 #define __INT_FAST32_MAX__ 0x7fffffffffffffffL
+#define QT_WEBENGINEWIDGETS_LIB 1
 #define __DBL_HAS_INFINITY__ 1
 #define __INT64_MAX__ 0x7fffffffffffffffL
 #define __SIZEOF_FLOAT__ 4
@@ -159,6 +155,7 @@
 #define __UINT_LEAST32_MAX__ 0xffffffffU
 #define __FLT32X_HAS_DENORM__ 1
 #define __INT_FAST16_TYPE__ long int
+#define __STRICT_ANSI__ 1
 #define __MMX_WITH_SSE__ 1
 #define __LDBL_HAS_DENORM__ 1
 #define QT_WIDGETS_LIB 1
@@ -202,6 +199,7 @@
 #define __cpp_template_auto 201606L
 #define __FLT16_DENORM_MIN__ 5.96046447753906250000000000000000000e-8F16
 #define __FLT128_EPSILON__ 1.92592994438723585305597794258492732e-34F128
+#define QT_POSITIONING_LIB 1
 #define __FLT64X_NORM_MAX__ 1.18973149535723176502126385303097021e+4932F64x
 #define __SIZEOF_POINTER__ 8
 #define __SIZE_TYPE__ long unsigned int
@@ -230,7 +228,9 @@
 #define _STDC_PREDEF_H 1
 #define __INT_LEAST32_MAX__ 0x7fffffff
 #define __GCC_ATOMIC_INT_LOCK_FREE 2
+#define QT_QUICK_LIB 1
 #define __FLT128_MAX_EXP__ 16384
+#define QT_QML_LIB 1
 #define __FLT32_MANT_DIG__ 24
 #define __FLOAT_WORD_ORDER__ __ORDER_LITTLE_ENDIAN__
 #define SIZEOF_DPTR (sizeof(void*))
@@ -247,13 +247,9 @@
 #define __DEC128_MIN_EXP__ (-6142)
 #define __DEC128_MAX__ 9.999999999999999999999999999999999E6144DL
 #define __INT_FAST32_TYPE__ long int
-<<<<<<< HEAD
 #define QT_CONCURRENT_LIB 1
-=======
->>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
 #define __UINT_LEAST16_TYPE__ short unsigned int
 #define __DEC128_MAX_EXP__ 6145
-#define unix 1
 #define __DBL_HAS_DENORM__ 1
 #define __cpp_rtti 199711L
 #define __UINT64_MAX__ 0xffffffffffffffffUL
@@ -311,7 +307,9 @@
 #define __INT_LEAST16_MAX__ 0x7fff
 #define __FLT16_NORM_MAX__ 6.55040000000000000000000000000000000e+4F16
 #define __DEC64_MANT_DIG__ 16
+#define QT_NETWORK_LIB 1
 #define __FLT32_DENORM_MIN__ 1.40129846432481707092372958328991613e-45F32
+#define QT_WEBENGINECORE_LIB 1
 #define __SIG_ATOMIC_WIDTH__ 32
 #define __INT_LEAST64_TYPE__ long int
 #define __INT16_TYPE__ short int
@@ -326,7 +324,6 @@
 #define __INTPTR_MAX__ 0x7fffffffffffffffL
 #define __cpp_sized_deallocation 201309L
 #define __cpp_guaranteed_copy_elision 201606L
-#define linux 1
 #define __FLT64_HAS_QUIET_NAN__ 1
 #define __FLT32_MIN_10_EXP__ (-37)
 #define __EXCEPTIONS 1
@@ -411,6 +408,7 @@
 #define __STDC_UTF_32__ 1
 #define __INT_FAST8_WIDTH__ 8
 #define __FXSR__ 1
+#define QT_WEBCHANNEL_LIB 1
 #define __FLT32X_MAX__ 1.79769313486231570814527423731704357e+308F32x
 #define __DBL_NORM_MAX__ double(1.79769313486231570814527423731704357e+308L)
 #define __BYTE_ORDER__ __ORDER_LITTLE_ENDIAN__
@@ -443,11 +441,9 @@
 #define __FLT64_MIN__ 2.22507385850720138309023271733240406e-308F64
 #define __INT_LEAST32_WIDTH__ 32
 #define __INTMAX_TYPE__ long int
-#define __GLIBCXX_BITSIZE_INT_N_0 128
 #define __FLT32X_HAS_QUIET_NAN__ 1
 #define __ATOMIC_CONSUME 1
 #define __GNUC_MINOR__ 3
-#define __GLIBCXX_TYPE_INT_N_0 __int128
 #define __UINTMAX_MAX__ 0xffffffffffffffffUL
 #define __PIE__ 2
 #define __FLT32X_DENORM_MIN__ 4.94065645841246544176568792868221372e-324F32x
@@ -476,11 +472,7 @@
 #define QT_PRINTSUPPORT_LIB 1
 #define __SIZE_MAX__ 0xffffffffffffffffUL
 #define __UINT_FAST8_TYPE__ unsigned char
-<<<<<<< HEAD
-#define _GNU_SOURCE -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -D__STDC_LIMIT_MACROS 1
-=======
 #define _GNU_SOURCE 1
->>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
 #define __cpp_init_captures 201304L
 #define __ATOMIC_ACQ_REL 4
 #define __ATOMIC_RELEASE 3

@@ -1,0 +1,11 @@
+digraph "Circle::area_CFG" {
+  node [shape=rectangle, fontname="Courier"];
+  edge [fontname="Courier"];
+
+  B0 [label="EXIT"];
+  B1 [label="3.1415899999999999 * this->radius * this->radius\nreturn 3.1415899999999999 * this->radius * this->radius;
+"];
+  B2 [label="ENTRY"];
+  B1 -> B0;
+  B2 -> B1;
+}

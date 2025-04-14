@@ -4,10 +4,6 @@
 
 namespace GraphGenerator {
 
-void CFGGraph::addStatement(int nodeID, const std::string& stmt) {
-    addStatementToNode(nodeID, stmt);
-}
-
 void CFGGraph::addExceptionEdge(int sourceID, int targetID) {
     exceptionEdges.insert({sourceID, targetID});
 }
@@ -30,16 +26,6 @@ bool CFGGraph::isNodeTryBlock(int nodeID) const {
 
 bool CFGGraph::isNodeThrowingException(int nodeID) const {
     return throwingBlocks.count(nodeID) > 0;
-}
-
-std::string CFGGraph::getNodeLabel(int nodeID) const {
-    auto it = nodes.find(nodeID);
-    if (it != nodes.end()) {
-        return it->second.label.empty() ? 
-            "Block " + std::to_string(nodeID) : 
-            it->second.label;
-    }
-    return "Unknown Block";
 }
 
 void CFGGraph::addNode(int id, const std::string& label) {
@@ -70,7 +56,6 @@ void CFGGraph::writeToDotFile(const std::string& filename) const {
 
     dotFile << "digraph CFG {\n";
     
-    // Write nodes with special formatting for try and throw blocks
     for (const auto& [nodeID, node] : nodes) {
         dotFile << "    " << nodeID << " [label=\"" << getNodeLabel(nodeID) << "\"";
         
@@ -84,7 +69,6 @@ void CFGGraph::writeToDotFile(const std::string& filename) const {
         dotFile << "];\n";
     }
 
-    // Write edges with special formatting for exception edges
     for (const auto& [nodeID, node] : nodes) {
         for (int successorID : node.successors) {
             dotFile << "    " << nodeID << " -> " << successorID;
@@ -106,7 +90,6 @@ void CFGGraph::writeToJsonFile(const std::string& filename,
                              const json& functionCallJson) {
     json graphJson;
     
-    // Add nodes with all properties
     for (const auto& [nodeID, node] : nodes) {
         graphJson["nodes"][std::to_string(nodeID)] = {
             {"id", nodeID},
@@ -118,7 +101,6 @@ void CFGGraph::writeToJsonFile(const std::string& filename,
         };
     }
 
-    // Add edges with properties
     for (const auto& [nodeID, node] : nodes) {
         for (int successorID : node.successors) {
             graphJson["edges"].push_back({
@@ -129,7 +111,6 @@ void CFGGraph::writeToJsonFile(const std::string& filename,
         }
     }
 
-    // Combine with additional JSON data
     graphJson["ast"] = astJson;
     graphJson["functionCalls"] = functionCallJson;
 

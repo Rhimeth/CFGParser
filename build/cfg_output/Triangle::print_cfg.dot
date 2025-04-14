@@ -1,0 +1,10 @@
+digraph "Triangle::print_CFG" {
+  node [shape=rectangle, fontname="Courier"];
+  edge [fontname="Courier"];
+
+  B0 [label="EXIT"];
+  B1 [label="std::cout << "Triangle with sides: "\nstd::cout << "Triangle with sides: " << this->a\nstd::cout << "Triangle with sides: " << this->a << ", "\nstd::cout << "Triangle with sides: " << this->a << ", " << this->b\nstd::cout << "Triangle with sides: " << this->a << ", " << this->b << ", "\nstd::cout << "Triangle with sides: " << this->a << ", " << this->b << ", " << this->c\nstd::cout << "Triangle with sides: " << this->a << ", " << this->b << ", " << this->c << std::endl\nstd::cout << "Area: "\nthis->area()\nstd::cout << "Area: " << this->area()\nstd::cout << "Area: " << this->area() << std::endl\nstd::cout << "Perimeter: "\nthis->perimeter()\nstd::cout << "Perimeter: " << this->perimeter()\nstd::cout << "Perimeter: " << this->perimeter() << std::endl"];
+  B2 [label="ENTRY"];
+  B1 -> B0;
+  B2 -> B1;
+}

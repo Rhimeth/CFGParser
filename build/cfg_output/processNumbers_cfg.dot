@@ -1,0 +1,28 @@
+digraph "processNumbers_CFG" {
+  node [shape=rectangle, fontname="Courier"];
+  edge [fontname="Courier"];
+
+  B0 [label="EXIT"];
+  B1 [label="std::cout << "Processed result: "\nstd::cout << "Processed result: " << result\nstd::cout << "Processed result: " << result << std::endl"];
+  B2 [label="i++"];
+  B3 [label="numbers[i]\nop(result, numbers[i])\nresult = op(result, numbers[i])"];
+  B4 [label="numbers.size()\ni < numbers.size()"];
+  B5 [label="numbers.empty() ? 0 : numbers[0]\nint result = numbers.empty() ? 0 : numbers[0];
+\nsize_t i = 1;
+"];
+  B6 [label="0"];
+  B7 [label="numbers[0]\nnumbers[0]"];
+  B8 [label="numbers.empty()"];
+  B9 [label="ENTRY"];
+  B1 -> B0;
+  B2 -> B4;
+  B3 -> B2;
+  B4 -> B3 [label="true"];
+  B4 -> B1 [label="false"];
+  B5 -> B4;
+  B6 -> B5;
+  B7 -> B5;
+  B8 -> B6 [label="true"];
+  B8 -> B7 [label="false"];
+  B9 -> B8;
+}

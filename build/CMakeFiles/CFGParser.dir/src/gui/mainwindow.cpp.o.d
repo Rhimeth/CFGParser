@@ -1,14 +1,8 @@
 CMakeFiles/CFGParser.dir/src/gui/mainwindow.cpp.o: \
  /home/dubem/cfg_parser/src/gui/mainwindow.cpp /usr/include/stdc-predef.h \
  /home/dubem/cfg_parser/include/mainwindow.h \
-<<<<<<< HEAD
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QMainWindow \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qmainwindow.h \
-=======
- /home/dubem/cfg_parser/include/customgraphview.h \
- /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QGraphicsView \
- /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qgraphicsview.h \
->>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qtwidgetsglobal.h \
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qtguiglobal.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qglobal.h \
@@ -80,13 +74,17 @@ CMakeFiles/CFGParser.dir/src/gui/mainwindow.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h \
+ /usr/include/x86_64-linux-gnu/bits/select2.h \
+ /usr/include/x86_64-linux-gnu/bits/select-decl.h \
  /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h \
  /usr/include/x86_64-linux-gnu/bits/thread-shared-types.h \
  /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h \
  /usr/include/x86_64-linux-gnu/bits/atomic_wide_counter.h \
  /usr/include/x86_64-linux-gnu/bits/struct_mutex.h \
  /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h /usr/include/alloca.h \
+ /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
  /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
+ /usr/include/x86_64-linux-gnu/bits/stdlib.h \
  /usr/include/c++/13/bits/std_abs.h \
  /usr/include/c++/13/pstl/glue_algorithm_defs.h \
  /usr/include/c++/13/pstl/execution_defs.h \
@@ -109,7 +107,6 @@ CMakeFiles/CFGParser.dir/src/gui/mainwindow.cpp.o: \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qversiontagging.h \
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qtgui-config.h \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qtwidgets-config.h \
-<<<<<<< HEAD
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qwidget.h \
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qwindowdefs.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qobjectdefs.h \
@@ -120,14 +117,10 @@ CMakeFiles/CFGParser.dir/src/gui/mainwindow.cpp.o: \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qchar.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qbytearray.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qrefcount.h \
-=======
- /usr/include/x86_64-linux-gnu/qt5/QtCore/qmetatype.h \
- /usr/include/x86_64-linux-gnu/qt5/QtCore/qbytearray.h \
- /usr/include/x86_64-linux-gnu/qt5/QtCore/qrefcount.h \
- /usr/include/x86_64-linux-gnu/qt5/QtCore/qnamespace.h \
->>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qarraydata.h \
  /usr/include/string.h /usr/include/strings.h \
+ /usr/include/x86_64-linux-gnu/bits/strings_fortified.h \
+ /usr/include/x86_64-linux-gnu/bits/string_fortified.h \
  /usr/include/c++/13/stdlib.h \
  /usr/lib/gcc/x86_64-linux-gnu/13/include/stdarg.h \
  /usr/include/c++/13/string /usr/include/c++/13/bits/requires_hosted.h \
@@ -140,6 +133,8 @@ CMakeFiles/CFGParser.dir/src/gui/mainwindow.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h \
  /usr/include/x86_64-linux-gnu/bits/types/__FILE.h \
  /usr/include/x86_64-linux-gnu/bits/types/FILE.h \
+ /usr/include/x86_64-linux-gnu/bits/wchar2-decl.h \
+ /usr/include/x86_64-linux-gnu/bits/wchar2.h \
  /usr/include/c++/13/bits/allocator.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/c++allocator.h \
  /usr/include/c++/13/bits/new_allocator.h \
@@ -166,9 +161,11 @@ CMakeFiles/CFGParser.dir/src/gui/mainwindow.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h \
  /usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h \
  /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
- /usr/include/c++/13/cerrno /usr/include/errno.h \
- /usr/include/x86_64-linux-gnu/bits/errno.h /usr/include/linux/errno.h \
- /usr/include/x86_64-linux-gnu/asm/errno.h \
+ /usr/include/x86_64-linux-gnu/bits/stdio2-decl.h \
+ /usr/include/x86_64-linux-gnu/bits/stdio.h \
+ /usr/include/x86_64-linux-gnu/bits/stdio2.h /usr/include/c++/13/cerrno \
+ /usr/include/errno.h /usr/include/x86_64-linux-gnu/bits/errno.h \
+ /usr/include/linux/errno.h /usr/include/x86_64-linux-gnu/asm/errno.h \
  /usr/include/asm-generic/errno.h /usr/include/asm-generic/errno-base.h \
  /usr/include/x86_64-linux-gnu/bits/types/error_t.h \
  /usr/include/c++/13/bits/charconv.h \
@@ -204,7 +201,6 @@ CMakeFiles/CFGParser.dir/src/gui/mainwindow.cpp.o: \
  /usr/include/c++/13/bits/cxxabi_init_exception.h \
  /usr/include/c++/13/typeinfo /usr/include/c++/13/bits/nested_exception.h \
  /usr/include/c++/13/bits/streambuf.tcc \
-<<<<<<< HEAD
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qstringliteral.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qstringalgorithms.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qstringview.h \
@@ -212,18 +208,6 @@ CMakeFiles/CFGParser.dir/src/gui/mainwindow.cpp.o: \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qalgorithms.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qiterator.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qhashfunctions.h \
-=======
- /usr/include/x86_64-linux-gnu/qt5/QtCore/qvarlengtharray.h \
- /usr/include/x86_64-linux-gnu/qt5/QtCore/qcontainerfwd.h \
- /usr/include/x86_64-linux-gnu/qt5/QtCore/qalgorithms.h \
- /usr/include/x86_64-linux-gnu/qt5/QtCore/qcontainertools_impl.h \
- /usr/include/x86_64-linux-gnu/qt5/QtCore/qhashfunctions.h \
- /usr/include/x86_64-linux-gnu/qt5/QtCore/qstring.h \
- /usr/include/x86_64-linux-gnu/qt5/QtCore/qchar.h \
- /usr/include/x86_64-linux-gnu/qt5/QtCore/qstringliteral.h \
- /usr/include/x86_64-linux-gnu/qt5/QtCore/qstringalgorithms.h \
- /usr/include/x86_64-linux-gnu/qt5/QtCore/qstringview.h \
->>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qpair.h \
  /usr/include/c++/13/numeric /usr/include/c++/13/bits/stl_numeric.h \
  /usr/include/c++/13/pstl/glue_numeric_defs.h \
@@ -241,36 +225,11 @@ CMakeFiles/CFGParser.dir/src/gui/mainwindow.cpp.o: \
  /usr/include/c++/13/bits/stl_bvector.h \
  /usr/include/c++/13/bits/vector.tcc /usr/include/c++/13/array \
  /usr/include/c++/13/compare \
-<<<<<<< HEAD
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qvector.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qcontainertools_impl.h \
  /usr/include/c++/13/list /usr/include/c++/13/bits/stl_list.h \
  /usr/include/c++/13/bits/allocated_ptr.h \
  /usr/include/c++/13/bits/list.tcc \
-=======
- /usr/include/x86_64-linux-gnu/qt5/QtCore/qobjectdefs.h \
- /usr/include/x86_64-linux-gnu/qt5/QtCore/qobjectdefs_impl.h \
- /usr/include/c++/13/list /usr/include/c++/13/bits/stl_list.h \
- /usr/include/c++/13/bits/allocated_ptr.h \
- /usr/include/c++/13/bits/list.tcc /usr/include/c++/13/map \
- /usr/include/c++/13/bits/stl_tree.h /usr/include/c++/13/bits/stl_map.h \
- /usr/include/c++/13/bits/stl_multimap.h \
- /usr/include/x86_64-linux-gnu/qt5/QtGui/qpainter.h \
- /usr/include/x86_64-linux-gnu/qt5/QtCore/qrect.h \
- /usr/include/x86_64-linux-gnu/qt5/QtCore/qmargins.h \
- /usr/include/x86_64-linux-gnu/qt5/QtCore/qsize.h \
- /usr/include/x86_64-linux-gnu/qt5/QtCore/qpoint.h \
- /usr/include/x86_64-linux-gnu/qt5/QtCore/qscopedpointer.h \
- /usr/include/x86_64-linux-gnu/qt5/QtGui/qpixmap.h \
- /usr/include/x86_64-linux-gnu/qt5/QtGui/qpaintdevice.h \
- /usr/include/x86_64-linux-gnu/qt5/QtGui/qwindowdefs.h \
- /usr/include/x86_64-linux-gnu/qt5/QtGui/qcolor.h \
- /usr/include/x86_64-linux-gnu/qt5/QtGui/qrgb.h \
- /usr/include/x86_64-linux-gnu/qt5/QtCore/qstringlist.h \
- /usr/include/x86_64-linux-gnu/qt5/QtCore/qlist.h \
- /usr/include/x86_64-linux-gnu/qt5/QtCore/qiterator.h \
- /usr/include/x86_64-linux-gnu/qt5/QtCore/qvector.h \
->>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
  /usr/lib/gcc/x86_64-linux-gnu/13/include/limits.h \
  /usr/lib/gcc/x86_64-linux-gnu/13/include/syslimits.h \
  /usr/include/limits.h /usr/include/x86_64-linux-gnu/bits/posix1_lim.h \
@@ -280,7 +239,6 @@ CMakeFiles/CFGParser.dir/src/gui/mainwindow.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/xopen_lim.h \
  /usr/include/x86_64-linux-gnu/bits/uio_lim.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qbytearraylist.h \
-<<<<<<< HEAD
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qstringlist.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qregexp.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qstringmatcher.h \
@@ -316,25 +274,11 @@ CMakeFiles/CFGParser.dir/src/gui/mainwindow.cpp.o: \
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qimage.h \
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qpixelformat.h \
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qpixmap.h \
-=======
- /usr/include/x86_64-linux-gnu/qt5/QtCore/qregexp.h \
- /usr/include/x86_64-linux-gnu/qt5/QtCore/qstringmatcher.h \
- /usr/include/x86_64-linux-gnu/qt5/QtGui/qrgba64.h \
->>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qsharedpointer.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qshareddata.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qhash.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qsharedpointer_impl.h \
-<<<<<<< HEAD
  /usr/include/c++/13/memory \
-=======
- /usr/include/x86_64-linux-gnu/qt5/QtCore/qobject.h \
- /usr/include/x86_64-linux-gnu/qt5/QtCore/qobject_impl.h \
- /usr/include/c++/13/chrono /usr/include/c++/13/bits/chrono.h \
- /usr/include/c++/13/ratio /usr/include/c++/13/cstdint \
- /usr/include/c++/13/limits /usr/include/c++/13/ctime \
- /usr/include/c++/13/bits/parse_numbers.h /usr/include/c++/13/memory \
->>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
  /usr/include/c++/13/bits/stl_raw_storage_iter.h \
  /usr/include/c++/13/bits/align.h /usr/include/c++/13/bits/unique_ptr.h \
  /usr/include/c++/13/bits/shared_ptr.h \
@@ -343,7 +287,6 @@ CMakeFiles/CFGParser.dir/src/gui/mainwindow.cpp.o: \
  /usr/include/c++/13/bits/shared_ptr_atomic.h \
  /usr/include/c++/13/backward/auto_ptr.h \
  /usr/include/c++/13/pstl/glue_memory_defs.h \
-<<<<<<< HEAD
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qfont.h \
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qfontmetrics.h \
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qfontinfo.h \
@@ -377,166 +320,88 @@ CMakeFiles/CFGParser.dir/src/gui/mainwindow.cpp.o: \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qstyle.h \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qtabbar.h \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qrubberband.h \
-=======
- /usr/include/x86_64-linux-gnu/qt5/QtGui/qimage.h \
- /usr/include/x86_64-linux-gnu/qt5/QtGui/qpixelformat.h \
- /usr/include/x86_64-linux-gnu/qt5/QtGui/qtransform.h \
- /usr/include/x86_64-linux-gnu/qt5/QtGui/qmatrix.h \
- /usr/include/x86_64-linux-gnu/qt5/QtGui/qpolygon.h \
- /usr/include/x86_64-linux-gnu/qt5/QtGui/qregion.h \
- /usr/include/x86_64-linux-gnu/qt5/QtCore/qdatastream.h \
- /usr/include/x86_64-linux-gnu/qt5/QtCore/qiodevice.h \
- /usr/include/x86_64-linux-gnu/qt5/QtCore/qline.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtWebEngineWidgets/QWebEngineView \
+ /usr/include/x86_64-linux-gnu/qt5/QtWebEngineWidgets/qwebengineview.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtGui/qpainter.h \
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qtextoption.h \
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qpen.h \
- /usr/include/x86_64-linux-gnu/qt5/QtGui/qbrush.h \
- /usr/include/x86_64-linux-gnu/qt5/QtGui/qfontinfo.h \
- /usr/include/x86_64-linux-gnu/qt5/QtGui/qfont.h \
- /usr/include/x86_64-linux-gnu/qt5/QtGui/qfontmetrics.h \
- /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qscrollarea.h \
- /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qabstractscrollarea.h \
- /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qframe.h \
- /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qwidget.h \
- /usr/include/x86_64-linux-gnu/qt5/QtGui/qpalette.h \
- /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qsizepolicy.h \
- /usr/include/x86_64-linux-gnu/qt5/QtGui/qcursor.h \
- /usr/include/x86_64-linux-gnu/qt5/QtGui/qkeysequence.h \
- /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qgraphicsscene.h \
- /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QGraphicsScene \
- /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qgraphicsscene.h \
- /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QGraphicsTextItem \
- /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qgraphicsitem.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtNetwork/qnetworkaccessmanager.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtNetwork/qtnetworkglobal.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtNetwork/qtnetwork-config.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtNetwork/qnetworkrequest.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QSharedDataPointer \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qshareddata.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QString \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qstring.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QUrl \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qurl.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QVariant \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qvariant.h \
- /usr/include/x86_64-linux-gnu/qt5/QtCore/qmap.h \
- /usr/include/c++/13/variant \
- /usr/include/x86_64-linux-gnu/qt5/QtGui/qpainterpath.h \
- /usr/include/x86_64-linux-gnu/qt5/QtCore/QMap \
- /usr/include/x86_64-linux-gnu/qt5/QtCore/qmap.h \
->>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QVector \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qvector.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QObject \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qobject.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtNetwork/QSslConfiguration \
+ /usr/include/x86_64-linux-gnu/qt5/QtNetwork/qsslconfiguration.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtNetwork/qsslsocket.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtNetwork/qtcpsocket.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtNetwork/qabstractsocket.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qdebug.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qtextstream.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qcontiguouscache.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtNetwork/qsslerror.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtNetwork/qsslcertificate.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qcryptographichash.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qdatetime.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtNetwork/qssl.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QFlags \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qflags.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtNetwork/QSslPreSharedKeyAuthenticator \
+ /usr/include/x86_64-linux-gnu/qt5/QtNetwork/qsslpresharedkeyauthenticator.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QMetaType \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qmetatype.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtWebEngineWidgets/qtwebenginewidgetsglobal.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtWebEngineWidgets/qwebenginepage.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtWebEngineWidgets/qwebengineclientcertificateselection.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtWebEngineWidgets/qwebenginedownloaditem.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtWebEngineCore/qwebenginecallback.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtWebEngineCore/qtwebenginecoreglobal.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtWebEngineCore/qtwebenginecore-config.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtWebEngineCore/qwebenginehttprequest.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qurl.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtGui/qpagelayout.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtGui/qpagesize.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtWebEngineWidgets/QWebEngineSettings \
+ /usr/include/x86_64-linux-gnu/qt5/QtWebEngineWidgets/qwebenginesettings.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtWebChannel/QWebChannel \
+ /usr/include/x86_64-linux-gnu/qt5/QtWebChannel/qwebchannel.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QJsonValue \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qjsonvalue.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qcborvalue.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qcborcommon.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/quuid.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtWebChannel/qwebchannelglobal.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QMenu \
+ /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qmenu.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qaction.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qactiongroup.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QJsonObject \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qjsonobject.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qjsonvalue.h \
- /usr/include/x86_64-linux-gnu/qt5/QtCore/qcborvalue.h \
- /usr/include/x86_64-linux-gnu/qt5/QtCore/qdatetime.h \
- /usr/include/x86_64-linux-gnu/qt5/QtCore/qcborcommon.h \
- /usr/include/x86_64-linux-gnu/qt5/QtCore/qdebug.h \
- /usr/include/x86_64-linux-gnu/qt5/QtCore/qtextstream.h \
-<<<<<<< HEAD
- /usr/include/x86_64-linux-gnu/qt5/QtCore/qcontiguouscache.h \
- /usr/include/x86_64-linux-gnu/qt5/QtCore/qurl.h \
- /usr/include/x86_64-linux-gnu/qt5/QtCore/quuid.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QJsonArray \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qjsonarray.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QJsonDocument \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qjsondocument.h \
  /home/dubem/cfg_parser/include/cfg_analyzer.h \
- /usr/lib/llvm-18/include/clang/AST/ASTContext.h \
+ /usr/lib/llvm-18/include/clang/Analysis/CFG.h \
+ /usr/lib/llvm-18/include/clang/AST/Attr.h \
  /usr/lib/llvm-18/include/clang/AST/ASTFwd.h \
  /usr/lib/llvm-18/include/clang/AST/DeclNodes.inc \
  /usr/lib/llvm-18/include/clang/AST/StmtNodes.inc \
  /usr/lib/llvm-18/include/clang/AST/TypeNodes.inc \
  /usr/lib/llvm-18/include/llvm/Frontend/OpenMP/OMP.inc \
  /usr/lib/llvm-18/include/clang/Basic/AttrList.inc \
- /usr/lib/llvm-18/include/clang/AST/CanonicalType.h \
- /usr/lib/llvm-18/include/clang/AST/Type.h \
- /usr/lib/llvm-18/include/clang/AST/DependenceFlags.h \
- /usr/lib/llvm-18/include/clang/Basic/BitmaskEnum.h \
- /usr/lib/llvm-18/include/llvm/ADT/BitmaskEnum.h \
- /usr/include/c++/13/cassert \
- /usr/lib/llvm-18/include/llvm/ADT/STLForwardCompat.h \
- /usr/include/c++/13/optional \
- /usr/lib/llvm-18/include/llvm/Support/MathExtras.h \
- /usr/lib/llvm-18/include/llvm/ADT/bit.h \
- /usr/lib/llvm-18/include/llvm/Support/Compiler.h \
- /usr/lib/llvm-18/include/llvm/Config/llvm-config.h \
- /usr/include/c++/13/climits /usr/include/c++/13/cstring \
- /usr/lib/llvm-18/include/clang/AST/NestedNameSpecifier.h \
- /usr/lib/llvm-18/include/clang/Basic/Diagnostic.h \
- /usr/lib/llvm-18/include/clang/Basic/DiagnosticIDs.h \
- /usr/lib/llvm-18/include/clang/Basic/LLVM.h \
- /usr/lib/llvm-18/include/llvm/Support/Casting.h \
- /usr/lib/llvm-18/include/llvm/Support/type_traits.h \
- /usr/lib/llvm-18/include/llvm/ADT/SmallVector.h \
- /usr/lib/llvm-18/include/llvm/ADT/IntrusiveRefCntPtr.h \
- /usr/lib/llvm-18/include/llvm/ADT/StringRef.h \
- /usr/lib/llvm-18/include/llvm/ADT/DenseMapInfo.h \
- /usr/lib/llvm-18/include/llvm/ADT/STLFunctionalExtras.h \
- /usr/lib/llvm-18/include/llvm/ADT/iterator_range.h \
- /usr/lib/llvm-18/include/llvm/ADT/ADL.h \
- /usr/lib/llvm-18/include/clang/Basic/DiagnosticCommonKinds.inc \
- /usr/lib/llvm-18/include/clang/Basic/DiagnosticOptions.h \
- /usr/lib/llvm-18/include/clang/Basic/DiagnosticOptions.def \
- /usr/lib/llvm-18/include/clang/Basic/SourceLocation.h \
- /usr/lib/llvm-18/include/clang/Basic/FileEntry.h \
- /usr/lib/llvm-18/include/clang/Basic/CustomizableOptional.h \
-=======
- /usr/include/x86_64-linux-gnu/qt5/QtCore/qlocale.h \
- /usr/include/x86_64-linux-gnu/qt5/QtCore/qset.h \
- /usr/include/x86_64-linux-gnu/qt5/QtCore/qcontiguouscache.h \
- /usr/include/x86_64-linux-gnu/qt5/QtCore/qregularexpression.h \
- /usr/include/x86_64-linux-gnu/qt5/QtCore/qurl.h \
- /usr/include/x86_64-linux-gnu/qt5/QtCore/quuid.h \
- /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QMainWindow \
- /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qmainwindow.h \
- /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qtabwidget.h \
- /usr/include/x86_64-linux-gnu/qt5/QtGui/qicon.h \
- /usr/include/x86_64-linux-gnu/qt5/QtCore/QStringList \
- /usr/include/x86_64-linux-gnu/qt5/QtCore/qstringlist.h \
- /home/dubem/cfg_parser/build/CFGParser_autogen/include/ui_mainwindow.h \
- /usr/include/x86_64-linux-gnu/qt5/QtCore/QVariant \
- /usr/include/x86_64-linux-gnu/qt5/QtCore/qvariant.h \
- /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QApplication \
- /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qapplication.h \
- /usr/include/x86_64-linux-gnu/qt5/QtCore/qcoreapplication.h \
- /usr/include/x86_64-linux-gnu/qt5/QtCore/qcoreevent.h \
- /usr/include/x86_64-linux-gnu/qt5/QtCore/qeventloop.h \
- /usr/include/x86_64-linux-gnu/qt5/QtGui/qguiapplication.h \
- /usr/include/x86_64-linux-gnu/qt5/QtGui/qinputmethod.h \
- /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QHBoxLayout \
- /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qboxlayout.h \
- /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qlayout.h \
- /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qlayoutitem.h \
- /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qboxlayout.h \
- /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qgridlayout.h \
- /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QLineEdit \
- /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qlineedit.h \
- /usr/include/x86_64-linux-gnu/qt5/QtGui/qtextcursor.h \
- /usr/include/x86_64-linux-gnu/qt5/QtGui/qtextformat.h \
- /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QListWidget \
- /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qlistwidget.h \
- /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qlistview.h \
- /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qabstractitemview.h \
- /usr/include/x86_64-linux-gnu/qt5/QtCore/qabstractitemmodel.h \
- /usr/include/x86_64-linux-gnu/qt5/QtCore/qitemselectionmodel.h \
- /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qabstractitemdelegate.h \
- /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qstyleoption.h \
- /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qabstractspinbox.h \
- /usr/include/x86_64-linux-gnu/qt5/QtGui/qvalidator.h \
- /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qslider.h \
- /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qabstractslider.h \
- /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qstyle.h \
- /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qtabbar.h \
- /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qrubberband.h \
- /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QMainWindow \
- /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QMenuBar \
- /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qmenubar.h \
- /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qmenu.h \
- /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qaction.h \
- /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qactiongroup.h \
- /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QPushButton \
- /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qpushbutton.h \
- /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qabstractbutton.h \
- /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QStatusBar \
- /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qstatusbar.h \
- /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QVBoxLayout \
- /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QWidget \
- /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qwidget.h \
- /home/dubem/cfg_parser/include/customgraphview.h \
- /home/dubem/cfg_parser/include/graph_generator.h /usr/include/c++/13/set \
- /usr/include/c++/13/bits/stl_set.h \
- /usr/include/c++/13/bits/stl_multiset.h \
- /usr/lib/llvm-18/include/clang/AST/Stmt.h \
- /usr/lib/llvm-18/include/clang/AST/APValue.h \
+ /usr/lib/llvm-18/include/clang/AST/AttrIterator.h \
  /usr/lib/llvm-18/include/clang/Basic/LLVM.h \
  /usr/lib/llvm-18/include/llvm/Support/Casting.h \
  /usr/lib/llvm-18/include/llvm/Support/Compiler.h \
@@ -544,44 +409,73 @@ CMakeFiles/CFGParser.dir/src/gui/mainwindow.cpp.o: \
  /usr/lib/llvm-18/include/llvm/Support/type_traits.h \
  /usr/include/c++/13/cassert /usr/include/c++/13/optional \
  /usr/lib/llvm-18/include/llvm/ADT/SmallVector.h \
- /usr/include/c++/13/cstring \
- /usr/lib/llvm-18/include/llvm/ADT/APFixedPoint.h \
- /usr/lib/llvm-18/include/llvm/ADT/APSInt.h \
+ /usr/include/c++/13/cstring /usr/lib/llvm-18/include/clang/AST/Decl.h \
+ /usr/lib/llvm-18/include/clang/AST/APNumericStorage.h \
+ /usr/lib/llvm-18/include/llvm/ADT/APFloat.h \
  /usr/lib/llvm-18/include/llvm/ADT/APInt.h \
  /usr/lib/llvm-18/include/llvm/Support/MathExtras.h \
  /usr/lib/llvm-18/include/llvm/ADT/bit.h /usr/include/c++/13/climits \
- /usr/lib/llvm-18/include/llvm/ADT/DenseMapInfo.h \
->>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
+ /usr/lib/llvm-18/include/llvm/ADT/ArrayRef.h \
  /usr/lib/llvm-18/include/llvm/ADT/Hashing.h \
  /usr/lib/llvm-18/include/llvm/Support/DataTypes.h \
  /usr/lib/llvm-18/include/llvm-c/DataTypes.h /usr/include/inttypes.h \
  /usr/lib/llvm-18/include/llvm/Support/ErrorHandling.h \
  /usr/lib/llvm-18/include/llvm/Support/SwapByteOrder.h \
-<<<<<<< HEAD
- /usr/lib/llvm-18/include/clang/Basic/DirectoryEntry.h \
+ /usr/lib/llvm-18/include/llvm/ADT/STLForwardCompat.h \
  /usr/lib/llvm-18/include/llvm/ADT/STLExtras.h \
+ /usr/lib/llvm-18/include/llvm/ADT/ADL.h \
+ /usr/lib/llvm-18/include/llvm/ADT/STLFunctionalExtras.h \
  /usr/lib/llvm-18/include/llvm/ADT/iterator.h \
+ /usr/lib/llvm-18/include/llvm/ADT/iterator_range.h \
  /usr/lib/llvm-18/include/llvm/Config/abi-breaking.h \
- /usr/lib/llvm-18/include/llvm/ADT/StringMap.h \
- /usr/lib/llvm-18/include/llvm/ADT/StringMapEntry.h \
- /usr/lib/llvm-18/include/llvm/Support/AllocatorBase.h \
- /usr/lib/llvm-18/include/llvm/Support/MemAlloc.h \
- /usr/lib/llvm-18/include/llvm/Support/PointerLikeTypeTraits.h \
- /usr/lib/llvm-18/include/llvm/Support/ErrorOr.h \
- /usr/lib/llvm-18/include/llvm/Support/AlignOf.h \
- /usr/lib/llvm-18/include/llvm/ADT/PointerUnion.h \
- /usr/lib/llvm-18/include/llvm/ADT/PointerIntPair.h \
- /usr/lib/llvm-18/include/llvm/Support/FileSystem/UniqueID.h \
- /usr/lib/llvm-18/include/clang/Basic/Specifiers.h \
- /usr/lib/llvm-18/include/clang/Basic/TransformTypeTraits.def \
- /usr/lib/llvm-18/include/clang/Basic/OpenCLImageTypes.def \
- /usr/lib/llvm-18/include/llvm/ADT/ArrayRef.h \
- /usr/lib/llvm-18/include/llvm/ADT/DenseMap.h \
- /usr/lib/llvm-18/include/llvm/ADT/EpochTracker.h \
- /usr/lib/llvm-18/include/llvm/Support/ReverseIteration.h \
+ /usr/lib/llvm-18/include/llvm/ADT/FloatingPointMode.h \
+ /usr/lib/llvm-18/include/llvm/ADT/BitmaskEnum.h \
+ /usr/lib/llvm-18/include/llvm/ADT/StringSwitch.h \
+ /usr/lib/llvm-18/include/llvm/ADT/StringRef.h \
+ /usr/lib/llvm-18/include/llvm/ADT/DenseMapInfo.h \
+ /usr/lib/llvm-18/include/llvm/Support/raw_ostream.h \
+ /usr/lib/llvm-18/include/clang/AST/APValue.h \
+ /usr/lib/llvm-18/include/llvm/ADT/APFixedPoint.h \
+ /usr/lib/llvm-18/include/llvm/ADT/APSInt.h \
+ /usr/lib/llvm-18/include/llvm/ADT/SmallString.h \
  /usr/lib/llvm-18/include/llvm/ADT/FoldingSet.h \
  /usr/lib/llvm-18/include/llvm/Support/Allocator.h \
  /usr/lib/llvm-18/include/llvm/Support/Alignment.h \
+ /usr/lib/llvm-18/include/llvm/Support/AllocatorBase.h \
+ /usr/lib/llvm-18/include/llvm/Support/MemAlloc.h \
+ /usr/lib/llvm-18/include/llvm/ADT/PointerIntPair.h \
+ /usr/lib/llvm-18/include/llvm/Support/PointerLikeTypeTraits.h \
+ /usr/lib/llvm-18/include/llvm/ADT/PointerUnion.h \
+ /usr/lib/llvm-18/include/llvm/Support/AlignOf.h \
+ /usr/lib/llvm-18/include/clang/AST/ASTContextAllocate.h \
+ /usr/lib/llvm-18/include/clang/AST/DeclAccessPair.h \
+ /usr/lib/llvm-18/include/clang/Basic/Specifiers.h \
+ /usr/lib/llvm-18/include/clang/Basic/TransformTypeTraits.def \
+ /usr/lib/llvm-18/include/clang/Basic/OpenCLImageTypes.def \
+ /usr/lib/llvm-18/include/clang/AST/DeclBase.h \
+ /usr/lib/llvm-18/include/clang/AST/ASTDumperUtils.h \
+ /usr/lib/llvm-18/include/clang/AST/DeclarationName.h \
+ /usr/lib/llvm-18/include/clang/AST/Type.h \
+ /usr/lib/llvm-18/include/clang/AST/DependenceFlags.h \
+ /usr/lib/llvm-18/include/clang/Basic/BitmaskEnum.h \
+ /usr/lib/llvm-18/include/clang/AST/NestedNameSpecifier.h \
+ /usr/lib/llvm-18/include/clang/Basic/Diagnostic.h \
+ /usr/lib/llvm-18/include/clang/Basic/DiagnosticIDs.h \
+ /usr/lib/llvm-18/include/llvm/ADT/IntrusiveRefCntPtr.h \
+ /usr/lib/llvm-18/include/clang/Basic/DiagnosticCommonKinds.inc \
+ /usr/lib/llvm-18/include/clang/Basic/DiagnosticOptions.h \
+ /usr/lib/llvm-18/include/clang/Basic/DiagnosticOptions.def \
+ /usr/lib/llvm-18/include/clang/Basic/SourceLocation.h \
+ /usr/lib/llvm-18/include/clang/Basic/FileEntry.h \
+ /usr/lib/llvm-18/include/clang/Basic/CustomizableOptional.h \
+ /usr/lib/llvm-18/include/clang/Basic/DirectoryEntry.h \
+ /usr/lib/llvm-18/include/llvm/ADT/StringMap.h \
+ /usr/lib/llvm-18/include/llvm/ADT/StringMapEntry.h \
+ /usr/lib/llvm-18/include/llvm/Support/ErrorOr.h \
+ /usr/lib/llvm-18/include/llvm/Support/FileSystem/UniqueID.h \
+ /usr/lib/llvm-18/include/llvm/ADT/DenseMap.h \
+ /usr/lib/llvm-18/include/llvm/ADT/EpochTracker.h \
+ /usr/lib/llvm-18/include/llvm/Support/ReverseIteration.h \
  /usr/lib/llvm-18/include/clang/AST/TemplateName.h \
  /usr/lib/llvm-18/include/clang/Basic/AddressSpaces.h \
  /usr/lib/llvm-18/include/clang/Basic/AttrKinds.h \
@@ -589,8 +483,6 @@ CMakeFiles/CFGParser.dir/src/gui/mainwindow.cpp.o: \
  /usr/lib/llvm-18/include/clang/Basic/Linkage.h \
  /usr/lib/llvm-18/include/clang/Basic/PartialDiagnostic.h \
  /usr/lib/llvm-18/include/clang/Basic/Visibility.h \
- /usr/lib/llvm-18/include/llvm/ADT/APInt.h \
- /usr/lib/llvm-18/include/llvm/ADT/APSInt.h \
  /usr/lib/llvm-18/include/llvm/ADT/Twine.h \
  /usr/lib/llvm-18/include/llvm/Support/TrailingObjects.h \
  /usr/lib/llvm-18/include/clang/Basic/OpenCLExtensionTypes.def \
@@ -599,25 +491,6 @@ CMakeFiles/CFGParser.dir/src/gui/mainwindow.cpp.o: \
  /usr/lib/llvm-18/include/clang/Basic/RISCVVTypes.def \
  /usr/lib/llvm-18/include/clang/Basic/WebAssemblyReferenceTypes.def \
  /usr/lib/llvm-18/include/clang/AST/BuiltinTypes.def \
- /usr/lib/llvm-18/include/clang/AST/CommentCommandTraits.h \
- /usr/lib/llvm-18/include/clang/Basic/CommentOptions.h \
- /usr/lib/llvm-18/include/clang/AST/CommentCommandList.inc \
- /usr/lib/llvm-18/include/clang/AST/ComparisonCategories.h \
- /usr/lib/llvm-18/include/clang/AST/Decl.h \
- /usr/lib/llvm-18/include/clang/AST/APNumericStorage.h \
- /usr/lib/llvm-18/include/llvm/ADT/APFloat.h \
- /usr/lib/llvm-18/include/llvm/ADT/FloatingPointMode.h \
- /usr/lib/llvm-18/include/llvm/ADT/StringSwitch.h \
- /usr/lib/llvm-18/include/llvm/Support/raw_ostream.h \
- /usr/lib/llvm-18/include/clang/AST/APValue.h \
- /usr/lib/llvm-18/include/llvm/ADT/APFixedPoint.h \
- /usr/lib/llvm-18/include/llvm/ADT/SmallString.h \
- /usr/lib/llvm-18/include/clang/AST/ASTContextAllocate.h \
- /usr/lib/llvm-18/include/clang/AST/DeclAccessPair.h \
- /usr/lib/llvm-18/include/clang/AST/DeclBase.h \
- /usr/lib/llvm-18/include/clang/AST/ASTDumperUtils.h \
- /usr/lib/llvm-18/include/clang/AST/AttrIterator.h \
- /usr/lib/llvm-18/include/clang/AST/DeclarationName.h \
  /usr/lib/llvm-18/include/clang/Basic/IdentifierTable.h \
  /usr/lib/llvm-18/include/clang/Basic/TokenKinds.h \
  /usr/lib/llvm-18/include/clang/Basic/TokenKinds.def \
@@ -626,54 +499,7 @@ CMakeFiles/CFGParser.dir/src/gui/mainwindow.cpp.o: \
  /usr/lib/llvm-18/include/clang/Basic/OperatorKinds.def \
  /usr/lib/llvm-18/include/clang/AST/SelectorLocationsKind.h \
  /usr/lib/llvm-18/include/clang/Basic/LangOptions.h \
-=======
- /usr/lib/llvm-18/include/llvm/ADT/STLForwardCompat.h \
- /usr/lib/llvm-18/include/llvm/ADT/SmallString.h \
- /usr/lib/llvm-18/include/llvm/ADT/StringRef.h \
- /usr/lib/llvm-18/include/llvm/ADT/STLFunctionalExtras.h \
- /usr/lib/llvm-18/include/llvm/ADT/iterator_range.h \
- /usr/lib/llvm-18/include/llvm/ADT/ADL.h \
- /usr/lib/llvm-18/include/llvm/Support/raw_ostream.h \
- /usr/lib/llvm-18/include/llvm/ADT/APFloat.h \
- /usr/lib/llvm-18/include/llvm/ADT/ArrayRef.h \
- /usr/lib/llvm-18/include/llvm/ADT/STLExtras.h \
- /usr/lib/llvm-18/include/llvm/ADT/iterator.h \
- /usr/lib/llvm-18/include/llvm/Config/abi-breaking.h \
- /usr/lib/llvm-18/include/llvm/ADT/FloatingPointMode.h \
- /usr/lib/llvm-18/include/llvm/ADT/BitmaskEnum.h \
- /usr/lib/llvm-18/include/llvm/ADT/StringSwitch.h \
- /usr/lib/llvm-18/include/llvm/ADT/FoldingSet.h \
- /usr/lib/llvm-18/include/llvm/Support/Allocator.h \
- /usr/lib/llvm-18/include/llvm/Support/Alignment.h \
- /usr/lib/llvm-18/include/llvm/Support/AllocatorBase.h \
- /usr/lib/llvm-18/include/llvm/Support/MemAlloc.h \
- /usr/lib/llvm-18/include/llvm/ADT/PointerIntPair.h \
- /usr/lib/llvm-18/include/llvm/Support/PointerLikeTypeTraits.h \
- /usr/lib/llvm-18/include/llvm/ADT/PointerUnion.h \
- /usr/lib/llvm-18/include/llvm/Support/AlignOf.h \
- /usr/lib/llvm-18/include/clang/AST/DeclGroup.h \
- /usr/lib/llvm-18/include/llvm/Support/TrailingObjects.h \
- /usr/lib/llvm-18/include/clang/AST/DependenceFlags.h \
- /usr/lib/llvm-18/include/clang/Basic/BitmaskEnum.h \
- /usr/lib/llvm-18/include/clang/AST/OperationKinds.h \
- /usr/lib/llvm-18/include/clang/AST/OperationKinds.def \
- /usr/lib/llvm-18/include/clang/AST/StmtIterator.h \
- /usr/lib/llvm-18/include/clang/Basic/CapturedStmt.h \
- /usr/lib/llvm-18/include/clang/Basic/IdentifierTable.h \
- /usr/lib/llvm-18/include/clang/Basic/DiagnosticIDs.h \
- /usr/lib/llvm-18/include/llvm/ADT/IntrusiveRefCntPtr.h \
- /usr/lib/llvm-18/include/clang/Basic/DiagnosticCommonKinds.inc \
- /usr/lib/llvm-18/include/clang/Basic/TokenKinds.h \
- /usr/lib/llvm-18/include/clang/Basic/TokenKinds.def \
- /usr/lib/llvm-18/include/clang/Basic/TransformTypeTraits.def \
- /usr/lib/llvm-18/include/clang/Basic/OpenCLImageTypes.def \
- /usr/lib/llvm-18/include/clang/Basic/RegularKeywordAttrInfo.inc \
- /usr/lib/llvm-18/include/llvm/ADT/StringMap.h \
- /usr/lib/llvm-18/include/llvm/ADT/StringMapEntry.h \
- /usr/lib/llvm-18/include/clang/Basic/Lambda.h \
- /usr/lib/llvm-18/include/clang/Basic/LangOptions.h \
  /usr/lib/llvm-18/include/clang/Basic/CommentOptions.h \
->>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
  /usr/lib/llvm-18/include/clang/Basic/LangStandard.h \
  /usr/lib/llvm-18/include/clang/Basic/LangStandards.def \
  /usr/lib/llvm-18/include/clang/Basic/ObjCRuntime.h \
@@ -681,88 +507,18 @@ CMakeFiles/CFGParser.dir/src/gui/mainwindow.cpp.o: \
  /usr/lib/llvm-18/include/llvm/Support/Endian.h \
  /usr/lib/llvm-18/include/llvm/Support/VersionTuple.h \
  /usr/lib/llvm-18/include/llvm/TargetParser/Triple.h \
-<<<<<<< HEAD
-=======
- /usr/lib/llvm-18/include/llvm/ADT/Twine.h \
->>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
  /usr/lib/llvm-18/include/clang/Basic/Sanitizers.h \
  /usr/lib/llvm-18/include/llvm/Transforms/Instrumentation/AddressSanitizerOptions.h \
  /usr/lib/llvm-18/include/clang/Basic/Sanitizers.def \
  /usr/lib/llvm-18/include/clang/Basic/TargetCXXABI.h \
  /usr/lib/llvm-18/include/clang/Basic/TargetCXXABI.def \
-<<<<<<< HEAD
  /usr/lib/llvm-18/include/clang/Basic/LangOptions.def \
  /usr/lib/llvm-18/include/clang/Basic/FPOptions.def \
-=======
- /usr/lib/llvm-18/include/clang/Basic/Visibility.h \
- /usr/lib/llvm-18/include/clang/Basic/Linkage.h \
- /usr/lib/llvm-18/include/clang/Basic/LangOptions.def \
- /usr/lib/llvm-18/include/clang/Basic/FPOptions.def \
- /usr/lib/llvm-18/include/clang/Basic/OperatorKinds.h \
- /usr/lib/llvm-18/include/clang/Basic/OperatorKinds.def \
- /usr/lib/llvm-18/include/clang/Basic/SourceLocation.h \
- /usr/lib/llvm-18/include/clang/Basic/FileEntry.h \
- /usr/lib/llvm-18/include/clang/Basic/CustomizableOptional.h \
- /usr/lib/llvm-18/include/clang/Basic/DirectoryEntry.h \
- /usr/lib/llvm-18/include/llvm/Support/ErrorOr.h \
- /usr/lib/llvm-18/include/llvm/Support/FileSystem/UniqueID.h \
- /usr/lib/llvm-18/include/clang/Basic/Specifiers.h \
- /usr/lib/llvm-18/include/clang/Basic/TypeTraits.h \
- /usr/lib/llvm-18/include/clang/AST/StmtNodes.inc \
- /usr/lib/llvm-18/include/clang/Analysis/CFG.h \
- /usr/lib/llvm-18/include/clang/AST/Attr.h \
- /usr/lib/llvm-18/include/clang/AST/ASTFwd.h \
- /usr/lib/llvm-18/include/clang/AST/DeclNodes.inc \
- /usr/lib/llvm-18/include/clang/AST/TypeNodes.inc \
- /usr/lib/llvm-18/include/llvm/Frontend/OpenMP/OMP.inc \
- /usr/lib/llvm-18/include/clang/Basic/AttrList.inc \
- /usr/lib/llvm-18/include/clang/AST/AttrIterator.h \
- /usr/lib/llvm-18/include/clang/AST/Decl.h \
- /usr/lib/llvm-18/include/clang/AST/APNumericStorage.h \
- /usr/lib/llvm-18/include/clang/AST/ASTContextAllocate.h \
- /usr/lib/llvm-18/include/clang/AST/DeclAccessPair.h \
- /usr/lib/llvm-18/include/clang/AST/DeclBase.h \
- /usr/lib/llvm-18/include/clang/AST/ASTDumperUtils.h \
- /usr/lib/llvm-18/include/clang/AST/DeclarationName.h \
- /usr/lib/llvm-18/include/clang/AST/Type.h \
- /usr/lib/llvm-18/include/clang/AST/NestedNameSpecifier.h \
- /usr/lib/llvm-18/include/clang/Basic/Diagnostic.h \
- /usr/lib/llvm-18/include/clang/Basic/DiagnosticOptions.h \
- /usr/lib/llvm-18/include/clang/Basic/DiagnosticOptions.def \
- /usr/lib/llvm-18/include/llvm/ADT/DenseMap.h \
- /usr/lib/llvm-18/include/llvm/ADT/EpochTracker.h \
- /usr/lib/llvm-18/include/llvm/Support/ReverseIteration.h \
- /usr/lib/llvm-18/include/clang/AST/TemplateName.h \
- /usr/lib/llvm-18/include/clang/Basic/AddressSpaces.h \
- /usr/lib/llvm-18/include/clang/Basic/AttrKinds.h \
- /usr/lib/llvm-18/include/clang/Basic/ExceptionSpecificationType.h \
- /usr/lib/llvm-18/include/clang/Basic/PartialDiagnostic.h \
- /usr/lib/llvm-18/include/clang/Basic/OpenCLExtensionTypes.def \
- /usr/lib/llvm-18/include/clang/Basic/AArch64SVEACLETypes.def \
- /usr/lib/llvm-18/include/clang/Basic/PPCTypes.def \
- /usr/lib/llvm-18/include/clang/Basic/RISCVVTypes.def \
- /usr/lib/llvm-18/include/clang/Basic/WebAssemblyReferenceTypes.def \
- /usr/lib/llvm-18/include/clang/AST/BuiltinTypes.def \
- /usr/lib/llvm-18/include/clang/AST/SelectorLocationsKind.h \
->>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
  /usr/lib/llvm-18/include/llvm/Support/PrettyStackTrace.h \
  /usr/lib/llvm-18/include/clang/AST/ExternalASTSource.h \
  /usr/lib/llvm-18/include/clang/AST/CharUnits.h \
  /usr/lib/llvm-18/include/clang/AST/Redeclarable.h \
  /usr/lib/llvm-18/include/clang/Basic/PragmaKinds.h \
-<<<<<<< HEAD
- /usr/lib/llvm-18/include/clang/AST/PrettyPrinter.h \
- /usr/lib/llvm-18/include/clang/AST/RawCommentList.h \
- /usr/lib/llvm-18/include/llvm/ADT/DenseSet.h \
- /usr/lib/llvm-18/include/llvm/ADT/MapVector.h \
- /usr/lib/llvm-18/include/llvm/ADT/TinyPtrVector.h \
- /usr/lib/llvm-18/include/llvm/Support/TypeSize.h \
- /usr/lib/llvm-18/include/clang/AST/RecursiveASTVisitor.h \
- /usr/lib/llvm-18/include/clang/AST/ASTConcept.h \
- /usr/lib/llvm-18/include/clang/AST/TemplateBase.h \
- /usr/lib/llvm-18/include/clang/AST/Attr.h \
-=======
->>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
  /usr/lib/llvm-18/include/clang/Basic/AttributeCommonInfo.h \
  /usr/lib/llvm-18/include/clang/Sema/AttrParsedAttrList.inc \
  /usr/lib/llvm-18/include/clang/Basic/OpenMPKinds.h \
@@ -790,20 +546,15 @@ CMakeFiles/CFGParser.dir/src/gui/mainwindow.cpp.o: \
  /usr/lib/llvm-18/include/llvm/IR/Metadata.def \
  /usr/lib/llvm-18/include/llvm/Support/CodeGen.h \
  /usr/lib/llvm-18/include/clang/AST/Attrs.inc \
-<<<<<<< HEAD
-=======
  /usr/lib/llvm-18/include/clang/AST/ExprCXX.h \
  /usr/lib/llvm-18/include/clang/AST/ASTConcept.h \
  /usr/lib/llvm-18/include/clang/AST/TemplateBase.h \
  /usr/lib/llvm-18/include/clang/AST/ComputeDependence.h \
->>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
  /usr/lib/llvm-18/include/clang/AST/DeclCXX.h \
  /usr/lib/llvm-18/include/clang/AST/ASTUnresolvedSet.h \
  /usr/lib/llvm-18/include/clang/AST/ASTVector.h \
  /usr/lib/llvm-18/include/clang/AST/UnresolvedSet.h \
  /usr/lib/llvm-18/include/clang/AST/Expr.h \
-<<<<<<< HEAD
- /usr/lib/llvm-18/include/clang/AST/ComputeDependence.h \
  /usr/lib/llvm-18/include/clang/AST/OperationKinds.h \
  /usr/lib/llvm-18/include/clang/AST/OperationKinds.def \
  /usr/lib/llvm-18/include/clang/AST/Stmt.h \
@@ -812,8 +563,6 @@ CMakeFiles/CFGParser.dir/src/gui/mainwindow.cpp.o: \
  /usr/lib/llvm-18/include/clang/Basic/CapturedStmt.h \
  /usr/lib/llvm-18/include/clang/Basic/Lambda.h \
  /usr/lib/llvm-18/include/clang/Basic/TypeTraits.h \
-=======
->>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
  /usr/lib/llvm-18/include/clang/Basic/CharInfo.h \
  /usr/lib/llvm-18/include/clang/Basic/SyncScope.h \
  /usr/lib/llvm-18/include/llvm/Support/AtomicOrdering.h \
@@ -821,22 +570,36 @@ CMakeFiles/CFGParser.dir/src/gui/mainwindow.cpp.o: \
  /usr/lib/llvm-18/include/clang/AST/LambdaCapture.h \
  /usr/lib/llvm-18/include/clang/AST/TypeLoc.h \
  /usr/lib/llvm-18/include/clang/AST/TypeLocNodes.def \
-<<<<<<< HEAD
+ /usr/lib/llvm-18/include/llvm/ADT/TinyPtrVector.h \
  /usr/lib/llvm-18/include/clang/AST/CXXRecordDeclDefinitionBits.def \
- /usr/lib/llvm-18/include/clang/AST/DeclFriend.h \
  /usr/lib/llvm-18/include/clang/AST/DeclTemplate.h \
+ /usr/lib/llvm-18/include/clang/AST/ASTContext.h \
+ /usr/lib/llvm-18/include/clang/AST/CanonicalType.h \
+ /usr/lib/llvm-18/include/clang/AST/CommentCommandTraits.h \
+ /usr/lib/llvm-18/include/clang/AST/CommentCommandList.inc \
+ /usr/lib/llvm-18/include/clang/AST/ComparisonCategories.h \
+ /usr/lib/llvm-18/include/clang/AST/PrettyPrinter.h \
+ /usr/lib/llvm-18/include/clang/AST/RawCommentList.h \
+ /usr/lib/llvm-18/include/llvm/ADT/DenseSet.h \
+ /usr/lib/llvm-18/include/llvm/ADT/MapVector.h \
+ /usr/lib/llvm-18/include/llvm/Support/TypeSize.h \
+ /usr/lib/llvm-18/include/clang/AST/StmtCXX.h \
+ /usr/lib/llvm-18/include/clang/Basic/ExpressionTraits.h \
+ /usr/lib/llvm-18/include/clang/AST/ExprObjC.h \
  /usr/lib/llvm-18/include/clang/AST/DeclObjC.h \
  /usr/lib/llvm-18/include/clang/AST/DeclObjCCommon.h \
+ /usr/lib/llvm-18/include/clang/Analysis/ConstructionContext.h \
+ /usr/lib/llvm-18/include/clang/Analysis/Support/BumpVector.h \
+ /usr/lib/llvm-18/include/llvm/ADT/GraphTraits.h \
+ /usr/include/c++/13/bitset \
+ /usr/lib/llvm-18/include/clang/AST/RecursiveASTVisitor.h \
+ /usr/lib/llvm-18/include/clang/AST/DeclFriend.h \
  /usr/lib/llvm-18/include/clang/AST/DeclOpenMP.h \
  /usr/lib/llvm-18/include/clang/AST/OpenMPClause.h \
  /usr/lib/llvm-18/include/llvm/Frontend/OpenMP/OMPAssume.h \
  /usr/lib/llvm-18/include/llvm/Frontend/OpenMP/OMPContext.h \
  /usr/lib/llvm-18/include/llvm/ADT/BitVector.h \
- /usr/lib/llvm-18/include/clang/AST/ExprCXX.h \
- /usr/lib/llvm-18/include/clang/AST/StmtCXX.h \
- /usr/lib/llvm-18/include/clang/Basic/ExpressionTraits.h \
  /usr/lib/llvm-18/include/clang/AST/ExprConcepts.h \
- /usr/lib/llvm-18/include/clang/AST/ExprObjC.h \
  /usr/lib/llvm-18/include/clang/AST/ExprOpenMP.h \
  /usr/lib/llvm-18/include/clang/AST/StmtObjC.h \
  /usr/lib/llvm-18/include/clang/AST/StmtOpenMP.h \
@@ -906,11 +669,6 @@ CMakeFiles/CFGParser.dir/src/gui/mainwindow.cpp.o: \
  /usr/lib/llvm-18/include/clang/Analysis/PathDiagnostic.h \
  /usr/lib/llvm-18/include/clang/Analysis/AnalysisDeclContext.h \
  /usr/lib/llvm-18/include/clang/Analysis/BodyFarm.h \
- /usr/lib/llvm-18/include/clang/Analysis/CFG.h \
- /usr/lib/llvm-18/include/clang/Analysis/ConstructionContext.h \
- /usr/lib/llvm-18/include/clang/Analysis/Support/BumpVector.h \
- /usr/lib/llvm-18/include/llvm/ADT/GraphTraits.h \
- /usr/include/c++/13/bitset \
  /usr/lib/llvm-18/include/clang/Analysis/CodeInjector.h \
  /usr/lib/llvm-18/include/clang/StaticAnalyzer/Core/Analyses.def \
  /usr/lib/llvm-18/include/clang/StaticAnalyzer/Core/AnalyzerOptions.def \
@@ -973,15 +731,11 @@ CMakeFiles/CFGParser.dir/src/gui/mainwindow.cpp.o: \
  /usr/lib/llvm-18/include/clang/Lex/TokenLexer.h \
  /usr/lib/llvm-18/include/llvm/ADT/FunctionExtras.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QString \
- /usr/include/x86_64-linux-gnu/qt5/QtCore/qstring.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QMutex \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qmutex.h \
  /home/dubem/cfg_parser/include/customgraphview.h \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QGraphicsView \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qgraphicsview.h \
- /usr/include/x86_64-linux-gnu/qt5/QtGui/qpainter.h \
- /usr/include/x86_64-linux-gnu/qt5/QtGui/qtextoption.h \
- /usr/include/x86_64-linux-gnu/qt5/QtGui/qpen.h \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qscrollarea.h \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qgraphicsscene.h \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QGraphicsScene \
@@ -994,30 +748,6 @@ CMakeFiles/CFGParser.dir/src/gui/mainwindow.cpp.o: \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qmap.h \
  /home/dubem/cfg_parser/include/graph_generator.h \
  /home/dubem/cfg_parser/include/parser.h /usr/include/nlohmann/json.hpp \
-=======
- /usr/lib/llvm-18/include/llvm/ADT/TinyPtrVector.h \
- /usr/lib/llvm-18/include/clang/AST/CXXRecordDeclDefinitionBits.def \
- /usr/lib/llvm-18/include/clang/AST/DeclTemplate.h \
- /usr/lib/llvm-18/include/clang/AST/ASTContext.h \
- /usr/lib/llvm-18/include/clang/AST/CanonicalType.h \
- /usr/lib/llvm-18/include/clang/AST/CommentCommandTraits.h \
- /usr/lib/llvm-18/include/clang/AST/CommentCommandList.inc \
- /usr/lib/llvm-18/include/clang/AST/ComparisonCategories.h \
- /usr/lib/llvm-18/include/clang/AST/PrettyPrinter.h \
- /usr/lib/llvm-18/include/clang/AST/RawCommentList.h \
- /usr/lib/llvm-18/include/llvm/ADT/DenseSet.h \
- /usr/lib/llvm-18/include/llvm/ADT/MapVector.h \
- /usr/lib/llvm-18/include/llvm/Support/TypeSize.h \
- /usr/lib/llvm-18/include/clang/AST/StmtCXX.h \
- /usr/lib/llvm-18/include/clang/Basic/ExpressionTraits.h \
- /usr/lib/llvm-18/include/clang/AST/ExprObjC.h \
- /usr/lib/llvm-18/include/clang/AST/DeclObjC.h \
- /usr/lib/llvm-18/include/clang/AST/DeclObjCCommon.h \
- /usr/lib/llvm-18/include/clang/Analysis/ConstructionContext.h \
- /usr/lib/llvm-18/include/clang/Analysis/Support/BumpVector.h \
- /usr/lib/llvm-18/include/llvm/ADT/GraphTraits.h \
- /usr/include/c++/13/bitset /usr/include/nlohmann/json.hpp \
->>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
  /usr/include/nlohmann/adl_serializer.hpp \
  /usr/include/nlohmann/detail/abi_macros.hpp \
  /usr/include/nlohmann/detail/conversions/from_json.hpp \
@@ -1117,13 +847,8 @@ CMakeFiles/CFGParser.dir/src/gui/mainwindow.cpp.o: \
  /usr/include/nlohmann/ordered_map.hpp /usr/include/c++/13/any \
  /usr/include/nlohmann/detail/macro_unscope.hpp \
  /usr/include/nlohmann/thirdparty/hedley/hedley_undef.hpp \
-<<<<<<< HEAD
- /home/dubem/cfg_parser/build/ui_mainwindow.h \
- /usr/include/x86_64-linux-gnu/qt5/QtCore/QVariant \
- /usr/include/x86_64-linux-gnu/qt5/QtCore/qvariant.h \
+ /home/dubem/cfg_parser/build/CFGParser_autogen/include/ui_mainwindow.h \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QAction \
- /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qaction.h \
- /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qactiongroup.h \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qaction.h \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QApplication \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qapplication.h \
@@ -1132,7 +857,6 @@ CMakeFiles/CFGParser.dir/src/gui/mainwindow.cpp.o: \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qeventloop.h \
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qguiapplication.h \
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qinputmethod.h \
- /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QGraphicsView \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QHBoxLayout \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qboxlayout.h \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qlayout.h \
@@ -1148,7 +872,6 @@ CMakeFiles/CFGParser.dir/src/gui/mainwindow.cpp.o: \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QListWidget \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QMainWindow \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QMenu \
- /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qmenu.h \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QMenuBar \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qmenubar.h \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qmenu.h \
@@ -1167,126 +890,10 @@ CMakeFiles/CFGParser.dir/src/gui/mainwindow.cpp.o: \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QVBoxLayout \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QWidget \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qwidget.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtWebEngineWidgets/qwebengineview.h \
  /home/dubem/cfg_parser/include/ast_extractor.h \
  /home/dubem/cfg_parser/include/cfg_analyzer.h \
  /home/dubem/cfg_parser/include/visualizer.h \
-=======
- /home/dubem/cfg_parser/include/visualizer.h \
- /home/dubem/cfg_parser/include/graph_generator.h \
- /home/dubem/cfg_parser/include/cfg_generation_action.h \
- /usr/lib/llvm-18/include/clang/Frontend/FrontendAction.h \
- /usr/lib/llvm-18/include/clang/AST/ASTConsumer.h \
- /usr/lib/llvm-18/include/clang/Frontend/ASTUnit.h \
- /usr/lib/llvm-18/include/clang-c/Index.h \
- /usr/lib/llvm-18/include/clang-c/BuildSystem.h \
- /usr/lib/llvm-18/include/clang-c/CXErrorCode.h \
- /usr/lib/llvm-18/include/clang-c/ExternC.h \
- /usr/lib/llvm-18/include/clang-c/Platform.h \
- /usr/lib/llvm-18/include/clang-c/CXString.h \
- /usr/lib/llvm-18/include/clang-c/CXDiagnostic.h \
- /usr/lib/llvm-18/include/clang-c/CXSourceLocation.h \
- /usr/lib/llvm-18/include/clang-c/CXFile.h \
- /usr/lib/llvm-18/include/clang/Basic/FileSystemOptions.h \
- /usr/lib/llvm-18/include/clang/Basic/SourceManager.h \
- /usr/lib/llvm-18/include/clang/Basic/FileManager.h \
- /usr/lib/llvm-18/include/llvm/Support/FileSystem.h \
- /usr/lib/llvm-18/include/llvm/Support/Chrono.h \
- /usr/lib/llvm-18/include/llvm/Support/FormatProviders.h \
- /usr/lib/llvm-18/include/llvm/Support/FormatVariadicDetails.h \
- /usr/lib/llvm-18/include/llvm/Support/NativeFormatting.h \
- /usr/lib/llvm-18/include/llvm/Support/Error.h \
- /usr/lib/llvm-18/include/llvm-c/Error.h \
- /usr/lib/llvm-18/include/llvm/Support/Debug.h \
- /usr/lib/llvm-18/include/llvm/Support/Format.h \
- /usr/lib/llvm-18/include/llvm/Support/MD5.h /usr/include/c++/13/stack \
- /usr/include/c++/13/deque /usr/include/c++/13/bits/stl_deque.h \
- /usr/include/c++/13/bits/deque.tcc /usr/include/c++/13/bits/stl_stack.h \
- /usr/lib/llvm-18/include/llvm/Support/VirtualFileSystem.h \
- /usr/lib/llvm-18/include/llvm/Support/Errc.h \
- /usr/lib/llvm-18/include/llvm/Support/Path.h \
- /usr/lib/llvm-18/include/llvm/Support/SourceMgr.h \
- /usr/lib/llvm-18/include/llvm/Support/MemoryBuffer.h \
- /usr/lib/llvm-18/include/llvm/Support/MemoryBufferRef.h \
- /usr/lib/llvm-18/include/llvm/Support/SMLoc.h \
- /usr/lib/llvm-18/include/llvm/ADT/BitVector.h \
- /usr/lib/llvm-18/include/llvm/ADT/PagedVector.h \
- /usr/lib/llvm-18/include/clang/Basic/TargetOptions.h \
- /usr/lib/llvm-18/include/clang/Basic/OpenCLOptions.h \
- /usr/lib/llvm-18/include/llvm/Target/TargetOptions.h \
- /usr/lib/llvm-18/include/llvm/MC/MCTargetOptions.h \
- /usr/lib/llvm-18/include/llvm/Support/Compression.h \
- /usr/lib/llvm-18/include/clang/Lex/HeaderSearchOptions.h \
- /usr/lib/llvm-18/include/llvm/ADT/CachedHashString.h \
- /usr/lib/llvm-18/include/llvm/ADT/SetVector.h \
- /usr/lib/llvm-18/include/clang/Lex/ModuleLoader.h \
- /usr/lib/llvm-18/include/clang/Basic/Module.h \
- /usr/lib/llvm-18/include/clang/Lex/PreprocessingRecord.h \
- /usr/lib/llvm-18/include/clang/Lex/PPCallbacks.h \
- /usr/lib/llvm-18/include/clang/Lex/Pragma.h \
- /usr/lib/llvm-18/include/clang/Sema/CodeCompleteConsumer.h \
- /usr/lib/llvm-18/include/clang/Lex/MacroInfo.h \
- /usr/lib/llvm-18/include/clang/Lex/Token.h \
- /usr/lib/llvm-18/include/clang/Sema/CodeCompleteOptions.h \
- /usr/lib/llvm-18/include/clang/Sema/DeclSpec.h \
- /usr/lib/llvm-18/include/clang/Sema/Ownership.h \
- /usr/lib/llvm-18/include/clang/Sema/ParsedAttr.h \
- /usr/lib/llvm-18/include/clang/Basic/AttrSubjectMatchRules.h \
- /usr/lib/llvm-18/include/clang/Basic/AttrSubMatchRulesList.inc \
- /usr/lib/llvm-18/include/clang/Basic/ParsedAttrInfo.h \
- /usr/lib/llvm-18/include/llvm/Support/Registry.h \
- /usr/lib/llvm-18/include/llvm/Support/DynamicLibrary.h \
- /usr/lib/llvm-18/include/llvm/ADT/SmallPtrSet.h \
- /usr/lib/llvm-18/include/clang/Serialization/ASTBitCodes.h \
- /usr/lib/llvm-18/include/llvm/Bitstream/BitCodes.h \
- /usr/lib/llvm-18/include/llvm/ADT/StringExtras.h \
- /usr/lib/llvm-18/include/llvm/Bitstream/BitCodeEnums.h \
- /usr/lib/llvm-18/include/clang/Serialization/TypeBitCodes.def \
- /usr/lib/llvm-18/include/clang/Frontend/PrecompiledPreamble.h \
- /usr/lib/llvm-18/include/clang/Lex/Lexer.h \
- /usr/lib/llvm-18/include/clang/Lex/DependencyDirectivesScanner.h \
- /usr/lib/llvm-18/include/clang/Lex/PreprocessorLexer.h \
- /usr/lib/llvm-18/include/clang/Lex/MultipleIncludeOpt.h \
- /usr/lib/llvm-18/include/clang/Lex/Preprocessor.h \
- /usr/lib/llvm-18/include/clang/Lex/HeaderSearch.h \
- /usr/lib/llvm-18/include/clang/Lex/DirectoryLookup.h \
- /usr/lib/llvm-18/include/clang/Lex/ModuleMap.h \
- /usr/lib/llvm-18/include/llvm/ADT/StringSet.h \
- /usr/lib/llvm-18/include/clang/Lex/HeaderMap.h \
- /usr/lib/llvm-18/include/clang/Lex/HeaderMapTypes.h \
- /usr/lib/llvm-18/include/clang/Lex/TokenLexer.h \
- /usr/lib/llvm-18/include/llvm/ADT/FunctionExtras.h \
- /usr/lib/llvm-18/include/clang/Frontend/FrontendOptions.h \
- /usr/lib/llvm-18/include/clang/Frontend/CommandLineSourceLoc.h \
- /usr/lib/llvm-18/include/llvm/Support/CommandLine.h \
- /usr/lib/llvm-18/include/llvm/Support/ManagedStatic.h \
- /usr/lib/llvm-18/include/llvm/Support/StringSaver.h \
- /usr/lib/llvm-18/include/clang/Serialization/ModuleFileExtension.h \
- /usr/lib/llvm-18/include/llvm/Support/ExtensibleRTTI.h \
- /usr/lib/llvm-18/include/clang/ASTMatchers/ASTMatchers.h \
- /usr/lib/llvm-18/include/clang/AST/ASTTypeTraits.h \
- /usr/lib/llvm-18/include/clang/AST/CXXInheritance.h \
- /usr/lib/llvm-18/include/clang/AST/TypeOrdering.h \
- /usr/lib/llvm-18/include/llvm/ADT/SmallSet.h \
- /usr/lib/llvm-18/include/clang/AST/DeclFriend.h \
- /usr/lib/llvm-18/include/clang/AST/OpenMPClause.h \
- /usr/lib/llvm-18/include/llvm/Frontend/OpenMP/OMPAssume.h \
- /usr/lib/llvm-18/include/llvm/Frontend/OpenMP/OMPContext.h \
- /usr/lib/llvm-18/include/clang/AST/ParentMapContext.h \
- /usr/lib/llvm-18/include/clang/AST/StmtObjC.h \
- /usr/lib/llvm-18/include/clang/AST/StmtOpenMP.h \
- /usr/lib/llvm-18/include/clang/ASTMatchers/ASTMatchersInternal.h \
- /usr/lib/llvm-18/include/llvm/Support/Regex.h \
- /usr/lib/llvm-18/include/clang/ASTMatchers/ASTMatchersMacros.h \
- /usr/lib/llvm-18/include/clang/ASTMatchers/ASTMatchFinder.h \
- /usr/lib/llvm-18/include/llvm/Support/Timer.h \
- /usr/lib/llvm-18/include/clang/Tooling/Tooling.h \
- /usr/lib/llvm-18/include/clang/Frontend/PCHContainerOperations.h \
- /usr/lib/llvm-18/include/clang/Serialization/PCHContainerOperations.h \
- /usr/lib/llvm-18/include/clang/Tooling/ArgumentsAdjusters.h \
- /usr/lib/llvm-18/include/llvm/Option/Option.h \
- /usr/lib/llvm-18/include/llvm/Option/OptSpecifier.h \
- /usr/lib/llvm-18/include/llvm/Option/OptTable.h \
->>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QFileDialog \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qfiledialog.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qdir.h \
@@ -1296,7 +903,6 @@ CMakeFiles/CFGParser.dir/src/gui/mainwindow.cpp.o: \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qdialog.h \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QMessageBox \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qmessagebox.h \
-<<<<<<< HEAD
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QFile \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qfile.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QDebug \
@@ -1308,8 +914,6 @@ CMakeFiles/CFGParser.dir/src/gui/mainwindow.cpp.o: \
  /usr/include/x86_64-linux-gnu/qt5/QtPrintSupport/qtprintsupportglobal.h \
  /usr/include/x86_64-linux-gnu/qt5/QtPrintSupport/qtprintsupport-config.h \
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qpagedpaintdevice.h \
- /usr/include/x86_64-linux-gnu/qt5/QtGui/qpagelayout.h \
- /usr/include/x86_64-linux-gnu/qt5/QtGui/qpagesize.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QThreadPool \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qthreadpool.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qthread.h \
@@ -1330,6 +934,8 @@ CMakeFiles/CFGParser.dir/src/gui/mainwindow.cpp.o: \
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qbrush.h \
  /usr/include/x86_64-linux-gnu/qt5/QtGui/QPen \
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qpen.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QProcess \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qprocess.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QTimer \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qtimer.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qbasictimer.h \
@@ -1405,14 +1011,11 @@ CMakeFiles/CFGParser.dir/src/gui/mainwindow.cpp.o: \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qfiledevice.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qfileinfo.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qfileselector.h \
- /usr/include/x86_64-linux-gnu/qt5/QtCore/QObject \
- /usr/include/x86_64-linux-gnu/qt5/QtCore/qobject.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QStringList \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qstringlist.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qfilesystemwatcher.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qfinalstate.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qabstractstate.h \
- /usr/include/x86_64-linux-gnu/qt5/QtCore/qflags.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qfutureinterface.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qfuturesynchronizer.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qfuture.h \
@@ -1428,7 +1031,6 @@ CMakeFiles/CFGParser.dir/src/gui/mainwindow.cpp.o: \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qisenum.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qitemselectionmodel.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qiterator.h \
- /usr/include/x86_64-linux-gnu/qt5/QtCore/qjsonvalue.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qlibrary.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qlibraryinfo.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qversionnumber.h \
@@ -1441,9 +1043,7 @@ CMakeFiles/CFGParser.dir/src/gui/mainwindow.cpp.o: \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qmargins.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qmath.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qmessageauthenticationcode.h \
- /usr/include/x86_64-linux-gnu/qt5/QtCore/qcryptographichash.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qmetaobject.h \
- /usr/include/x86_64-linux-gnu/qt5/QtCore/qmetatype.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qmimedata.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qmimedatabase.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qmimetype.h \
@@ -1465,7 +1065,6 @@ CMakeFiles/CFGParser.dir/src/gui/mainwindow.cpp.o: \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qplugin.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qpoint.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qpointer.h \
- /usr/include/x86_64-linux-gnu/qt5/QtCore/qprocess.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qprocessordetection.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qpropertyanimation.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qvariantanimation.h \
@@ -1490,7 +1089,6 @@ CMakeFiles/CFGParser.dir/src/gui/mainwindow.cpp.o: \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qsemaphore.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qsequentialanimationgroup.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qsettings.h \
- /usr/include/x86_64-linux-gnu/qt5/QtCore/qshareddata.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qsharedmemory.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qsharedpointer.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qsignalmapper.h \
@@ -1527,12 +1125,10 @@ CMakeFiles/CFGParser.dir/src/gui/mainwindow.cpp.o: \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qtransposeproxymodel.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qtypeinfo.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qtypetraits.h \
- /usr/include/x86_64-linux-gnu/qt5/QtCore/qurl.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qurlquery.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/quuid.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qvariantanimation.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qvarlengtharray.h \
- /usr/include/x86_64-linux-gnu/qt5/QtCore/qvector.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qversionnumber.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qversiontagging.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qwaitcondition.h \
@@ -1578,9 +1174,13 @@ CMakeFiles/CFGParser.dir/src/gui/mainwindow.cpp.o: \
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qsurfaceformat.h \
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qopengl.h /usr/include/GL/gl.h \
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qopenglext.h \
- /usr/include/x86_64-linux-gnu/qt5/QtGui/QSurfaceFormat
-=======
- /usr/include/x86_64-linux-gnu/qt5/QtCore/QProcess \
- /usr/include/x86_64-linux-gnu/qt5/QtCore/qprocess.h \
- /usr/lib/llvm-18/include/clang/Tooling/CompilationDatabase.h
->>>>>>> e4e3a1ee3e7575d1f091a453a24f18f29459330b
+ /usr/include/x86_64-linux-gnu/qt5/QtGui/QSurfaceFormat \
+ /usr/include/x86_64-linux-gnu/qt5/QtGui/QOpenGLContext \
+ /usr/include/x86_64-linux-gnu/qt5/QtGui/qopenglcontext.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QScopedPointer \
+ /usr/include/x86_64-linux-gnu/qt5/QtGui/qopenglversionfunctions.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtGui/QOpenGLFunctions \
+ /usr/include/x86_64-linux-gnu/qt5/QtGui/qopenglfunctions.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtGui/qopenglcontext.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QGraphicsItem \
+ /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QGraphicsLineItem

@@ -1,9 +1,0 @@
-digraph CFG {
-  node [shape=box];
-  0 [label="Block 0\n"];
-  1 [label="Block 1\nstd::__iterator_category(__first)\nstd::__uninitialized_copy_n_pair(__first, __n, __result, std::__iterator_category(__first))\nreturn std::__uninitialized_copy_n_pair(__first, __n, __result, std::__iterator_category(__first));
-\n"];
-  2 [label="Block 2\n"];
-  1 -> 0;
-  2 -> 1;
-}

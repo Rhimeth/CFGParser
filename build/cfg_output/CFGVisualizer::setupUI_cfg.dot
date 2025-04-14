@@ -1,0 +1,15 @@
+digraph "CFGVisualizer::setupUI_CFG" {
+  node [shape=rectangle, fontname="Courier"];
+  edge [fontname="Courier"];
+
+  B0 [label="EXIT"];
+  B1 [label="<recovery-expr>(setWindowTitle, "CFG Visualizer")\n<recovery-expr>(resize, 1200, 800)\nint *centralWidget;
+\nint *mainLayout;
+\nint *leftPanel;
+\nint *loadButton;
+\nint *mergeButton;
+\n<recovery-expr>(leftPanel)->addWidget(<recovery-expr>())\n<recovery-expr>(leftPanel)->addWidget(<recovery-expr>())\n<recovery-expr>(mainLayout)->addLayout(<recovery-expr>(), 1)\nsetCentralWidget(<recovery-expr>())"];
+  B2 [label="ENTRY"];
+  B1 -> B0;
+  B2 -> B1;
+}

@@ -30,6 +30,76 @@ CFGVisitor::CFGVisitor(clang::ASTContext* Context,
     }
 }
 
+std::string CFGVisitor::stmtToString(const clang::Stmt* S) {
+    std::string stmtStr;
+    llvm::raw_string_ostream rso(stmtStr);
+    S->printPretty(rso, nullptr, Context->getPrintingPolicy());
+    return rso.str();
+}
+
+std::string CFGVisitor::generateDotFromCFG(clang::FunctionDecl* FD) {
+    std::unique_ptr<clang::CFG> cfg = clang::CFG::buildCFG(
+        FD,
+        FD->getBody(),
+        Context,
+        clang::CFG::BuildOptions()
+    );
+
+    if (!cfg) return "";
+
+    std::stringstream dot;
+    dot << "digraph \"" << FD->getQualifiedNameAsString() << "_CFG\" {\n";
+    dot << "  node [shape=rectangle, fontname=\"Courier\"];\n";
+    dot << "  edge [fontname=\"Courier\"];\n\n";
+
+    // Add nodes
+    for (const clang::CFGBlock* block : *cfg) {
+        dot << "  B" << block->getBlockID() << " [label=\"";
+        
+        bool firstStmt = true;
+        for (const auto& elem : *block) {
+            if (elem.getKind() == clang::CFGElement::Statement) {
+                if (const clang::Stmt* stmt = elem.castAs<clang::CFGStmt>().getStmt()) {
+                    if (!firstStmt) dot << "\\n";
+                    dot << stmtToString(stmt);
+                    firstStmt = false;
+                }
+            }
+        }
+        
+        if (firstStmt) {
+            if (block == &cfg->getEntry())
+                dot << "ENTRY";
+            else if (block == &cfg->getExit())
+                dot << "EXIT";
+            else
+                dot << "BLOCK " << block->getBlockID();
+        }
+        
+        dot << "\"];\n";
+    }
+
+    for (const clang::CFGBlock* block : *cfg) {
+        for (auto it = block->succ_begin(); it != block->succ_end(); ++it) {
+            if (*it) {
+                dot << "  B" << block->getBlockID() 
+                   << " -> B" << (*it)->getBlockID();
+                
+                if (const clang::Stmt* term = block->getTerminatorStmt()) {
+                    dot << " [label=\""
+                        << (it == block->succ_begin() ? "true" : "false")
+                        << "\"]";
+                }
+                
+                dot << ";\n";
+            }
+        }
+    }
+
+    dot << "}\n";
+    return dot.str();
+}
+
 bool CFGVisitor::VisitFunctionDecl(clang::FunctionDecl* FD) {
     if (!FD || !FD->hasBody()) return true;
     
@@ -40,10 +110,14 @@ bool CFGVisitor::VisitFunctionDecl(clang::FunctionDecl* FD) {
     CurrentFunction = funcName;
     FunctionDependencies[funcName] = std::set<std::string>();
     
-    std::string funcFilename = OutputDir + "/" + funcName + "_cfg.dot";
-    auto cfgGraph = GraphGenerator::generateCFG(FD);
-    if (cfgGraph) {
-        Visualizer::exportToDot(cfgGraph.get(), funcFilename);
+    std::string dotContent = generateDotFromCFG(FD);
+    if (!dotContent.empty()) {
+        std::string filename = OutputDir + "/" + funcName + "_cfg.dot";
+        std::ofstream outFile(filename);
+        if (outFile) {
+            outFile << dotContent;
+            outFile.close();
+        }
     }
     
     return true;
@@ -184,7 +258,6 @@ AnalysisResult CFGAnalyzer::analyzeFile(const QString& filePath) {
             return result;
         }
         
-        // Generate JSON output
         json j;
         j["filename"] = filename;
         j["timestamp"] = getCurrentDateTime();
@@ -236,4 +309,4 @@ std::string CFGAnalyzer::generateReport(const AnalysisResult& result) const {
     return report.str();
 }
 
-} // namespace CFGAnalyzer
+}

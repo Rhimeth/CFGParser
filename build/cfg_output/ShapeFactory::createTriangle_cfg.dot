@@ -1,0 +1,32 @@
+digraph "ShapeFactory::createTriangle_CFG" {
+  node [shape=rectangle, fontname="Courier"];
+  edge [fontname="Courier"];
+
+  B0 [label="EXIT"];
+  B1 [label="std::make_shared<Triangle>(a, b, c)\nstd::make_shared<Triangle>(a, b, c)\nstd::make_shared<Triangle>(a, b, c)\nreturn std::make_shared<Triangle>(a, b, c);
+"];
+  B2 [label="std::cout << "Error: Invalid triangle sides"\nstd::cout << "Error: Invalid triangle sides" << std::endl\nnullptr\nnullptr\nreturn nullptr;
+"];
+  B3 [label="c <= 0"];
+  B4 [label="b <= 0"];
+  B5 [label="a <= 0"];
+  B6 [label="b + c <= a"];
+  B7 [label="a + c <= b"];
+  B8 [label="a + b <= c"];
+  B9 [label="ENTRY"];
+  B1 -> B0;
+  B2 -> B0;
+  B3 -> B2 [label="true"];
+  B3 -> B1 [label="false"];
+  B4 -> B2 [label="true"];
+  B4 -> B3 [label="false"];
+  B5 -> B2 [label="true"];
+  B5 -> B4 [label="false"];
+  B6 -> B2 [label="true"];
+  B6 -> B5 [label="false"];
+  B7 -> B2 [label="true"];
+  B7 -> B6 [label="false"];
+  B8 -> B2 [label="true"];
+  B8 -> B7 [label="false"];
+  B9 -> B8;
+}

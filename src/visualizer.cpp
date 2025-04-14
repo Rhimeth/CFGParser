@@ -4,6 +4,15 @@
 #include <algorithm>
 #include <stdexcept>
 #include <QDebug>
+#include <QGraphicsSvgItem>
+#include <QSvgRenderer>
+#include <QProcess>
+#include <QTemporaryFile>
+#include <QTemporaryDir>
+#include <QMessageBox>
+#include <QFileInfo>
+#include <QDir>
+#include "cfg_analyzer.h"
 
 namespace Visualizer {
 
@@ -25,20 +34,9 @@ std::string generateDotRepresentation(
     // Add nodes
     for (const auto& [id, node] : graph->getNodes()) {
         dot << "  " << id << " [label=\"";
-        
-        if (showLineNumbers) {
-            // Comment out the line number code since the method doesn't existn-existent method
-            // We can add this functionality back when we know the correct wayr > 0) {  // Assuming node has a lineNumber member
-            // to retrieve line numbers from the graph<< ": ";
-            // 
-            // int lineNum = graph->getNodeLineNumber(id);
-            // if (lineNum > 0) {
-            //     dot << "Line " << lineNum << ": ";
-            // }
-        }
+                 
         dot << graph->getNodeLabel(id) << "\"";
         
-        // Apply styles based on node properties
         if (graph->isNodeTryBlock(id)) {
             dot << ", style=filled, fillcolor=lightblue";
         }
@@ -80,31 +78,75 @@ std::string generateDotRepresentation(
     return dot.str();
 }
 
-bool exportToDot(
-    const GraphGenerator::CFGGraph* graph,
-    const std::string& filename,
-    bool showLineNumbers,
-    bool simplifyGraph,
-    const std::vector<int>& highlightPaths)
-{
-    try {
-        if (!graph) {
-            qWarning() << "Cannot export null graph";
-            return false;
-        }
+bool isGraphvizAvailable() {
+    QProcess process;
+    process.start("dot", QStringList() << "-V");
+    return process.waitForFinished() && (process.exitCode() == 0);
+}
 
-        std::ofstream outFile(filename);
-        if (!outFile.is_open()) {
-            qWarning() << "Failed to open file:" << filename.c_str();
-            return false;
-        }
+bool renderDotFile(QGraphicsScene* scene, const QString& dotFilePath) {
+    if (!scene) return false;
+    
+    QTemporaryFile tempSvgFile;
+    if (!tempSvgFile.open()) return false;
+    tempSvgFile.close();
 
-        outFile << generateDotRepresentation(graph, showLineNumbers, simplifyGraph, highlightPaths);
-        return true;
-    } catch (const std::exception& e) {
-        qCritical() << "Export failed:" << e.what();
+    QProcess dotProcess;
+    dotProcess.start("dot", QStringList() 
+                   << "-Tsvg" 
+                   << dotFilePath 
+                   << "-o" << tempSvgFile.fileName());
+    
+    if (!dotProcess.waitForFinished(3000)) {
         return false;
     }
+
+    QGraphicsSvgItem* svgItem = new QGraphicsSvgItem(tempSvgFile.fileName());
+    // Use accessor method to check if renderer is valid
+    if (!svgItem->renderer() || !svgItem->renderer()->isValid()) {
+        delete svgItem;
+        return false;
+    }
+
+    scene->clear();
+    scene->addItem(svgItem);
+    scene->setSceneRect(svgItem->boundingRect());
+    return true;
+}
+
+bool exportToFile(const QString& dotFilePath, const QString& outputPath, ExportFormat format) {
+    QString formatFlag;
+    switch(format) {
+        case ExportFormat::PNG: formatFlag = "-Tpng"; break;
+        case ExportFormat::SVG: formatFlag = "-Tsvg"; break;
+        case ExportFormat::PDF: formatFlag = "-Tpdf"; break;
+        default: return false;
+    }
+
+    QProcess dotProcess;
+    dotProcess.start("dot", QStringList() 
+                   << formatFlag
+                   << dotFilePath 
+                   << "-o" << outputPath);
+    return dotProcess.waitForFinished(5000);
+}
+
+bool analyzeAndVisualizeCppFile(const QString& cppFilePath, QGraphicsScene* scene) {
+    if (!isGraphvizAvailable()) return false;
+
+    QTemporaryDir tempDir;
+    if (!tempDir.isValid()) return false;
+
+    CFGAnalyzer::CFGAnalyzer analyzer;
+    auto result = analyzer.analyzeFile(cppFilePath);
+    if (!result.success) return false;
+
+    QDir outputDir("cfg_output");
+    QStringList dotFiles = outputDir.entryList(QStringList() << "*.dot", QDir::Files);
+    if (dotFiles.isEmpty()) return false;
+
+    QString dotFilePath = outputDir.filePath(dotFiles.first());
+    return renderDotFile(scene, dotFilePath);
 }
 
 bool exportGraph(
@@ -121,6 +163,108 @@ bool exportGraph(
     }
     
     return exportToDot(graph, filename, showLineNumbers, simplifyGraph, highlightPaths);
+}
+
+std::string escapeHtml(const std::string& input) {
+    std::string output;
+    output.reserve(input.size());
+    
+    for (char c : input) {
+        switch (c) {
+            case '&': output.append("&amp;"); break;
+            case '<': output.append("&lt;"); break;
+            case '>': output.append("&gt;"); break;
+            case '"': output.append("&quot;"); break;
+            case '\'': output.append("&apos;"); break;
+            default: output.push_back(c); break;
+        }
+    }
+    
+    return output;
+}
+
+std::string generateInteractiveDot(
+    const GraphGenerator::CFGGraph* graph,
+    bool showLineNumbers,
+    const std::vector<int>& highlightPaths)
+{
+    std::stringstream dot;
+    dot << "digraph CFG {\n";
+    dot << "  node [shape=box, fontname=\"Courier\", fontsize=10, "
+        << "width=1.5, height=0.8, fixedsize=true];\n";
+    dot << "  edge [fontsize=8];\n";
+    
+    for (const auto& [id, node] : graph->getNodes()) {
+        dot << "  " << id << " ["
+            << "label=\"" << escapeHtml(graph->getNodeLabel(id)) << "\""
+            << ", tooltip=\"Block " << id << "\\n"
+            << "Statements: " << node.statements.size() << "\""
+            << ", URL=\"javascript:void(0)\""
+            << ", target=\"_blank\"";
+        
+        if (graph->isNodeTryBlock(id)) {
+            dot << ", fillcolor=\"#a6cee3\", style=filled";
+        }
+        if (graph->isNodeThrowingException(id)) {
+            dot << ", fillcolor=\"#fb9a99\", style=filled";
+        }
+        if (!highlightPaths.empty() && 
+            std::find(highlightPaths.begin(), highlightPaths.end(), id) != highlightPaths.end()) {
+            dot << ", fillcolor=\"#ffff99\", penwidth=3";
+        }
+        dot << "];\n";
+    }
+    
+    for (const auto& [id, node] : graph->getNodes()) {
+        for (int succ : node.successors) {
+            dot << "  " << id << " -> " << succ << " ["
+                << "tooltip=\"" << id << "→" << succ << "\"";
+                
+            if (graph->isExceptionEdge(id, succ)) {
+                dot << ", color=red, style=dashed";
+            } else if (succ <= id) { // Back edge
+                dot << ", color=blue, style=bold";
+            }
+            dot << "];\n";
+        }
+    }
+    
+    dot << "}\n";
+    return dot.str();
+}
+
+bool exportToDot(
+    const GraphGenerator::CFGGraph* graph,
+    const std::string& filename,
+    bool showLineNumbers,
+    bool simplifyGraph,
+    const std::vector<int>& highlightPaths)
+{
+    if (!graph) {
+        qWarning() << "Cannot export null graph";
+        return false;
+    }
+    
+    try {
+        // Generate DOT representation
+        std::string dotContent = generateDotRepresentation(
+            graph, showLineNumbers, simplifyGraph, highlightPaths);
+            
+        // Write to file
+        std::ofstream outFile(filename);
+        if (!outFile) {
+            qWarning() << "Failed to open file for writing:" << QString::fromStdString(filename);
+            return false;
+        }
+        
+        outFile << dotContent;
+        outFile.close();
+        
+        return true;
+    } catch (const std::exception& e) {
+        qWarning() << "Error exporting DOT file:" << e.what();
+        return false;
+    }
 }
 
 } // namespace Visualizer

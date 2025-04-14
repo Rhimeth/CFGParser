@@ -10,33 +10,59 @@
 #define UI_MAINWINDOW_H
 
 #include <QtCore/QVariant>
+#include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QListWidget>
 #include <QtWidgets/QMainWindow>
+#include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QSpacerItem>
+#include <QtWidgets/QSplitter>
 #include <QtWidgets/QStatusBar>
+#include <QtWidgets/QTextEdit>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
-#include <customgraphview.h>
+#include <qwebengineview.h>
 
 QT_BEGIN_NAMESPACE
 
 class Ui_MainWindow
 {
 public:
+    QAction *actionOpen;
+    QAction *actionExit;
+    QAction *actionAbout;
     QWidget *centralwidget;
     QVBoxLayout *verticalLayout;
-    QPushButton *openFilesButton;
     QHBoxLayout *horizontalLayout;
+    QLabel *label;
+    QLineEdit *filePathEdit;
+    QPushButton *browseButton;
+    QPushButton *analyzeButton;
+    QHBoxLayout *horizontalLayout_2;
+    QLabel *label_2;
     QLineEdit *search;
     QPushButton *searchButton;
-    QListWidget *fileList;
-    CustomGraphView *graph;
     QPushButton *toggleFunctionGraph;
+    QSplitter *splitter;
+    QListWidget *fileList;
+    QSplitter *splitter_2;
+    QWebEngineView *webView;
+    QTextEdit *reportTextEdit;
+    QLabel *graphLabel;
+    QHBoxLayout *horizontalLayout_3;
+    QPushButton *extractAstButton;
+    QPushButton *openFilesButton;
+    QPushButton *loadJsonButton;
+    QPushButton *mergeCfgsButton;
+    QSpacerItem *horizontalSpacer;
     QMenuBar *menubar;
+    QMenu *menuFile;
+    QMenu *menuHelp;
     QStatusBar *statusbar;
 
     void setupUi(QMainWindow *MainWindow)
@@ -44,53 +70,137 @@ public:
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
         MainWindow->resize(800, 600);
+        actionOpen = new QAction(MainWindow);
+        actionOpen->setObjectName(QString::fromUtf8("actionOpen"));
+        actionExit = new QAction(MainWindow);
+        actionExit->setObjectName(QString::fromUtf8("actionExit"));
+        actionAbout = new QAction(MainWindow);
+        actionAbout->setObjectName(QString::fromUtf8("actionAbout"));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         verticalLayout = new QVBoxLayout(centralwidget);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
-        openFilesButton = new QPushButton(centralwidget);
-        openFilesButton->setObjectName(QString::fromUtf8("openFilesButton"));
-
-        verticalLayout->addWidget(openFilesButton);
-
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
-        search = new QLineEdit(centralwidget);
-        search->setObjectName(QString::fromUtf8("search"));
+        label = new QLabel(centralwidget);
+        label->setObjectName(QString::fromUtf8("label"));
 
-        horizontalLayout->addWidget(search);
+        horizontalLayout->addWidget(label);
 
-        searchButton = new QPushButton(centralwidget);
-        searchButton->setObjectName(QString::fromUtf8("searchButton"));
+        filePathEdit = new QLineEdit(centralwidget);
+        filePathEdit->setObjectName(QString::fromUtf8("filePathEdit"));
 
-        horizontalLayout->addWidget(searchButton);
+        horizontalLayout->addWidget(filePathEdit);
+
+        browseButton = new QPushButton(centralwidget);
+        browseButton->setObjectName(QString::fromUtf8("browseButton"));
+
+        horizontalLayout->addWidget(browseButton);
+
+        analyzeButton = new QPushButton(centralwidget);
+        analyzeButton->setObjectName(QString::fromUtf8("analyzeButton"));
+
+        horizontalLayout->addWidget(analyzeButton);
 
 
         verticalLayout->addLayout(horizontalLayout);
 
-        fileList = new QListWidget(centralwidget);
-        fileList->setObjectName(QString::fromUtf8("fileList"));
+        horizontalLayout_2 = new QHBoxLayout();
+        horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
+        label_2 = new QLabel(centralwidget);
+        label_2->setObjectName(QString::fromUtf8("label_2"));
 
-        verticalLayout->addWidget(fileList);
+        horizontalLayout_2->addWidget(label_2);
 
-        graph = new CustomGraphView(centralwidget);
-        graph->setObjectName(QString::fromUtf8("graph"));
+        search = new QLineEdit(centralwidget);
+        search->setObjectName(QString::fromUtf8("search"));
 
-        verticalLayout->addWidget(graph);
+        horizontalLayout_2->addWidget(search);
+
+        searchButton = new QPushButton(centralwidget);
+        searchButton->setObjectName(QString::fromUtf8("searchButton"));
+
+        horizontalLayout_2->addWidget(searchButton);
 
         toggleFunctionGraph = new QPushButton(centralwidget);
         toggleFunctionGraph->setObjectName(QString::fromUtf8("toggleFunctionGraph"));
 
-        verticalLayout->addWidget(toggleFunctionGraph);
+        horizontalLayout_2->addWidget(toggleFunctionGraph);
+
+
+        verticalLayout->addLayout(horizontalLayout_2);
+
+        splitter = new QSplitter(centralwidget);
+        splitter->setObjectName(QString::fromUtf8("splitter"));
+        splitter->setOrientation(Qt::Horizontal);
+        fileList = new QListWidget(splitter);
+        fileList->setObjectName(QString::fromUtf8("fileList"));
+        splitter->addWidget(fileList);
+        splitter_2 = new QSplitter(splitter);
+        splitter_2->setObjectName(QString::fromUtf8("splitter_2"));
+        splitter_2->setOrientation(Qt::Vertical);
+        webView = new QWebEngineView(splitter_2);
+        webView->setObjectName(QString::fromUtf8("webView"));
+        splitter_2->addWidget(webView);
+        reportTextEdit = new QTextEdit(splitter_2);
+        reportTextEdit->setObjectName(QString::fromUtf8("reportTextEdit"));
+        splitter_2->addWidget(reportTextEdit);
+        graphLabel = new QLabel(splitter_2);
+        graphLabel->setObjectName(QString::fromUtf8("graphLabel"));
+        graphLabel->setAlignment(Qt::AlignCenter);
+        graphLabel->setScaledContents(true);
+        splitter_2->addWidget(graphLabel);
+        splitter->addWidget(splitter_2);
+
+        verticalLayout->addWidget(splitter);
+
+        horizontalLayout_3 = new QHBoxLayout();
+        horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
+        extractAstButton = new QPushButton(centralwidget);
+        extractAstButton->setObjectName(QString::fromUtf8("extractAstButton"));
+
+        horizontalLayout_3->addWidget(extractAstButton);
+
+        openFilesButton = new QPushButton(centralwidget);
+        openFilesButton->setObjectName(QString::fromUtf8("openFilesButton"));
+
+        horizontalLayout_3->addWidget(openFilesButton);
+
+        loadJsonButton = new QPushButton(centralwidget);
+        loadJsonButton->setObjectName(QString::fromUtf8("loadJsonButton"));
+
+        horizontalLayout_3->addWidget(loadJsonButton);
+
+        mergeCfgsButton = new QPushButton(centralwidget);
+        mergeCfgsButton->setObjectName(QString::fromUtf8("mergeCfgsButton"));
+
+        horizontalLayout_3->addWidget(mergeCfgsButton);
+
+        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_3->addItem(horizontalSpacer);
+
+
+        verticalLayout->addLayout(horizontalLayout_3);
 
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
         menubar->setGeometry(QRect(0, 0, 800, 22));
+        menuFile = new QMenu(menubar);
+        menuFile->setObjectName(QString::fromUtf8("menuFile"));
+        menuHelp = new QMenu(menubar);
+        menuHelp->setObjectName(QString::fromUtf8("menuHelp"));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
         MainWindow->setStatusBar(statusbar);
+
+        menubar->addAction(menuFile->menuAction());
+        menubar->addAction(menuHelp->menuAction());
+        menuFile->addAction(actionOpen);
+        menuFile->addAction(actionExit);
+        menuHelp->addAction(actionAbout);
 
         retranslateUi(MainWindow);
 
@@ -100,10 +210,21 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "CFG Parser", nullptr));
-        openFilesButton->setText(QCoreApplication::translate("MainWindow", "Open Files", nullptr));
-        search->setPlaceholderText(QCoreApplication::translate("MainWindow", "Search function...", nullptr));
-        searchButton->setText(QCoreApplication::translate("MainWindow", "Search", nullptr));
-        toggleFunctionGraph->setText(QCoreApplication::translate("MainWindow", "Toggle Function Graph", nullptr));
+        actionOpen->setText(QCoreApplication::translate("MainWindow", "Open", nullptr));
+        actionExit->setText(QCoreApplication::translate("MainWindow", "Exit", nullptr));
+        actionAbout->setText(QCoreApplication::translate("MainWindow", "About", nullptr));
+        label->setText(QCoreApplication::translate("MainWindow", "File:", nullptr));
+        browseButton->setText(QCoreApplication::translate("MainWindow", "Browse...", nullptr));
+        analyzeButton->setText(QCoreApplication::translate("MainWindow", "Analyze", nullptr));
+        label_2->setText(QCoreApplication::translate("MainWindow", "Search:", nullptr));
+        searchButton->setText(QCoreApplication::translate("MainWindow", "Find", nullptr));
+        toggleFunctionGraph->setText(QCoreApplication::translate("MainWindow", "Toggle View", nullptr));
+        extractAstButton->setText(QCoreApplication::translate("MainWindow", "Extract AST", nullptr));
+        openFilesButton->setText(QCoreApplication::translate("MainWindow", "Open Files...", nullptr));
+        loadJsonButton->setText(QCoreApplication::translate("MainWindow", "Load JSON", nullptr));
+        mergeCfgsButton->setText(QCoreApplication::translate("MainWindow", "Merge CFGs", nullptr));
+        menuFile->setTitle(QCoreApplication::translate("MainWindow", "File", nullptr));
+        menuHelp->setTitle(QCoreApplication::translate("MainWindow", "Help", nullptr));
     } // retranslateUi
 
 };
